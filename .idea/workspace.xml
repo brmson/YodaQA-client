@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07753a12-6d48-4a43-aa4e-a41916860fd1" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\ERMRK\Dropbox\YodaQA Client\js\yodaAnswerGetter.js" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/LICENSE-2.0.txt" />
       <change type="MODIFICATION" beforePath="$USER_HOME$/Dropbox/YodaQA Client/.idea/workspace.xml" afterPath="$USER_HOME$/Dropbox/YodaQA Client/.idea/workspace.xml" />
     </list>
     <ignored path="CordovaTest.iws" />
@@ -80,6 +80,7 @@
         <option value="$USER_HOME$/Dropbox/YodaQA Android/www/index.html" />
         <option value="$USER_HOME$/Dropbox/YodaQA Android/www/js/yodaAnswerGetter.js" />
         <option value="$USER_HOME$/Dropbox/YodaQA Android/www/js/androidControl.js" />
+        <option value="$USER_HOME$/Dropbox/YodaQA Client/LICENSE-2.0.txt" />
       </list>
     </option>
   </component>
@@ -150,6 +151,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ERMRK\Dropbox\YodaQA Client" />
       <recent name="C:\Users\ERMRK\Dropbox\YodaQA Android\www\js" />
       <recent name="C:\Users\ERMRK\Dropbox\YodaQA Android\www" />
     </key>
@@ -236,7 +238,13 @@
       <option name="project" value="LOCAL" />
       <updated>1436430156325</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Delete of old js directory">
+      <created>1436431857384</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1436431857384</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -276,7 +284,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Android client commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Android client commit" />
+    <MESSAGE value="Delete of old js directory" />
+    <option name="LAST_COMMIT_MESSAGE" value="Delete of old js directory" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -426,6 +435,14 @@
           <folding>
             <element signature="e#0#45#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Dropbox/YodaQA Client/LICENSE-2.0.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="7.5652175">
+          <caret line="174" column="66" selection-start-line="174" selection-start-column="66" selection-end-line="174" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
