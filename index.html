@@ -23,6 +23,12 @@
 			<!--Header-->
 			<div data-role="header" data-position="fixed">
 				<h1>YodaQA client</h1>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="search">Ask</a></li>
+						<li><a href="#asked-questions" data-icon="info">Asked questions</a></li>
+					</ul>
+				</div>
 			</div>
 
 			<!--Page's main content-->
@@ -36,13 +42,6 @@
 
 				<!--Area with answers-->
 				<div id="answers_area"></div>
-
-				<div id="inProgress_area"></div>
-
-				<div id="toAnswer_area"></div>
-
-				<div id="answered_area"></div>
-
 
 			</div>
 
@@ -74,6 +73,40 @@
 
 				<!--Sources area-->
 				<div id="sources"></div>
+			</div>
+
+			<!--Footer-->
+			<div data-role="footer" data-position="fixed">
+				<h1>YodaQA client</h1>
+			</div>
+		</div>
+
+		<!--Page with already asked questions-->
+		<div data-role="page" id="asked-questions">
+
+			<!--Header-->
+			<div data-role="header" data-position="fixed">
+				<h1>YodaQA client</h1>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#mainPage" data-icon="search">Ask</a></li>
+						<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="info">Asked questions</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<!--Page's main content-->
+			<div data-role="main" class="ui-content">
+
+				<!--Area for answered questions-->
+				<div id="answered_area"></div>
+
+				<!--Area for questions in progress-->
+				<div id="inProgress_area"></div>
+
+				<!--Area for questions in queue-->
+				<div id="toAnswer_area"></div>
+
 			</div>
 
 			<!--Footer-->

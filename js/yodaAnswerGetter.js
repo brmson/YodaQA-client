@@ -25,6 +25,8 @@ $(function () {
     setInterval(getAnsweredJson, 2900);
 });
 
+
+/* Gets question information and shows it */
 function loadQuestion(q) {
     //$("#metadata_area").empty();
     $("#answers_area").empty();
@@ -35,18 +37,21 @@ function loadQuestion(q) {
     getQuestionJson();
 }
 
+/* Gets and shows answered questions in list */
 function getAnsweredJson() {
     $.get("http://live.ailao.eu/q/?answered", function (r) {
         showQuestionList($("#answered_area"), "answered", "Answered questions", r);
     });
 }
 
+/* Gets and shows answers in progress in list */
 function getInProgressJson() {
     $.get("http://live.ailao.eu/q/?inProgress", function (r) {
         showQuestionList($("#inProgress_area"), "inProgress", "In progress", r);
     });
 }
 
+/* Gets and shows answers in processing in list*/
 function getToAnswerJson() {
     $.get("http://live.ailao.eu/q/?toAnswer", function (r) {
         showQuestionList($("#toAnswer_area"), "toAnswer", "Question queue", r);
@@ -62,48 +67,24 @@ function showQuestionList(area, listContainerID, title, list) {
     }
     var listContainer = createList(area, listContainerID);
     list.forEach(function (q) {
-        listContainer.append('<li><a href="javascript:loadQuestion(' + q.id + ')">' + q.text + '</a></li>');
+        listContainer.append('<li><a href="javascript:showAnsweredQuestion(' + q.id + ')">' + q.text + '</a></li>');
     });
     $("#" + listContainerID).listview().listview("refresh");
+}
+
+/* Shows answers to selected questions and jumps to main page */
+function showAnsweredQuestion(qId){
+    loadQuestion(qId);
+    window.location.href = "#mainPage";
 }
 
 /* Retrieve, process and display json question information. */
 function getQuestionJson() {
     $.get("http://live.ailao.eu/q/" + qid, function (r) {
-        $('input[name="text"]').val(r.text); //Sets search input to question???
-
-        //Shows summary (Answer type table)
-        /*if (r.summary) {
-         /* Show the question summary. */
-        /*container = $("#summary");
-         if (!container.length) {
-         container = $('<div id="summary"></div>');
-         $("#metadata_area").prepend(container);
-         showSummary(container, r.summary);
-         }
-         }*/
-
-        //shows sources of answer
-        /*
-         if (r.sources.length && gen_sources != r.gen_sources) {
-         /* Show the answer sources. */
-        /*container = $("#sources");
-         if (!container.length) {
-         container = $('<div id="sources"></div>');
-         $("#metadata_area").prepend(container);
-         }
-         showSources(container, r.sources);
-         gen_sources = r.gen_sources;
-         }*/
+        $('input[name="text"]').val(r.text);
 
         //shows answers
         if (r.answers && gen_answers != r.gen_answers) {
-            /* Show the list of answers. */
-            /*container = $("#answers");
-             if (!container.length) {
-             container = $('<ul data-role="listview" data-inset="true" id="answers"></ul>');
-             $("#answers_area").prepend(container);
-             }*/
             var container = createList("#answers_area", "answers");
             showAnswers(container, r.answers);
             gen_answers = r.gen_answers;
@@ -118,6 +99,7 @@ function getQuestionJson() {
     });
 }
 
+/* Creates and returns new list with containerID in area element*/
 function createList(area, containerID) {
     container = $("#" + containerID);
     if (!container.length) {
@@ -137,17 +119,13 @@ function showAnswers(container, answers) {
         text = a.text.replace(/"/g, "&#34;");
         container.append('<li id=' + i + ' class="answer"><a href="#answer-description" class="answer">' + text +
             '<span class="ui-li-count" style="color: '+score_color(a.confidence)+';">' +
-            (a.confidence * 100).toFixed(1) + '%</span></a></li>'
-
-            /*'<tr><td class="i">' + i + '.</td>'
-             + '<td class="text" title="' + text + '">' + text + '</td>'
-             + '<td class="scorebar">' + /*score_bar(a.confidence)+*//*'</td>'
-             + '<td class="score">' + (a.confidence * 100).toFixed(1) + '%</td></tr>'*/);
+            (a.confidence * 100).toFixed(1) + '%</span></a></li>');
         $("#answers").listview().listview("refresh");
         i++;
     });
 }
 
+/* Returns color for score */
 function score_color(score) {
     var green = Math.round(200 * score + 25);
     var red = Math.round(200 * (1-score) + 25);
