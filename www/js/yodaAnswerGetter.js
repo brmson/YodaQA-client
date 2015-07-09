@@ -136,7 +136,8 @@ function showAnswers(container, answers) {
         // FIXME: also deal with < > &
         text = a.text.replace(/"/g, "&#34;");
         container.append('<li id=' + i + ' class="answer"><a href="#answer-description" class="answer">' + text +
-            '<span class="ui-li-count">' + (a.confidence * 100).toFixed(1) + '%</span></a></li>'
+            '<span class="ui-li-count" style="color: '+score_color(a.confidence)+';">' +
+            (a.confidence * 100).toFixed(1) + '%</span></a></li>'
 
             /*'<tr><td class="i">' + i + '.</td>'
              + '<td class="text" title="' + text + '">' + text + '</td>'
@@ -145,6 +146,12 @@ function showAnswers(container, answers) {
         $("#answers").listview().listview("refresh");
         i++;
     });
+}
+
+function score_color(score) {
+    var green = Math.round(200 * score + 25);
+    var red = Math.round(200 * (1-score) + 25);
+    return 'rgb('+red+','+green+',0)';
 }
 
 function showAnswerDetails() {

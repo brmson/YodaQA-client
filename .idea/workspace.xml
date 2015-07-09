@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07753a12-6d48-4a43-aa4e-a41916860fd1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$USER_HOME$/Dropbox/YodaQA Client/www/index.html" afterPath="$USER_HOME$/Dropbox/YodaQA Client/www/index.html" />
+    <list default="true" id="07753a12-6d48-4a43-aa4e-a41916860fd1" name="Default" comment="Added color to answer percentage">
       <change type="MODIFICATION" beforePath="$USER_HOME$/Dropbox/YodaQA Client/.idea/workspace.xml" afterPath="$USER_HOME$/Dropbox/YodaQA Client/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$USER_HOME$/Dropbox/YodaQA Client/www/js/yodaAnswerGetter.js" afterPath="$USER_HOME$/Dropbox/YodaQA Client/www/js/yodaAnswerGetter.js" />
     </list>
@@ -50,9 +49,11 @@
       <file leaf-file-name="yodaAnswerGetter.js" pinned="false" current-in-tab="true">
         <entry file="file://$USER_HOME$/Dropbox/YodaQA Client/www/js/yodaAnswerGetter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.6420863">
-              <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
-              <folding />
+            <state vertical-scroll-proportion="0.7022472">
+              <caret line="138" column="83" selection-start-line="138" selection-start-column="83" selection-end-line="138" selection-end-column="83" />
+              <folding>
+                <marker date="1436438863151" expanded="true" signature="4226:4233" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -273,16 +274,22 @@
       <option name="project" value="LOCAL" />
       <updated>1436437154623</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="&quot;In progress&quot; and &quot;To answer&quot; lists created">
+      <created>1436438401352</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1436438401352</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25297618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32789558" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32626426" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32495812" sideWeight="0.50542635" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5089723" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -316,7 +323,9 @@
     <MESSAGE value="Delete of old js directory" />
     <MESSAGE value="Licence added" />
     <MESSAGE value="Answered list created" />
-    <option name="LAST_COMMIT_MESSAGE" value="Answered list created" />
+    <MESSAGE value="&quot;In progress&quot; and &quot;To answer&quot; lists created" />
+    <MESSAGE value="Added color to answer percentage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added color to answer percentage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -361,7 +370,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1436438863151" expanded="true" signature="4226:4233" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -387,7 +398,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <marker date="1436438863151" expanded="true" signature="4226:4233" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -479,9 +492,11 @@
     </entry>
     <entry file="file://$USER_HOME$/Dropbox/YodaQA Client/www/js/yodaAnswerGetter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6420863">
-          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
-          <folding />
+        <state vertical-scroll-proportion="0.7022472">
+          <caret line="138" column="83" selection-start-line="138" selection-start-column="83" selection-end-line="138" selection-end-column="83" />
+          <folding>
+            <marker date="1436438863151" expanded="true" signature="4226:4233" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
