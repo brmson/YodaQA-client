@@ -17,7 +17,9 @@ $(function () {
 
     //getToAnswerJson(); setInterval(getToAnswerJson, 3100);
     //getInProgressJson(); setInterval(getInProgressJson, 3000);
-    //getAnsweredJson(); setInterval(getAnsweredJson, 2900);
+
+    getAnsweredJson();
+    setInterval(getAnsweredJson, 2900);
 });
 
 function loadQuestion(q) {
@@ -28,6 +30,24 @@ function loadQuestion(q) {
     gen_sources = 0;
     gen_answers = 0;
     getQuestionJson();
+}
+
+function getAnsweredJson() {
+    $.get("http://live.ailao.eu/q/?answered", function (r) {
+        showQuestionList($("#answered_area"), "answered","Answered questions", r);
+    });
+}
+
+/* Create a titled listing of questions. */
+function showQuestionList(area, listContainerID, title, list) {
+    area.empty();
+    area.append('<br>');
+    area.append('<h2>' + title + '</h2>');
+    var listContainer = createList(area, listContainerID);
+    list.forEach(function (q) {
+        listContainer.append('<li><a href="javascript:loadQuestion(' + q.id + ')">' + q.text + '</a></li>');
+    });
+    $("#answered").listview().listview("refresh");
 }
 
 /* Retrieve, process and display json question information. */
@@ -62,11 +82,12 @@ function getQuestionJson() {
         //shows answers
         if (r.answers && gen_answers != r.gen_answers) {
             /* Show the list of answers. */
-            container = $("#answers");
-            if (!container.length) {
-                container = $('<ul data-role="listview" data-inset="true" id="answers"></ul>');
-                $("#answers_area").prepend(container);
-            }
+            /*container = $("#answers");
+             if (!container.length) {
+             container = $('<ul data-role="listview" data-inset="true" id="answers"></ul>');
+             $("#answers_area").prepend(container);
+             }*/
+            var container = createList("#answers_area", "answers");
             showAnswers(container, r.answers);
             gen_answers = r.gen_answers;
         }
@@ -80,6 +101,16 @@ function getQuestionJson() {
     });
 }
 
+function createList(area, containerID) {
+    container = $("#" + containerID);
+    if (!container.length) {
+        container = $('<ul data-role="listview" data-inset="true" id="' + containerID + '"></ul>');
+        $(area).append(container);
+    }
+    return container;
+}
+
+
 /* Create a table with answers. */
 function showAnswers(container, answers) {
     container.empty();
@@ -87,14 +118,14 @@ function showAnswers(container, answers) {
     answers.forEach(function (a) {
         // FIXME: also deal with < > &
         text = a.text.replace(/"/g, "&#34;");
-        container.append('<li id=i class="answer"><a href="#answer-description">' + text + '<span class="ui-li-count">' + (a.confidence * 100).toFixed(1) + '%</span></a></li>'
+        container.append('<li id=' + i + ' class="answer"><a href="#answer-description" class="answer">' + text +
+            '<span class="ui-li-count">' + (a.confidence * 100).toFixed(1) + '%</span></a></li>'
 
             /*'<tr><td class="i">' + i + '.</td>'
              + '<td class="text" title="' + text + '">' + text + '</td>'
              + '<td class="scorebar">' + /*score_bar(a.confidence)+*//*'</td>'
              + '<td class="score">' + (a.confidence * 100).toFixed(1) + '%</td></tr>'*/);
         $("#answers").listview().listview("refresh");
-        getAnswerDescription(i, answers);
         i++;
     });
 }
@@ -124,8 +155,9 @@ function showSourcesInDetails() {
 }
 
 $(document).on("pagecreate", "#mainPage", function () {
-    $("li").on("tap", function () {
-        alert(this.id);
-        showAnswerDetails();
+    $(".answer").on("tap", function () {
+        alert("It works");
+        /*alert(this.id);
+         showAnswerDetails();*/
     });
 });
