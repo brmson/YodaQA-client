@@ -15,8 +15,11 @@ $(function () {
         }
     });
 
-    //getToAnswerJson(); setInterval(getToAnswerJson, 3100);
-    //getInProgressJson(); setInterval(getInProgressJson, 3000);
+    getToAnswerJson();
+    setInterval(getToAnswerJson, 3100);
+
+    getInProgressJson();
+    setInterval(getInProgressJson, 3000);
 
     getAnsweredJson();
     setInterval(getAnsweredJson, 2900);
@@ -34,20 +37,34 @@ function loadQuestion(q) {
 
 function getAnsweredJson() {
     $.get("http://live.ailao.eu/q/?answered", function (r) {
-        showQuestionList($("#answered_area"), "answered","Answered questions", r);
+        showQuestionList($("#answered_area"), "answered", "Answered questions", r);
+    });
+}
+
+function getInProgressJson() {
+    $.get("http://live.ailao.eu/q/?inProgress", function (r) {
+        showQuestionList($("#inProgress_area"), "inProgress", "In progress", r);
+    });
+}
+
+function getToAnswerJson() {
+    $.get("http://live.ailao.eu/q/?toAnswer", function (r) {
+        showQuestionList($("#toAnswer_area"), "toAnswer", "Question queue", r);
     });
 }
 
 /* Create a titled listing of questions. */
 function showQuestionList(area, listContainerID, title, list) {
     area.empty();
-    area.append('<br>');
-    area.append('<h2>' + title + '</h2>');
+    if (list.length != 0) {
+        area.append('<br>');
+        area.append('<h2>' + title + '</h2>');
+    }
     var listContainer = createList(area, listContainerID);
     list.forEach(function (q) {
         listContainer.append('<li><a href="javascript:loadQuestion(' + q.id + ')">' + q.text + '</a></li>');
     });
-    $("#answered").listview().listview("refresh");
+    $("#" + listContainerID).listview().listview("refresh");
 }
 
 /* Retrieve, process and display json question information. */
