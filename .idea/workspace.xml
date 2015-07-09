@@ -2,360 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07753a12-6d48-4a43-aa4e-a41916860fd1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/AuthenticationToken.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/BuildConfig.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CallbackContext.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Config.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ConfigXmlParser.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$1.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$2.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$3.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4$1.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity$4.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaActivity.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaArgs.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaBridge.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaClientCertRequest.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$1.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$2.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$3.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$4.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$5.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$6.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$7.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$8.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$9.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper$Result.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaDialogsHelper.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaHttpAuthHandler.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterface.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterfaceImpl$ActivityResultHolder.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaInterfaceImpl.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/outputs/aar/CordovaLib-debug.aar" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaPlugin.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaPreferences.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi$OpenForReadResult.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaResourceApi.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebView.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewEngine$Client.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewEngine$EngineView.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewEngine.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$1.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$2.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$3.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1$1.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient$1.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl$EngineClient.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CordovaWebViewImpl.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$1.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$2.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$3.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$4.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid$5.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/CoreAndroid.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ExposedJsApi.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ICordovaClientCertRequest.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ICordovaCookieManager.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/ICordovaHttpAuthHandler.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/LOG.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$BridgeMode.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$JsMessage.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode$1.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$LoadUrlBridgeMode.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$NoOpBridgeMode.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$1.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$2.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode$OnlineEventsBridgeModeDelegate.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue$OnlineEventsBridgeMode.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/NativeToJsMessageQueue.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginEntry.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginManager.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult$Status.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/PluginResult.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemCookieManager.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemExposedJsApi.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$1.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$2.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$3.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$4.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient$5.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebChromeClient.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebView.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewClient.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$1.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine$2.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/engine/SystemWebViewEngine.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist$URLPattern.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/classes/debug/org/apache/cordova/Whitelist.class" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties.lock" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/bundles/debug/classes.jar" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/incremental/aidl/debug/dependency.store" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/.gradle/2.2.1/taskArtifacts/fileHashes.bin" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/.gradle/2.2.1/taskArtifacts/fileSnapshots.bin" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/drawable/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/drawable-hdpi/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/drawable-ldpi/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/drawable-mdpi/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/drawable-xhdpi/icon.png" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/.gradle/2.2.1/taskArtifacts/outputFileStates.bin" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/drawable-land-hdpi/screen.png" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/drawable-land-ldpi/screen.png" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/drawable-land-mdpi/screen.png" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/drawable-land-xhdpi/screen.png" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/drawable-port-hdpi/screen.png" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/drawable-port-ldpi/screen.png" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/drawable-port-mdpi/screen.png" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/drawable-port-xhdpi/screen.png" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/.gradle/2.2.1/taskArtifacts/taskArtifacts.bin" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/.documentup.json" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/.jshintrc" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/.idea/.name" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/.npmignore" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/.project" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/.project" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/.travis.yml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/AndroidManifest.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/AndroidManifest.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/bundles/debug/AndroidManifest.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/AuthenticationToken.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/generated/source/buildConfig/debug/org/apache/cordova/BuildConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/src/ios/CDVConnection.h" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/src/ios/CDVConnection.m" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-whitelist/src/ios/CDVNavigationWhitelistPlugin.h" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-whitelist/src/ios/CDVNavigationWhitelistPlugin.m" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/src/ios/CDVReachability.h" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/src/ios/CDVReachability.m" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/q/CONTRIBUTING.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/CONTRIBUTING.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-whitelist/CONTRIBUTING.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CallbackContext.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/Config.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/ConfigXmlParser.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/plugins/cordova-plugin-network-information/www/Connection.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/www/Connection.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaArgs.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaBridge.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaClientCertRequest.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaDialogsHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaHttpAuthHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaInterface.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaInterfaceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaPlugin.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaPreferences.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaResourceApi.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaWebView.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaWebViewEngine.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CordovaWebViewImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/CoreAndroid.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/ExposedJsApi.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/ICordovaClientCertRequest.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/ICordovaCookieManager.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/ICordovaHttpAuthHandler.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/nopt/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/nopt/node_modules/abbrev/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/q/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/which/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-whitelist/LICENSE" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/LOG.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/tmp/packageDebugJar/MANIFEST.MF" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/src/io/cordova/hellocordova/MainActivity.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/NOTICE" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-whitelist/NOTICE" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/NativeToJsMessageQueue.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/src/windows/NetworkInfoProxy.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/src/org/apache/cordova/networkinformation/NetworkManager.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/src/android/NetworkManager.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/src/firefoxos/NetworkProxy.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/src/tizen/NetworkProxy.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/src/wp/NetworkStatus.cs" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/PluginEntry.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/PluginManager.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/PluginResult.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/hooks/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/q/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/which/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/de/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/es/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/fr/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/it/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/ja/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/ko/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/pl/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/zh/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-whitelist/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/org.apache.cordova.plugin.tts/README.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/RELEASENOTES.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-whitelist/RELEASENOTES.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemCookieManager.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemExposedJsApi.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemWebChromeClient.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemWebView.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemWebViewClient.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/engine/SystemWebViewEngine.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/src/org/apache/cordova/plugin/TTS.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/org.apache.cordova.plugin.tts/src/android/TTS.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/src/org/apache/cordova/Whitelist.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/src/org/apache/cordova/whitelist/WhitelistPlugin.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-whitelist/src/android/WhitelistPlugin.java" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/.idea/YodaQA Client.iml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/_where-is-www.txt" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/nopt/node_modules/abbrev/abbrev.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/android.json" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/js/androidControl.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/www/js/androidControl.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/android_sdk_version.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/android_sdk_version" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/cordova-js-src/plugin/android/app.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/platform_www/cordova-js-src/plugin/android/app.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/appinfo.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/build.bat" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/build.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/build" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/.gradle/2.2.1/taskArtifacts/cache.properties" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/cat.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/cd.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/check_reqs.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/check_reqs" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/chmod.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/clean.bat" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/clean" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/common.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/q/benchmark/compare-with-callbacks.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/xml/config.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/cordova.gradle" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/cordova.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/platform_www/cordova.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/cordova_plugins.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/cp.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/defaults.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/device.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/dirs.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/echo.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/emulator.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/error.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/cordova-js-src/exec.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/exec.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/exec.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/platform_www/cordova-js-src/exec.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/fetch.json" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/find.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/scripts/generate-docs.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/global.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/grep.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/index.html" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/www/index.html" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/src/blackberry10/index.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/de/index.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/es/index.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/fr/index.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/it/index.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/ja/index.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/ko/index.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/pl/index.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/ru/index.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/doc/zh/index.md" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/install-device.bat" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/install-device" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/install-emulator.bat" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/install-emulator" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/js/jQuery/jquery-1.11.3.min.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/www/js/jQuery/jquery-1.11.3.min.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/js/jQuery/jquery.form.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/www/js/jQuery/jquery.form.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/css/jQuery/jquery.mobile-1.4.5.min.css" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/www/css/jQuery/jquery.mobile-1.4.5.min.css" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/js/jQuery/jquery.mobile-1.4.5.min.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/www/js/jQuery/jquery.mobile-1.4.5.min.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/list-devices.bat" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/list-devices" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/list-emulator-images.bat" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/list-emulator-images" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/list-started-emulators.bat" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/list-started-emulators" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/log.bat" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/log.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/log" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/ls.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/make.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/incremental/mergeAssets/debug/merger.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/build/intermediates/incremental/packageResources/debug/merger.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/mkdir.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/mv.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/cordova-js-src/android/nativeapiprovider.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/platform_www/cordova-js-src/android/nativeapiprovider.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/plugins/cordova-plugin-network-information/www/network.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/www/network.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/www/browser/network.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/src/ubuntu/network_information.cpp" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/src/ubuntu/network_information.h" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/nopt/lib/nopt.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/nopt/package.json" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/nopt/node_modules/abbrev/package.json" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/q/package.json" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/package.json" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/which/package.json" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/package.json" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-whitelist/package.json" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/cordova-js-src/platform.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/platform_www/cordova-js-src/platform.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/platforms.json" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/plugin-build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/plugin.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/tests/plugin.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-whitelist/plugin.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/org.apache.cordova.plugin.tts/plugin.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/popd.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/project.properties" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/CordovaLib/project.properties" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/cordova-js-src/android/promptbasednativeapi.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/platform_www/cordova-js-src/android/promptbasednativeapi.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/pushd.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/pwd.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/q/q.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/q/queue.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/rm.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/scripts/run-tests.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/run.bat" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/run.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/run" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/q/benchmark/scenarios.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/sed.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/settings.gradle" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/shell.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/bin/shjs" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/spawn.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/start-emulator.bat" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/lib/start-emulator" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/res/values/strings.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/tempdir.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/test.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-network-information/tests/tests.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/to.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/toEnd.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/plugins/org.apache.cordova.plugin.tts/www/tts.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/org.apache.cordova.plugin.tts/www/tts.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/version.bat" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/version" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/shelljs/src/which.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/which/which.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/cordova/node_modules/which/bin/which" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/plugins/cordova-plugin-whitelist/whitelist.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/plugins/cordova-plugin-whitelist/whitelist.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/platforms/android/assets/www/js/yodaAnswerGetter.js" />
-      <change type="NEW" beforePath="" afterPath="$USER_HOME$/Dropbox/YodaQA Client/www/js/yodaAnswerGetter.js" />
+      <change type="DELETED" beforePath="C:\Users\ERMRK\Dropbox\YodaQA Client\js\yodaAnswerGetter.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$USER_HOME$/Dropbox/YodaQA Client/.idea/workspace.xml" afterPath="$USER_HOME$/Dropbox/YodaQA Client/.idea/workspace.xml" />
     </list>
     <ignored path="CordovaTest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -401,7 +49,7 @@
       <file leaf-file-name="yodaAnswerGetter.js" pinned="false" current-in-tab="true">
         <entry file="file://$USER_HOME$/Dropbox/YodaQA Client/www/js/yodaAnswerGetter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53125">
+            <state vertical-scroll-proportion="0.5217391">
               <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
               <folding />
             </state>
@@ -418,6 +66,7 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$USER_HOME$/Dropbox/YodaQA Client" />
   </component>
   <component name="IdeDocumentHistory">
@@ -496,6 +145,8 @@
     <property name="restartRequiresConfirmation" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Dropbox/YodaQA Client" />
     <property name="FullScreen" value="false" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -579,22 +230,29 @@
       <option name="number" value="Default" />
       <updated>1436356256985</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial Android client commit">
+      <created>1436430156325</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1436430156325</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25297618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25297618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32495812" sideWeight="0.50542635" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.51140064" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5089723" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32789558" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.31647635" sideWeight="0.49457365" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32861635" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -615,6 +273,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial Android client commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial Android client commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -769,7 +431,7 @@
     </entry>
     <entry file="file://$USER_HOME$/Dropbox/YodaQA Client/www/js/yodaAnswerGetter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53125">
+        <state vertical-scroll-proportion="0.5217391">
           <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
           <folding />
         </state>
