@@ -11,3 +11,61 @@
 .ui-li-static.ui-collapsible > .ui-collapsible-content {
     border-bottom-width: 0;
 }
+
+
+
+/* Shows sources in two columns. */
+@media ( min-width: 48em ) {
+
+    .responsive .ui-listview li {
+        float: left;
+        width: 50%;
+    }
+    .responsive .ui-listview li > .ui-btn {
+        -webkit-box-sizing: border-box; /* include padding and border in height so we can set it to 100% */
+        -moz-box-sizing: border-box;
+        -ms-box-sizing: border-box;
+        box-sizing: border-box;
+        height: 100%;
+    }
+    .responsive .ui-listview li.ui-li-has-thumb .ui-li-thumb {
+        height: auto; /* To keep aspect ratio. */
+        max-width: 100%;
+        max-height: none;
+    }
+    /* Make all list items and anchors inherit the border-radius from the UL. */
+    .responsive .ui-listview li,
+    .responsive .ui-listview li .ui-btn,
+    .responsive .ui-listview .ui-li-thumb {
+        -webkit-border-radius: inherit;
+        border-radius: inherit;
+    }
+
+    /* Creates border */
+    .responsive .ui-listview>.ui-li-static, .responsive .ui-listview>.ui-li-divider, .responsive .ui-listview>li>a.ui-btn {
+        border-width: 1px;
+        border-style: solid;
+    }
+
+    /* Animate focus and hover style, and resizing. */
+    .responsive .ui-listview li,
+    .responsive .ui-listview .ui-btn {
+        -webkit-transition: all 500ms ease;
+        -moz-transition: all 500ms ease;
+        -o-transition: all 500ms ease;
+        -ms-transition: all 500ms ease;
+        transition: all 500ms ease;
+    }
+    /* Semi transparent background and different position if there is a thumb. The button has overflow hidden so we don't need to set border-radius. */
+    .ui-listview .ui-li-has-thumb h2,
+    .ui-listview .ui-li-has-thumb p {
+        background: #111;
+        background: rgba(0,0,0,.8);
+    }
+    .ui-listview .ui-li-has-thumb h2 {
+        bottom: 35%;
+    }
+    .ui-listview .ui-li-has-thumb p {
+        min-height: 35%;
+    }
+}

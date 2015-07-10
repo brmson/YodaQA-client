@@ -99,6 +99,7 @@ function getQuestionJson() {
             }else{
                 $("#concept_area").empty();
             }
+            showAnswerType(r.summary);
         }
 
         //shows sources
@@ -115,6 +116,21 @@ function getQuestionJson() {
             setTimeout(getQuestionJson, 500);
         }
     });
+}
+
+function showAnswerType(summary){
+    var container = $("#answerType_area");
+    container.empty();
+    if(summary.lats.length){
+        container.append('<br>');
+        container.append('<H2>Answer types</H2>');
+        container.append('<p>'+summary.lats.join(', ').capitalizeFirstLetter()+'</p>');
+    }
+
+}
+
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
 /* Shows concepts on main page */
