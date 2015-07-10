@@ -229,11 +229,11 @@ function showAnswersInDropDown(a, i, container) {
 /* Creates base for drop down menu */
 function createDropDownList(container, liID, title, ulID) {
     container.append('' +
-        '<li data-role="collapsible" data-iconpos="right" data-inset="true" id="' + liID + '">' +
+        '<div data-role="collapsible" data-iconpos="right" data-inset="true" id="' + liID + '" data-theme="b" data-content-theme="a">' +
         '   <h2>' + title + '</h2> ' +
         '   <ul data-role="collapsibleset" data-iconpos="right"  id="' + ulID + '"> ' +
         '   </ul>' +
-        '</li>');
+        '</div>');
 }
 
 /* Create a box with answer sources. */
