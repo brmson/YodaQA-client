@@ -66,7 +66,7 @@ function showQuestionList(area, listContainerID, title, list) {
     area.empty();
     if (list.length != 0) {
         /*area.append('<br>');
-        area.append('<h2>' + title + '</h2>');*/
+         area.append('<h2>' + title + '</h2>');*/
         var listContainer = createList(area, listContainerID, title, false);
     }
     //var listContainer = createList(area, listContainerID);
@@ -89,14 +89,14 @@ function getQuestionJson() {
 
         //shows answers
         if (r.answers && gen_answers != r.gen_answers) {
-            var container = createList("#answers_area", "answers",null,false);
+            var container = createList("#answers_area", "answers", null, false);
             showAnswers(container, r.answers);
             gen_answers = r.gen_answers;
         }
 
         //shows sources
         if (r.sources.length && gen_sources != r.gen_sources) {
-            var container = createList("#sources_area", "questionSources", "Answers sources",true);
+            var container = createList("#sources_area", "questionSources", "Answers sources", true);
             showSources(container, r.sources);
             gen_sources = r.gen_sources;
         }
@@ -115,7 +115,7 @@ function createList(area, containerID, title, br) {
     container = $("#" + containerID);
     if (!container.length) {
         container = $('<ul data-role="listview" data-inset="true" id="' + containerID + '"></ul>');
-        if (br==true){
+        if (br == true) {
             $(area).append('<br>');
         }
         if (title != null) {
@@ -142,7 +142,7 @@ function showAnswers(container, answers) {
     });
     $("#answers").listview().listview("refresh");
     $("#moreAnswers").listview().listview("refresh");
-    $("#dropDownLI").collapsible();
+    $("#answersDropDownLI").collapsible();
 }
 
 /* Shows best answers directly */
@@ -162,9 +162,10 @@ function showAnswersDirectly(a, i, container) {
 function showAnswersInDropDown(a, i, container) {
     var dropDownList = $("#moreAnswers");
     if (!dropDownList.length) {
-        createDropDownList(container);
+        createDropDownList(container, "answersDropDownLI", "More answers...", "moreAnswers");
         dropDownList = $("#moreAnswers");
     }
+
     text = a.text.replace(/"/g, "&#34;");
     dropDownList.append('' +
         '<li id=' + i + '>' +
@@ -178,11 +179,11 @@ function showAnswersInDropDown(a, i, container) {
 }
 
 /* Creates base for drop down menu */
-function createDropDownList(container) {
+function createDropDownList(container, liID, title, ulID) {
     container.append('' +
-        '<li data-role="collapsible" data-iconpos="right" data-inset="false" id="dropDownLI">' +
-        '   <h2>More answers...</h2> ' +
-        '   <ul data-role="listview" id="moreAnswers"> ' +
+        '<li data-role="collapsible" data-iconpos="right" data-inset="false" id="' + liID + '">' +
+        '   <h2>' + title + '</h2> ' +
+        '   <ul data-role="listview" id="' + ulID + '"> ' +
         '   </ul>' +
         '</li>');
 
@@ -191,17 +192,46 @@ function createDropDownList(container) {
 /* Create a box with answer sources. */
 function showSources(container, sources) {
     container.empty();
+    var i = 1;
     sources.forEach(function (s) {
-        container.append('' +
-            '<li>' +
-            '   <a href="http://en.wikipedia.org/?curid=' + s.pageId + '" target="_blank">' +
-            '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
-            +       s.title +
-            '      ('+ s.origin+')'+
-            '   </a>' +
-            '</li>');
+        if (i <= DIRECTLY_SHOWED_QUESTIONS) {
+            showSourcesDirectly(s, container);
+        } else {
+            showSourcesDropDownList(s, container);
+        }
+        i++;
     });
     $('#questionSources').listview().listview("refresh");
+    $("#moreSources").listview().listview("refresh");
+    $("#sourcesDropDownLI").collapsible();
+}
+
+function showSourcesDirectly(s, container) {
+    container.append('' +
+        '<li>' +
+        '   <a href="http://en.wikipedia.org/?curid=' + s.pageId + '" target="_blank">' +
+        '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
+        + s.title +
+        '      (' + s.origin + ')' +
+        '   </a>' +
+        '</li>');
+}
+
+function showSourcesDropDownList(s, container) {
+    var dropDownList = $("#moreSources");
+    if (!dropDownList.length) {
+        createDropDownList(container, "sourcesDropDownLI", "More sources...", "moreSources");
+        dropDownList = $("#moreSources");
+    }
+
+    dropDownList.append('' +
+        '<li>' +
+        '   <a href="http://en.wikipedia.org/?curid=' + s.pageId + '" target="_blank">' +
+        '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
+        + s.title +
+        '      (' + s.origin + ')' +
+        '   </a>' +
+        '</li>');
 }
 
 /* Returns color for score */
