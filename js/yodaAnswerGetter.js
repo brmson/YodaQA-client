@@ -65,11 +65,8 @@ function getToAnswerJson() {
 function showQuestionList(area, listContainerID, title, list) {
     area.empty();
     if (list.length != 0) {
-        /*area.append('<br>');
-         area.append('<h2>' + title + '</h2>');*/
         var listContainer = createList(area, listContainerID, title, false);
     }
-    //var listContainer = createList(area, listContainerID);
     list.forEach(function (q) {
         listContainer.append('<li><a href="javascript:showAnsweredQuestion(' + q.id + ')">' + q.text + '</a></li>');
     });
@@ -94,9 +91,19 @@ function getQuestionJson() {
             gen_answers = r.gen_answers;
         }
 
+        //shows concepts and summary
+        if (r.summary) {
+            if (r.summary.concepts.length) {
+                var container = createList("#concept_area", "concepts", "Concepts", true);
+                showConcept(container, r.summary.concepts);
+            }else{
+                $("#concept_area").empty();
+            }
+        }
+
         //shows sources
         if (r.sources.length && gen_sources != r.gen_sources) {
-            var container = createList("#sources_area", "questionSources", "Answers sources", true);
+            var container = createList("#sources_area", "questionSources", "Answer sources", true);
             showSources(container, r.sources);
             gen_sources = r.gen_sources;
         }
@@ -110,17 +117,34 @@ function getQuestionJson() {
     });
 }
 
+/* Shows concepts on main page */
+function showConcept(container, concepts) {
+    container.empty();
+    var i = 1;
+    concepts.forEach(function (a) {
+        container.append('' +
+            '<li>' +
+            '   <a href="http://en.wikipedia.org/?curid=' + a.pageId + '" target="_blank">' +
+            '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
+            + a.title +
+            '   </a>' +
+            '</li>');
+        i++;
+    });
+    $("#concepts").listview().listview("refresh");
+}
+
 /* Creates and returns new list with containerID in area element*/
 function createList(area, containerID, title, br) {
     container = $("#" + containerID);
     if (!container.length) {
-        container = $('<ul data-role="listview" data-inset="true" id="' + containerID + '"></ul>');
         if (br == true) {
             $(area).append('<br>');
         }
         if (title != null) {
             $(area).append('<H2>' + title + '</H2>');
         }
+        container = $('<ul data-role="listview" data-inset="true" id="' + containerID + '"></ul>');
         $(area).append(container);
     }
     return container;
@@ -150,7 +174,7 @@ function showAnswersDirectly(a, i, container) {
     text = a.text.replace(/"/g, "&#34;");
     container.append('' +
         '<li id=' + i + ' class="answer">' +
-        '   <a href="#answer-description" class="answer">' + text +
+        '   <a href="javascript:showAnswerDescriptions(\'' + a.text + '\',' + a.confidence + ')" class="answer">' + text +
         '       <span class="ui-li-count" style="color: ' + score_color(a.confidence) + ';">' +
         (a.confidence * 100).toFixed(1) + '%' +
         '       </span>' +
@@ -194,11 +218,14 @@ function showSources(container, sources) {
     container.empty();
     var i = 1;
     sources.forEach(function (s) {
-        if (i <= DIRECTLY_SHOWED_QUESTIONS) {
-            showSourcesDirectly(s, container);
-        } else {
-            showSourcesDropDownList(s, container);
-        }
+        container.append('' +
+            '<li>' +
+            '   <a href="http://en.wikipedia.org/?curid=' + s.pageId + '" target="_blank">' +
+            '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
+            + s.title +
+            '      (' + s.origin + ')' +
+            '   </a>' +
+            '</li>');
         i++;
     });
     $('#questionSources').listview().listview("refresh");
@@ -206,37 +233,31 @@ function showSources(container, sources) {
     $("#sourcesDropDownLI").collapsible();
 }
 
-function showSourcesDirectly(s, container) {
-    container.append('' +
-        '<li>' +
-        '   <a href="http://en.wikipedia.org/?curid=' + s.pageId + '" target="_blank">' +
-        '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
-        + s.title +
-        '      (' + s.origin + ')' +
-        '   </a>' +
-        '</li>');
-}
-
-function showSourcesDropDownList(s, container) {
-    var dropDownList = $("#moreSources");
-    if (!dropDownList.length) {
-        createDropDownList(container, "sourcesDropDownLI", "More sources...", "moreSources");
-        dropDownList = $("#moreSources");
-    }
-
-    dropDownList.append('' +
-        '<li>' +
-        '   <a href="http://en.wikipedia.org/?curid=' + s.pageId + '" target="_blank">' +
-        '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
-        + s.title +
-        '      (' + s.origin + ')' +
-        '   </a>' +
-        '</li>');
-}
-
 /* Returns color for score */
 function score_color(score) {
     var green = Math.round(200 * score + 25);
     var red = Math.round(200 * (1 - score) + 25);
     return 'rgb(' + red + ',' + green + ',0)';
+}
+
+function showAnswerDescriptions(aText, aConfidence) {
+    showAnswerDescription(aText, aConfidence);
+    window.location.href = "#answer-description";
+}
+
+function showAnswerDescription(aText, aConfidence) {
+    showAnswerText(aText);
+    showAnswerConfidence(aConfidence);
+}
+
+function showAnswerText(aText) {
+    var container = $("#answerText");
+    container.empty();
+    container.append(aText);
+}
+
+function showAnswerConfidence(aConfidence) {
+    var container = $("#answerConfidence");
+    container.empty();
+    container.append(aConfidence);
 }
