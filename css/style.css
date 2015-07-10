@@ -47,15 +47,6 @@
         border-style: solid;
     }
 
-    /* Animate focus and hover style, and resizing. */
-    .responsive .ui-listview li,
-    .responsive .ui-listview .ui-btn {
-        -webkit-transition: all 500ms ease;
-        -moz-transition: all 500ms ease;
-        -o-transition: all 500ms ease;
-        -ms-transition: all 500ms ease;
-        transition: all 500ms ease;
-    }
     /* Semi transparent background and different position if there is a thumb. The button has overflow hidden so we don't need to set border-radius. */
     .ui-listview .ui-li-has-thumb h2,
     .ui-listview .ui-li-has-thumb p {

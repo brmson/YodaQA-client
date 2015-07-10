@@ -65,7 +65,7 @@ function getToAnswerJson() {
 function showQuestionList(area, listContainerID, title, list) {
     area.empty();
     if (list.length != 0) {
-        var listContainer = createList(area, listContainerID, title, false);
+        var listContainer = createList(area, listContainerID, title, false, false);
     }
     list.forEach(function (q) {
         listContainer.append('<li><a href="javascript:showAnsweredQuestion(' + q.id + ')">' + q.text + '</a></li>');
@@ -86,7 +86,7 @@ function getQuestionJson() {
 
         //shows answers
         if (r.answers && gen_answers != r.gen_answers) {
-            var container = createList("#answers_area", "answers", null, false);
+            var container = createList("#answers_area", "answers", null, false, true);
             showAnswers(container, r.answers);
             gen_answers = r.gen_answers;
         }
@@ -94,9 +94,9 @@ function getQuestionJson() {
         //shows concepts and summary
         if (r.summary) {
             if (r.summary.concepts.length) {
-                var container = createList("#concept_area", "concepts", "Concepts", true);
+                var container = createList("#concept_area", "concepts", "Concepts", true, false);
                 showConcept(container, r.summary.concepts);
-            }else{
+            } else {
                 $("#concept_area").empty();
             }
             showAnswerType(r.summary);
@@ -104,7 +104,7 @@ function getQuestionJson() {
 
         //shows sources
         if (r.sources.length && gen_sources != r.gen_sources) {
-            var container = createList("#sources_area", "questionSources", "Answer sources", true);
+            var container = createList("#sources_area", "questionSources", "Answer sources", true, false);
             showSources(container, r.sources);
             gen_sources = r.gen_sources;
         }
@@ -118,18 +118,18 @@ function getQuestionJson() {
     });
 }
 
-function showAnswerType(summary){
+function showAnswerType(summary) {
     var container = $("#answerType_area");
     container.empty();
-    if(summary.lats.length){
+    if (summary.lats.length) {
         container.append('<br>');
         container.append('<H2>Answer types</H2>');
-        container.append('<p>'+summary.lats.join(', ').capitalizeFirstLetter()+'</p>');
+        container.append('<p>' + summary.lats.join(', ').capitalizeFirstLetter() + '</p>');
     }
 
 }
 
-String.prototype.capitalizeFirstLetter = function() {
+String.prototype.capitalizeFirstLetter = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
@@ -151,7 +151,7 @@ function showConcept(container, concepts) {
 }
 
 /* Creates and returns new list with containerID in area element*/
-function createList(area, containerID, title, br) {
+function createList(area, containerID, title, br, collapsibleSet) {
     container = $("#" + containerID);
     if (!container.length) {
         if (br == true) {
@@ -160,7 +160,11 @@ function createList(area, containerID, title, br) {
         if (title != null) {
             $(area).append('<H2>' + title + '</H2>');
         }
-        container = $('<ul data-role="listview" data-inset="true" id="' + containerID + '"></ul>');
+        if (collapsibleSet) {
+            container = $('<ul data-role="collapsibleset" data-iconpos="right" data-inset="true" id="' + containerID + '"></ul>');
+        } else {
+            container = $('<ul data-role="listview" data-inset="true" id="' + containerID + '"></ul>');
+        }
         $(area).append(container);
     }
     return container;
@@ -188,14 +192,18 @@ function showAnswers(container, answers) {
 /* Shows best answers directly */
 function showAnswersDirectly(a, i, container) {
     text = a.text.replace(/"/g, "&#34;");
-    container.append('' +
-        '<li id=' + i + ' class="answer">' +
-        '   <a href="javascript:showAnswerDescriptions(\'' + a.text + '\',' + a.confidence + ')" class="answer">' + text +
-        '       <span class="ui-li-count" style="color: ' + score_color(a.confidence) + ';">' +
-        (a.confidence * 100).toFixed(1) + '%' +
-        '       </span>' +
-        '   </a>' +
-        '</li>');
+    var toAppend = $('' +
+        '<li data-role="collapsible" id="' + i + '" class="answer" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">' +
+        '<H2>' +
+        text +
+        '</H2>' +
+        '<p>AREA FOR ANSWER DETAILS</p>' +
+            /*'<span class="ui-li-count" style="color: ' + score_color(a.confidence) + ';">' +
+             (a.confidence * 100).toFixed(1) + '%' +
+             '   </span>' +*/
+        '</li>')
+    container.append(toAppend);
+    toAppend.collapsible();
 }
 
 /* Shows answers in drop down menu */
@@ -207,26 +215,25 @@ function showAnswersInDropDown(a, i, container) {
     }
 
     text = a.text.replace(/"/g, "&#34;");
-    dropDownList.append('' +
-        '<li id=' + i + '>' +
-        '   <a href="#answer-description" class="answer">'
+    var toAppend = $('' +
+        '<li id=' + i + ' data-collapsed-icon="carat-d" data-expanded-icon="carat-u">' +
+        '   <H2>'
         + text +
-        '       <span class="ui-li-count" style="color: ' + score_color(a.confidence) + ';">' +
-        (a.confidence * 100).toFixed(1) + '%' +
-        '       </span>' +
-        '   </a>' +
+        '   </H2>' +
+        '<p>AREA FOR ANSWER DETAILS</p>' +
         '</li>');
+    dropDownList.append(toAppend);
+    toAppend.collapsible();
 }
 
 /* Creates base for drop down menu */
 function createDropDownList(container, liID, title, ulID) {
     container.append('' +
-        '<li data-role="collapsible" data-iconpos="right" data-inset="false" id="' + liID + '">' +
+        '<li data-role="collapsible" data-iconpos="right" data-inset="true" id="' + liID + '">' +
         '   <h2>' + title + '</h2> ' +
-        '   <ul data-role="listview" id="' + ulID + '"> ' +
+        '   <ul data-role="collapsibleset" data-iconpos="right"  id="' + ulID + '"> ' +
         '   </ul>' +
         '</li>');
-
 }
 
 /* Create a box with answer sources. */
