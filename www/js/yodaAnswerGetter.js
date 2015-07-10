@@ -65,10 +65,11 @@ function getToAnswerJson() {
 function showQuestionList(area, listContainerID, title, list) {
     area.empty();
     if (list.length != 0) {
-        area.append('<br>');
-        area.append('<h2>' + title + '</h2>');
+        /*area.append('<br>');
+        area.append('<h2>' + title + '</h2>');*/
+        var listContainer = createList(area, listContainerID, title, false);
     }
-    var listContainer = createList(area, listContainerID);
+    //var listContainer = createList(area, listContainerID);
     list.forEach(function (q) {
         listContainer.append('<li><a href="javascript:showAnsweredQuestion(' + q.id + ')">' + q.text + '</a></li>');
     });
@@ -88,9 +89,16 @@ function getQuestionJson() {
 
         //shows answers
         if (r.answers && gen_answers != r.gen_answers) {
-            var container = createList("#answers_area", "answers");
+            var container = createList("#answers_area", "answers",null,false);
             showAnswers(container, r.answers);
             gen_answers = r.gen_answers;
+        }
+
+        //shows sources
+        if (r.sources.length && gen_sources != r.gen_sources) {
+            var container = createList("#sources_area", "questionSources", "Answers sources",true);
+            showSources(container, r.sources);
+            gen_sources = r.gen_sources;
         }
 
         if (r.finished) {
@@ -103,10 +111,16 @@ function getQuestionJson() {
 }
 
 /* Creates and returns new list with containerID in area element*/
-function createList(area, containerID) {
+function createList(area, containerID, title, br) {
     container = $("#" + containerID);
     if (!container.length) {
         container = $('<ul data-role="listview" data-inset="true" id="' + containerID + '"></ul>');
+        if (br==true){
+            $(area).append('<br>');
+        }
+        if (title != null) {
+            $(area).append('<H2>' + title + '</H2>');
+        }
         $(area).append(container);
     }
     return container;
@@ -131,7 +145,7 @@ function showAnswers(container, answers) {
     $("#dropDownLI").collapsible();
 }
 
-/* Shows best ansvers directly */
+/* Shows best answers directly */
 function showAnswersDirectly(a, i, container) {
     text = a.text.replace(/"/g, "&#34;");
     container.append('' +
@@ -163,7 +177,7 @@ function showAnswersInDropDown(a, i, container) {
         '</li>');
 }
 
-/* Creates base for dropdown menu */
+/* Creates base for drop down menu */
 function createDropDownList(container) {
     container.append('' +
         '<li data-role="collapsible" data-iconpos="right" data-inset="false" id="dropDownLI">' +
@@ -172,6 +186,22 @@ function createDropDownList(container) {
         '   </ul>' +
         '</li>');
 
+}
+
+/* Create a box with answer sources. */
+function showSources(container, sources) {
+    container.empty();
+    sources.forEach(function (s) {
+        container.append('' +
+            '<li>' +
+            '   <a href="http://en.wikipedia.org/?curid=' + s.pageId + '" target="_blank">' +
+            '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
+            +       s.title +
+            '      ('+ s.origin+')'+
+            '   </a>' +
+            '</li>');
+    });
+    $('#questionSources').listview().listview("refresh");
 }
 
 /* Returns color for score */
