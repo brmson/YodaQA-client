@@ -2,10 +2,13 @@
  * Created by Petr Marek on 3.7.2015.
  */
 
+var DIRECTLY_SHOWED_QUESTIONS = 5; // Number of questions above drop down menu
+
 var qid;  // id of the last posed question
 var gen_sources, gen_answers;  // when this number changes, re-render
 var answers;
 
+/* Ajax function for retrieving questions and answers */
 $(function () {
     $("#ask").ajaxForm({
         success: function (response) {
@@ -73,7 +76,7 @@ function showQuestionList(area, listContainerID, title, list) {
 }
 
 /* Shows answers to selected questions and jumps to main page */
-function showAnsweredQuestion(qId){
+function showAnsweredQuestion(qId) {
     loadQuestion(qId);
     window.location.href = "#mainPage";
 }
@@ -109,57 +112,71 @@ function createList(area, containerID) {
     return container;
 }
 
-
 /* Create a table with answers. */
 function showAnswers(container, answers) {
     container.empty();
     var i = 1;
     answers.forEach(function (a) {
         // FIXME: also deal with < > &
-        text = a.text.replace(/"/g, "&#34;");
-        container.append('<li id=' + i + ' class="answer"><a href="#answer-description" class="answer">' + text +
-            '<span class="ui-li-count" style="color: '+score_color(a.confidence)+';">' +
-            (a.confidence * 100).toFixed(1) + '%</span></a></li>');
-        $("#answers").listview().listview("refresh");
+        //text = a.text.replace(/"/g, "&#34;");
+        if (i <= DIRECTLY_SHOWED_QUESTIONS) {
+            showAnswersDirectly(a, i, container);
+        } else {
+            showAnswersInDropDown(a, i, container);
+        }
         i++;
     });
+    $("#answers").listview().listview("refresh");
+    $("#moreAnswers").listview().listview("refresh");
+    $("#dropDownLI").collapsible();
+}
+
+/* Shows best ansvers directly */
+function showAnswersDirectly(a, i, container) {
+    text = a.text.replace(/"/g, "&#34;");
+    container.append('' +
+        '<li id=' + i + ' class="answer">' +
+        '   <a href="#answer-description" class="answer">' + text +
+        '       <span class="ui-li-count" style="color: ' + score_color(a.confidence) + ';">' +
+        (a.confidence * 100).toFixed(1) + '%' +
+        '       </span>' +
+        '   </a>' +
+        '</li>');
+}
+
+/* Shows answers in drop down menu */
+function showAnswersInDropDown(a, i, container) {
+    var dropDownList = $("#moreAnswers");
+    if (!dropDownList.length) {
+        createDropDownList(container);
+        dropDownList = $("#moreAnswers");
+    }
+    text = a.text.replace(/"/g, "&#34;");
+    dropDownList.append('' +
+        '<li id=' + i + '>' +
+        '   <a href="#answer-description" class="answer">'
+        + text +
+        '       <span class="ui-li-count" style="color: ' + score_color(a.confidence) + ';">' +
+        (a.confidence * 100).toFixed(1) + '%' +
+        '       </span>' +
+        '   </a>' +
+        '</li>');
+}
+
+/* Creates base for dropdown menu */
+function createDropDownList(container) {
+    container.append('' +
+        '<li data-role="collapsible" data-iconpos="right" data-inset="false" id="dropDownLI">' +
+        '   <h2>More answers...</h2> ' +
+        '   <ul data-role="listview" id="moreAnswers"> ' +
+        '   </ul>' +
+        '</li>');
+
 }
 
 /* Returns color for score */
 function score_color(score) {
     var green = Math.round(200 * score + 25);
-    var red = Math.round(200 * (1-score) + 25);
-    return 'rgb('+red+','+green+',0)';
+    var red = Math.round(200 * (1 - score) + 25);
+    return 'rgb(' + red + ',' + green + ',0)';
 }
-
-function showAnswerDetails() {
-    showAnswerInDetails();
-    showSummaryInDetails();
-    showSourcesInDetails();
-}
-
-function showAnswerInDetails() {
-    var answerContainer = $("#answer");
-    answerContainer.empty();
-    answerContainer.append("<H1>Answer</H1>");
-}
-
-function showSummaryInDetails() {
-    var summaryContainer = $("#summary");
-    summaryContainer.empty();
-    summaryContainer.append("<H2>Summary</H2>");
-}
-
-function showSourcesInDetails() {
-    var sourcesContainer = $("#sources");
-    sourcesContainer.empty();
-    sourcesContainer.append("<H2>Sources</H2>")
-}
-
-$(document).on("pagecreate", "#mainPage", function () {
-    $(".answer").on("tap", function () {
-        alert("It works");
-        /*alert(this.id);
-         showAnswerDetails();*/
-    });
-});
