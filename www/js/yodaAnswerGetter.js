@@ -54,7 +54,7 @@ function getInProgressJson() {
     });
 }
 
-/* Gets and shows answers in processing in list*/
+/* Gets and shows answers in processing in list */
 function getToAnswerJson() {
     $.get("http://live.ailao.eu/q/?toAnswer", function (r) {
         showQuestionList($("#toAnswer_area"), "toAnswer", "Question queue", r);
@@ -118,6 +118,7 @@ function getQuestionJson() {
     });
 }
 
+/* Shows answer type */
 function showAnswerType(summary) {
     var container = $("#answerType_area");
     container.empty();
@@ -129,6 +130,7 @@ function showAnswerType(summary) {
 
 }
 
+/* Capitalize first letter */
 String.prototype.capitalizeFirstLetter = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
@@ -150,7 +152,7 @@ function showConcept(container, concepts) {
     $("#concepts").listview().listview("refresh");
 }
 
-/* Creates and returns new list with containerID in area element*/
+/* Creates and returns new list with containerID in area element */
 function createList(area, containerID, title, br, collapsibleSet) {
     container = $("#" + containerID);
     if (!container.length) {
@@ -195,7 +197,10 @@ function showAnswersDirectly(a, i, container) {
     var toAppend = $('' +
         '<li data-role="collapsible" id="' + i + '" class="answer" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">' +
         '<H2>' +
+        '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">'+(a.confidence * 100).toFixed(1) + '%'+'</span>' +
+        '<span>' +
         text +
+        '</span>' +
         '</H2>' +
         '<p>AREA FOR ANSWER DETAILS</p>' +
             /*'<span class="ui-li-count" style="color: ' + score_color(a.confidence) + ';">' +
@@ -217,8 +222,9 @@ function showAnswersInDropDown(a, i, container) {
     text = a.text.replace(/"/g, "&#34;");
     var toAppend = $('' +
         '<li id=' + i + ' data-collapsed-icon="carat-d" data-expanded-icon="carat-u">' +
-        '   <H2>'
-        + text +
+        '   <H2>' +
+        '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">'+(a.confidence * 100).toFixed(1) + '%'+'</span>' +
+        '<span>'+text+'</span>' +
         '   </H2>' +
         '<p>AREA FOR ANSWER DETAILS</p>' +
         '</li>');
