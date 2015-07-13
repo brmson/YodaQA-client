@@ -28,6 +28,20 @@ $(function () {
     setInterval(getAnsweredJson, 2900);
 });
 
+/* Shows question from url */
+$(document).on("pagecreate","#mainPage",function(){
+    var qID= getParameterByName("qID",window.location.href);
+    if (qID!=null){
+        loadQuestion(qID);
+    }
+});
+
+/* Gets parameter by name */
+function getParameterByName(name,url) {
+    var match = RegExp('[?&]' + name + '=([^&]*)')
+        .exec(url);
+    return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
 
 /* Gets question information and shows it */
 function loadQuestion(q) {
@@ -37,6 +51,7 @@ function loadQuestion(q) {
     qid = q;
     gen_sources = 0;
     gen_answers = 0;
+    window.location.href = "#mainPage?qID="+qid;
     getQuestionJson();
 }
 
@@ -76,7 +91,7 @@ function showQuestionList(area, listContainerID, title, list) {
 /* Shows answers to selected questions and jumps to main page */
 function showAnsweredQuestion(qId) {
     loadQuestion(qId);
-    window.location.href = "#mainPage";
+    window.location.href = "#mainPage?qID="+qId;
 }
 
 /* Retrieve, process and display json question information. */
@@ -111,6 +126,7 @@ function getQuestionJson() {
 
         if (r.finished) {
             //$("#spinner").hide();
+
         } else {
             // keep watching
             setTimeout(getQuestionJson, 500);
