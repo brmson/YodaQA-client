@@ -2,6 +2,8 @@
  * Created by Petr Marek on 3.7.2015.
  */
 
+
+var CONNECTION_ADDRES = "http://qa.ailao.eu"
 var DIRECTLY_SHOWED_QUESTIONS = 5; // Number of questions above drop down menu
 
 var qid;  // id of the last posed question
@@ -29,15 +31,15 @@ $(function () {
 });
 
 /* Shows question from url */
-$(document).on("pagecreate","#mainPage",function(){
-    var qID= getParameterByName("qID",window.location.href);
-    if (qID!=null){
+$(document).on("pagecreate", "#mainPage", function () {
+    var qID = getParameterByName("qID", window.location.href);
+    if (qID != null) {
         loadQuestion(qID);
     }
 });
 
 /* Gets parameter by name */
-function getParameterByName(name,url) {
+function getParameterByName(name, url) {
     var match = RegExp('[?&]' + name + '=([^&]*)')
         .exec(url);
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
@@ -45,33 +47,31 @@ function getParameterByName(name,url) {
 
 /* Gets question information and shows it */
 function loadQuestion(q) {
-    //$("#metadata_area").empty();
     $("#answers_area").empty();
-    //$("#spinner").show();
     qid = q;
     gen_sources = 0;
     gen_answers = 0;
-    window.location.href = "#mainPage?qID="+qid;
+    window.location.href = "#mainPage?qID=" + qid;
     getQuestionJson();
 }
 
 /* Gets and shows answered questions in list */
 function getAnsweredJson() {
-    $.get("http://live.ailao.eu/q/?answered", function (r) {
+    $.get(CONNECTION_ADDRES + "/q/?answered", function (r) {
         showQuestionList($("#answered_area"), "answered", "Answered questions", r);
     });
 }
 
 /* Gets and shows answers in progress in list */
 function getInProgressJson() {
-    $.get("http://live.ailao.eu/q/?inProgress", function (r) {
+    $.get(CONNECTION_ADDRES + "/q/?inProgress", function (r) {
         showQuestionList($("#inProgress_area"), "inProgress", "In progress", r);
     });
 }
 
 /* Gets and shows answers in processing in list */
 function getToAnswerJson() {
-    $.get("http://live.ailao.eu/q/?toAnswer", function (r) {
+    $.get(CONNECTION_ADDRES + "/q/?toAnswer", function (r) {
         showQuestionList($("#toAnswer_area"), "toAnswer", "Question queue", r);
     });
 }
@@ -91,12 +91,12 @@ function showQuestionList(area, listContainerID, title, list) {
 /* Shows answers to selected questions and jumps to main page */
 function showAnsweredQuestion(qId) {
     loadQuestion(qId);
-    window.location.href = "#mainPage?qID="+qId;
+    window.location.href = "#mainPage?qID=" + qId;
 }
 
 /* Retrieve, process and display json question information. */
 function getQuestionJson() {
-    $.get("http://live.ailao.eu/q/" + qid, function (r) {
+    $.get(CONNECTION_ADDRES + "/q/" + qid, function (r) {
         $('input[name="text"]').val(r.text);
 
         //shows answers
@@ -125,8 +125,7 @@ function getQuestionJson() {
         }
 
         if (r.finished) {
-            //$("#spinner").hide();
-
+            $("#spinner").hide();
         } else {
             // keep watching
             setTimeout(getQuestionJson, 500);
@@ -179,7 +178,7 @@ function createList(area, containerID, title, br, collapsibleSet) {
             $(area).append('<H2>' + title + '</H2>');
         }
         if (collapsibleSet) {
-            container = $('<ul data-role="collapsibleset" data-iconpos="right" data-inset="true" id="' + containerID + '"></ul>');
+            container = $('<div data-role="collapsibleset" data-iconpos="right" data-inset="true" id="' + containerID + '"></div>');
         } else {
             container = $('<ul data-role="listview" data-inset="true" id="' + containerID + '"></ul>');
         }
@@ -191,6 +190,7 @@ function createList(area, containerID, title, br, collapsibleSet) {
 /* Create a table with answers. */
 function showAnswers(container, answers) {
     container.empty();
+
     var i = 1;
     answers.forEach(function (a) {
         // FIXME: also deal with < > &
@@ -202,29 +202,30 @@ function showAnswers(container, answers) {
         }
         i++;
     });
-    $("#answers").listview().listview("refresh");
-    $("#moreAnswers").listview().listview("refresh");
-    $("#answersDropDownLI").collapsible();
+
+    $("#moreAnswers").collapsibleset();
+    $("#answers").collapsibleset();
+
+    if (!$('#spinner').length) {
+        $("#answers_area").append('<img src="img/ajax-loader.gif" id="spinner" style="position: absolute;top: 50%;left:50%;transform: translate(-50%,-50%);">');
+    }
 }
 
 /* Shows best answers directly */
 function showAnswersDirectly(a, i, container) {
     text = a.text.replace(/"/g, "&#34;");
     var toAppend = $('' +
-        '<li data-role="collapsible" id="' + i + '" class="answer" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">' +
+        '<div data-role="collapsible" id="' + i + '" class="answer" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">' +
         '<H2>' +
-        '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">'+(a.confidence * 100).toFixed(1) + '%'+'</span>' +
+        '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">' + (a.confidence * 100).toFixed(1) + '%' + '</span>' +
         '<span>' +
         text +
         '</span>' +
         '</H2>' +
         '<p>AREA FOR ANSWER DETAILS</p>' +
-            /*'<span class="ui-li-count" style="color: ' + score_color(a.confidence) + ';">' +
-             (a.confidence * 100).toFixed(1) + '%' +
-             '   </span>' +*/
-        '</li>')
+        '</div>')
     container.append(toAppend);
-    toAppend.collapsible();
+    //toAppend.collapsible();
 }
 
 /* Shows answers in drop down menu */
@@ -237,24 +238,24 @@ function showAnswersInDropDown(a, i, container) {
 
     text = a.text.replace(/"/g, "&#34;");
     var toAppend = $('' +
-        '<li id=' + i + ' data-collapsed-icon="carat-d" data-expanded-icon="carat-u">' +
+        '<div id=' + i + ' data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-role="collapsible">' +
         '   <H2>' +
-        '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">'+(a.confidence * 100).toFixed(1) + '%'+'</span>' +
-        '<span>'+text+'</span>' +
+        '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">' + (a.confidence * 100).toFixed(1) + '%' + '</span>' +
+        '<span>' + text + '</span>' +
         '   </H2>' +
         '<p>AREA FOR ANSWER DETAILS</p>' +
-        '</li>');
+        '</div>');
     dropDownList.append(toAppend);
-    toAppend.collapsible();
+    //toAppend.collapsible();
 }
 
 /* Creates base for drop down menu */
-function createDropDownList(container, liID, title, ulID) {
+function createDropDownList(container, liID, title, divID) {
     container.append('' +
         '<div data-role="collapsible" data-iconpos="right" data-inset="true" id="' + liID + '" data-theme="b" data-content-theme="a">' +
         '   <h2>' + title + '</h2> ' +
-        '   <ul data-role="collapsibleset" data-iconpos="right"  id="' + ulID + '"> ' +
-        '   </ul>' +
+        '   <div data-role="collapsibleset" data-iconpos="right" data-inset="false"  id="' + divID + '"> ' +
+        '   </div>' +
         '</div>');
 }
 
@@ -274,8 +275,6 @@ function showSources(container, sources) {
         i++;
     });
     $('#questionSources').listview().listview("refresh");
-    $("#moreSources").listview().listview("refresh");
-    $("#sourcesDropDownLI").collapsible();
 }
 
 /* Returns color for score */
