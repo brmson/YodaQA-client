@@ -3,7 +3,7 @@
  */
 
 
-var CONNECTION_ADDRES = "http://qa.ailao.eu"
+var CONNECTION_ADDRESS = "http://qa.ailao.eu" //address of endpoint
 var DIRECTLY_SHOWED_QUESTIONS = 5; // Number of questions above drop down menu
 
 var qid;  // id of the last posed question
@@ -57,21 +57,21 @@ function loadQuestion(q) {
 
 /* Gets and shows answered questions in list */
 function getAnsweredJson() {
-    $.get(CONNECTION_ADDRES + "/q/?answered", function (r) {
+    $.get(CONNECTION_ADDRESS + "/q/?answered", function (r) {
         showQuestionList($("#answered_area"), "answered", "Answered questions", r);
     });
 }
 
 /* Gets and shows answers in progress in list */
 function getInProgressJson() {
-    $.get(CONNECTION_ADDRES + "/q/?inProgress", function (r) {
+    $.get(CONNECTION_ADDRESS + "/q/?inProgress", function (r) {
         showQuestionList($("#inProgress_area"), "inProgress", "In progress", r);
     });
 }
 
 /* Gets and shows answers in processing in list */
 function getToAnswerJson() {
-    $.get(CONNECTION_ADDRES + "/q/?toAnswer", function (r) {
+    $.get(CONNECTION_ADDRESS + "/q/?toAnswer", function (r) {
         showQuestionList($("#toAnswer_area"), "toAnswer", "Question queue", r);
     });
 }
@@ -96,7 +96,7 @@ function showAnsweredQuestion(qId) {
 
 /* Retrieve, process and display json question information. */
 function getQuestionJson() {
-    $.get(CONNECTION_ADDRES + "/q/" + qid, function (r) {
+    $.get(CONNECTION_ADDRESS + "/q/" + qid, function (r) {
         $('input[name="text"]').val(r.text);
 
         //shows answers
@@ -231,14 +231,22 @@ function showAnswer(a, i, container, snippets, sources) {
 function showSnippets(a, snippets, sources) {
     var texts = "";
     a.snippetIDs.forEach(function (snippetID) {
-        console.log(snippets[snippetID].passageText);
         if (!(typeof (snippets[snippetID].passageText) === "undefined")) {
-            texts += '<p>' + snippets[snippetID].passageText + '</p>';
-            texts += '<a href="http://en.wikipedia.org/?curid=' + sources[snippets[snippetID].sourceID].pageId + '">' + sources[snippets[snippetID].sourceID].title + '</a>';
-            texts += '<br><br>';
+            texts += '<p>' + higlight(a.text.replace(/"/g, "&#34;"),snippets[snippetID].passageText) + '</p>';
+            texts += '<a href="http://en.wikipedia.org/?curid=' + sources[snippets[snippetID].sourceID].pageId + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all">' +
+                '<img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon" style="max-height: 1em; max-width: 1em; padding-right: 7px;">'
+                + sources[snippets[snippetID].sourceID].title + '</a>';
+            texts += '<br><hr>';
         }
     });
     return texts;
+}
+
+/* highlight word in text */
+function higlight(word, text) {
+    var rgxp = new RegExp(word, 'g');
+    var repl = '<span class="higlight">' + word + '</span>';
+    return text.replace(rgxp, repl);
 }
 
 /* Shows answers in drop down menu */
@@ -267,14 +275,12 @@ function showSources(container, sources) {
     var map=[];
     var indexes=[];
     $.each(sources, function (sid, source) {
-        if (!(typeof (source.pageId) === "undefined")) { //this forces to only show en wiki
+        if (!(typeof (source.pageId) === "undefined") && source.origin!="document title") { //this forces to only show en wiki and without "document title"
             deduplicateSources(map,indexes, source.pageId, source.title, source.origin);
         }
     });
     var toAppend="";
-    console.log(map.length);
     indexes.forEach(function(index){
-        console.log("aa");
         toAppend+='<li>' +
             '<a href="http://en.wikipedia.org/?curid=' + map[index]["pageId"] + '" target="_blank">' +
             '<img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">' + map[index]["title"] + ' (' + map[index]["origin"] + ')' +

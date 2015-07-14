@@ -22,20 +22,16 @@
 		<!--Main page-->
 		<div data-role="page" id="mainPage">
 
-			<!--Header-->
-			<div data-role="header" data-position="fixed">
-				<h1>YodaQA client</h1>
-
-				<div data-role="navbar">
-					<ul>
-						<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="search">Ask</a></li>
-						<li><a href="#asked-questions" data-icon="info">Asked questions</a></li>
-					</ul>
-				</div>
+			<!-- Links to homepage and github -->
+			<div class="extnav" style="display: none;">
+				<a href="http://ailao.eu/yodaqa/" target="_blank">Homepage</a><br>
+				<a href="https://github.com/brmson/yodaqa" target="_blank">GitHub</a>
 			</div>
 
 			<!--Page's main content-->
 			<div data-role="main" class="ui-content">
+
+				<H1 class="mainHeader">YodaQA Live</H1>
 
 				<!--Form for asking Yoda-->
 				<form method="post" action="http://qa.ailao.eu/q" id="ask">
@@ -58,25 +54,32 @@
 
 			</div>
 
+			<!-- Footer with navbar -->
+			<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="search">Ask</a></li>
+						<li><a href="#asked-questions" data-icon="info">Asked questions</a></li>
+					</ul>
+				</div>
+			</div>
+
 		</div>
 
 		<!--Page with already asked questions-->
 		<div data-role="page" id="asked-questions">
 
-			<!--Header-->
-			<div data-role="header" data-position="fixed">
-				<h1>YodaQA client</h1>
-
-				<div data-role="navbar">
-					<ul>
-						<li><a href="#mainPage" data-icon="search">Ask</a></li>
-						<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="info">Asked questions</a></li>
-					</ul>
-				</div>
+			<!-- Links to homepage and github -->
+			<div class="extnav" style="display: none;">
+				<a href="http://ailao.eu/yodaqa/" target="_blank">Homepage</a><br>
+				<a href="https://github.com/brmson/yodaqa" target="_blank">GitHub</a>
 			</div>
+
 
 			<!--Page's main content-->
 			<div data-role="main" class="ui-content">
+
+				<H1 class="mainHeader">YodaQA Live</H1>
 
 				<!--Area for answered questions-->
 				<div id="answered_area"></div>
@@ -87,6 +90,16 @@
 				<!--Area for questions in queue-->
 				<div id="toAnswer_area"></div>
 
+			</div>
+
+			<!-- Footer with navbar -->
+			<div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#mainPage"  data-icon="search">Ask</a></li>
+						<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="info">Asked questions</a></li>
+					</ul>
+				</div>
 			</div>
 
 		</div>

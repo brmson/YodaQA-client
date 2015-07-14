@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab:300&subset=latin,latin-ext);
+
 .ui-li-static.ui-collapsible > .ui-collapsible-heading {
     margin: 0;
 }
@@ -16,6 +18,26 @@
 
 /* Shows sources in two columns. */
 @media ( min-width: 48em ) {
+
+
+}
+
+/* For big screens */
+@media only screen and (min-width: 1025px){
+    .ui-content {
+        width: 960px !important;
+        margin: 0 auto !important;
+        position: relative !important;
+        padding: 10px !important;
+    }
+
+    .extnav{
+        position: absolute;
+        right: 1em;
+        top: 1ex;
+        text-align: right;
+        display: inline !important;
+    }
 
     .responsive .ui-listview li {
         float: left;
@@ -59,4 +81,24 @@
     .ui-listview .ui-li-has-thumb p {
         min-height: 35%;
     }
+}
+
+/* YodaQA Live */
+.mainHeader{
+    font-size: 350% !important;
+    text-align: center;
+    font-family: 'Roboto Slab';
+}
+
+/* highlight of answer in snippet */
+.higlight{
+    background-color: lightgreen;
+    text-shadow:none !important;
+}
+
+hr {
+    border: 0;
+    height: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
