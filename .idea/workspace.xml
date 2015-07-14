@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="07753a12-6d48-4a43-aa4e-a41916860fd1" name="Default" comment="Added loading spinner and improved performance of showing answers">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/www/img/ajax-loader.gif" />
+    <list default="true" id="07753a12-6d48-4a43-aa4e-a41916860fd1" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/yodaAnswerGetter.js" afterPath="$PROJECT_DIR$/www/js/yodaAnswerGetter.js" />
@@ -41,8 +40,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.807693">
-              <caret line="46" column="37" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="37" />
+            <state vertical-scroll-proportion="5.8846154">
+              <caret line="40" column="62" selection-start-line="40" selection-start-column="62" selection-end-line="40" selection-end-column="62" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -54,7 +53,7 @@
         <entry file="file://$PROJECT_DIR$/www/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="61" column="1" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
+              <caret line="19" column="31" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -63,10 +62,10 @@
       <file leaf-file-name="yodaAnswerGetter.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/js/yodaAnswerGetter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.1871508">
-              <caret line="205" column="33" selection-start-line="205" selection-start-column="33" selection-end-line="205" selection-end-column="36" />
+            <state vertical-scroll-proportion="1.6700854">
+              <caret line="224" column="24" selection-start-line="224" selection-start-column="24" selection-end-line="224" selection-end-column="24" />
               <folding>
-                <marker date="1436865709183" expanded="true" signature="6464:6533" placeholder="..." />
+                <marker date="1436877646721" expanded="true" signature="6561:6630" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -173,24 +172,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="YodaQA Android" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="YodaQA Client" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -215,6 +196,119 @@
       <recent name="C:\Users\ERMRK\Dropbox\YodaQA Android\www\js" />
       <recent name="C:\Users\ERMRK\Dropbox\YodaQA Android\www" />
     </key>
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/www/js/yodaAnswerGetter.js</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/LICENSE.txt</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/README.md</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/LICENSE-2.0.txt</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunManager" selected="PhoneGap/Cordova.Phonegap/Cordova run">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -388,7 +482,13 @@
       <option name="project" value="LOCAL" />
       <updated>1436792534360</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Added loading spinner and improved performance of showing answers">
+      <created>1436865801097</created>
+      <option name="number" value="00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1436865801097</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -397,10 +497,10 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1688988" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32410422" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32463294" sideWeight="0.50542635" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32410422" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5089723" sideWeight="0.5029762" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5089723" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.5089723" sideWeight="0.49702382" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3403909" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31647635" sideWeight="0.49457365" order="7" side_tool="false" content_ui="tabs" />
@@ -512,7 +612,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1436865709183" expanded="true" signature="6464:6533" placeholder="..." />
+            <marker date="1436877646721" expanded="true" signature="6561:6630" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -550,7 +650,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="125" column="49" selection-start-line="125" selection-start-column="49" selection-end-line="125" selection-end-column="49" />
           <folding>
-            <marker date="1436865709183" expanded="true" signature="6464:6533" placeholder="..." />
+            <marker date="1436877646721" expanded="true" signature="6561:6630" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -595,7 +695,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
           <folding>
-            <marker date="1436865709183" expanded="true" signature="6464:6533" placeholder="..." />
+            <marker date="1436877646721" expanded="true" signature="6561:6630" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -625,7 +725,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1436865709183" expanded="true" signature="6464:6533" placeholder="..." />
+            <marker date="1436877646721" expanded="true" signature="6561:6630" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -688,28 +788,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/LICENSE-2.0.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.5652175">
-          <caret line="174" column="66" selection-start-line="174" selection-start-column="66" selection-end-line="174" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/css/jQuery/jquery.mobile-1.4.5.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1824687">
           <caret line="2" column="10378" selection-start-line="2" selection-start-column="10378" selection-end-line="2" selection-end-column="10378" />
           <folding>
-            <element signature="e#10512#11940#2" expanded="true" />
+            <element signature="e#10512#11940#2" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/www/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="1" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -723,27 +808,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/www/img/ajax-loader.gif">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="19" column="31" selection-start-line="19" selection-start-column="29" selection-end-line="19" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.807693">
-          <caret line="46" column="37" selection-start-line="46" selection-start-column="25" selection-end-line="46" selection-end-column="37" />
+        <state vertical-scroll-proportion="5.8846154">
+          <caret line="40" column="62" selection-start-line="40" selection-start-column="62" selection-end-line="40" selection-end-column="62" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/img/ajax-loader.gif">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/js/yodaAnswerGetter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1871508">
-          <caret line="205" column="33" selection-start-line="205" selection-start-column="33" selection-end-line="205" selection-end-column="36" />
+        <state vertical-scroll-proportion="1.6700854">
+          <caret line="224" column="24" selection-start-line="224" selection-start-column="24" selection-end-line="224" selection-end-column="24" />
           <folding>
-            <marker date="1436865709183" expanded="true" signature="6464:6533" placeholder="..." />
+            <marker date="1436877646721" expanded="true" signature="6561:6630" placeholder="..." />
           </folding>
         </state>
       </provider>

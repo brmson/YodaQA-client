@@ -15,7 +15,7 @@ $(function () {
     $("#ask").ajaxForm({
         success: function (response) {
             setTimeout(function () {
-                loadQuestion(response)
+                loadQuestion(JSON.parse(response).id)
             }, 500);
         }
     });
@@ -102,7 +102,7 @@ function getQuestionJson() {
         //shows answers
         if (r.answers && gen_answers != r.gen_answers) {
             var container = createList("#answers_area", "answers", null, false, true);
-            showAnswers(container, r.answers);
+            showAnswers(container, r.answers, r.snippets, r.sources);
             gen_answers = r.gen_answers;
         }
 
@@ -118,7 +118,7 @@ function getQuestionJson() {
         }
 
         //shows sources
-        if (r.sources.length && gen_sources != r.gen_sources) {
+        if (!$.isEmptyObject(r.sources) && gen_sources != r.gen_sources) {
             var container = createList("#sources_area", "questionSources", "Answer sources", true, false);
             showSources(container, r.sources);
             gen_sources = r.gen_sources;
@@ -188,7 +188,7 @@ function createList(area, containerID, title, br, collapsibleSet) {
 }
 
 /* Create a table with answers. */
-function showAnswers(container, answers) {
+function showAnswers(container, answers, snippets, sources) {
     container.empty();
 
     var i = 1;
@@ -196,9 +196,9 @@ function showAnswers(container, answers) {
         // FIXME: also deal with < > &
         //text = a.text.replace(/"/g, "&#34;");
         if (i <= DIRECTLY_SHOWED_QUESTIONS) {
-            showAnswersDirectly(a, i, container);
+            showAnswer(a, i, container, snippets, sources);
         } else {
-            showAnswersInDropDown(a, i, container);
+            showAnswersInDropDown(a, i, container, snippets, sources);
         }
         i++;
     });
@@ -212,7 +212,7 @@ function showAnswers(container, answers) {
 }
 
 /* Shows best answers directly */
-function showAnswersDirectly(a, i, container) {
+function showAnswer(a, i, container, snippets, sources) {
     text = a.text.replace(/"/g, "&#34;");
     var toAppend = $('' +
         '<div data-role="collapsible" id="' + i + '" class="answer" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">' +
@@ -222,31 +222,33 @@ function showAnswersDirectly(a, i, container) {
         text +
         '</span>' +
         '</H2>' +
-        '<p>AREA FOR ANSWER DETAILS</p>' +
+        '<p>' + showSnippets(a, snippets, sources) + '</p>' +
         '</div>')
     container.append(toAppend);
-    //toAppend.collapsible();
+}
+
+/* Show snippets in answer collapsible */
+function showSnippets(a, snippets, sources) {
+    var texts = "";
+    a.snippetIDs.forEach(function (snippetID) {
+        console.log(snippets[snippetID].passageText);
+        if (!(typeof (snippets[snippetID].passageText) === "undefined")) {
+            texts += '<p>' + snippets[snippetID].passageText + '</p>';
+            texts += '<a href="http://en.wikipedia.org/?curid=' + sources[snippets[snippetID].sourceID].pageId + '">' + sources[snippets[snippetID].sourceID].title + '</a>';
+            texts += '<br><br>';
+        }
+    });
+    return texts;
 }
 
 /* Shows answers in drop down menu */
-function showAnswersInDropDown(a, i, container) {
+function showAnswersInDropDown(a, i, container, snippets, sources) {
     var dropDownList = $("#moreAnswers");
     if (!dropDownList.length) {
         createDropDownList(container, "answersDropDownLI", "More answers...", "moreAnswers");
         dropDownList = $("#moreAnswers");
     }
-
-    text = a.text.replace(/"/g, "&#34;");
-    var toAppend = $('' +
-        '<div id=' + i + ' data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-role="collapsible">' +
-        '   <H2>' +
-        '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">' + (a.confidence * 100).toFixed(1) + '%' + '</span>' +
-        '<span>' + text + '</span>' +
-        '   </H2>' +
-        '<p>AREA FOR ANSWER DETAILS</p>' +
-        '</div>');
-    dropDownList.append(toAppend);
-    //toAppend.collapsible();
+    showAnswer(a, i, dropDownList, snippets, sources);
 }
 
 /* Creates base for drop down menu */
@@ -262,19 +264,39 @@ function createDropDownList(container, liID, title, divID) {
 /* Create a box with answer sources. */
 function showSources(container, sources) {
     container.empty();
-    var i = 1;
-    sources.forEach(function (s) {
-        container.append('' +
-            '<li>' +
-            '   <a href="http://en.wikipedia.org/?curid=' + s.pageId + '" target="_blank">' +
-            '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
-            + s.title +
-            '      (' + s.origin + ')' +
-            '   </a>' +
-            '</li>');
-        i++;
+    var map=[];
+    var indexes=[];
+    $.each(sources, function (sid, source) {
+        if (!(typeof (source.pageId) === "undefined")) { //this forces to only show en wiki
+            deduplicateSources(map,indexes, source.pageId, source.title, source.origin);
+        }
     });
+    var toAppend="";
+    console.log(map.length);
+    indexes.forEach(function(index){
+        console.log("aa");
+        toAppend+='<li>' +
+            '<a href="http://en.wikipedia.org/?curid=' + map[index]["pageId"] + '" target="_blank">' +
+            '<img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">' + map[index]["title"] + ' (' + map[index]["origin"] + ')' +
+            '</a>' +
+            '</li>';
+    });
+    container.append(toAppend);
     $('#questionSources').listview().listview("refresh");
+}
+
+/* Deduplicate sources and connects origins */
+function deduplicateSources(map,indexes, pageId, title, origin) {
+    if (pageId in map) {
+        map[pageId]["origin"]+=", "+origin;
+    } else {
+        indexes.push(pageId);
+        var source = [];
+        source["pageId"] = pageId;
+        source["title"] = title;
+        source["origin"] = origin;
+        map[pageId]=source;
+    }
 }
 
 /* Returns color for score */
@@ -282,26 +304,4 @@ function score_color(score) {
     var green = Math.round(200 * score + 25);
     var red = Math.round(200 * (1 - score) + 25);
     return 'rgb(' + red + ',' + green + ',0)';
-}
-
-function showAnswerDescriptions(aText, aConfidence) {
-    showAnswerDescription(aText, aConfidence);
-    window.location.href = "#answer-description";
-}
-
-function showAnswerDescription(aText, aConfidence) {
-    showAnswerText(aText);
-    showAnswerConfidence(aConfidence);
-}
-
-function showAnswerText(aText) {
-    var container = $("#answerText");
-    container.empty();
-    container.append(aText);
-}
-
-function showAnswerConfidence(aConfidence) {
-    var container = $("#answerConfidence");
-    container.empty();
-    container.append(aConfidence);
 }
