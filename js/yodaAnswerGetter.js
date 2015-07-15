@@ -3,7 +3,7 @@
  */
 
 
-var CONNECTION_ADDRESS = "http://qa.ailao.eu" //address of endpoint
+var CONNECTION_ADDRESS = "http://qa.ailao.eu"; //address of endpoint
 var DIRECTLY_SHOWED_QUESTIONS = 5; // Number of questions above drop down menu
 
 var qid;  // id of the last posed question
