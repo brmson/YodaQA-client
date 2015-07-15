@@ -15,7 +15,7 @@ var answers;
 $(function () {
     $("#ask").ajaxForm({
         success: function (response) {
-            $('#verticalCenter').animate({marginTop : '0px'}, 'slow');
+            $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
             setTimeout(function () {
                 loadQuestion(JSON.parse(response).id)
             }, 500);
@@ -44,8 +44,8 @@ $(document).on('pageshow', '#mainPage', function (e, data) {
     if (qid == null) {
         $('#verticalCenter').animate({opacity: '1.0'}, 100);
         $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() - ($('#verticalCenter').outerHeight())) / 2);
-    }else{
-        $('#verticalCenter').css('opacity',1.0);
+    } else {
+        $('#verticalCenter').css('opacity', 1.0);
     }
 });
 
@@ -109,7 +109,7 @@ function showQuestionList(area, listContainerID, title, list) {
 /* Shows answers to selected questions and jumps to main page */
 function showAnsweredQuestion(qId) {
     loadQuestion(qId);
-    $('#verticalCenter').css('margin-top',0);
+    $('#verticalCenter').css('margin-top', 0);
     window.location.href = "#mainPage?qID=" + qId;
 }
 
@@ -250,20 +250,73 @@ function showAnswer(a, i, container, snippets, sources) {
 function showSnippets(a, snippets, sources) {
     var texts = "";
     a.snippetIDs.forEach(function (snippetID) {
-        if (!(typeof (snippets[snippetID].passageText) === "undefined")) {
-            texts += '<p>' + higlight(a.text.replace(/"/g, "&#34;"), snippets[snippetID].passageText) + '</p>';
-            texts += '<a href="http://en.wikipedia.org/?curid=' + sources[snippets[snippetID].sourceID].pageId + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all">' +
-                '<img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon" style="max-height: 1em; max-width: 1em; padding-right: 7px;">'
-                + sources[snippets[snippetID].sourceID].title + '</a>';
-            texts += '<br><hr>';
-        }
+        var snippet = snippets[snippetID];
+        var source = sources[snippet.sourceID];
+        texts += createTitle(a, snippet);
+        texts += createPropertyLabel(a, snippet);
+        texts += createOrigin(source);
+        texts += createType(source);
+        texts += createWikipediaButton(source);
+        texts += createURLButton(source);
+        texts += '<br><hr>';
     });
     return texts;
 }
 
+function createTitle(a, snipet) {
+    var text = "";
+    if (!(typeof (snipet.passageText) === "undefined")) {
+        text = '<p><b>Title:</b> ' + higlight(a.text.replace(/"/g, "&#34;"), snipet.passageText) + '</p>';
+    }
+    return text;
+}
+
+function createPropertyLabel(a, snipet) {
+    var text = "";
+    if (!(typeof (snipet.propertyLabel) === "undefined")) {
+        text = '<p><b>Property Label:</b> ' + higlight(a.text.replace(/"/g, "&#34;"), snipet.propertyLabel) + '</p>';
+    }
+    return text;
+}
+
+function createWikipediaButton(source) {
+    var text = "";
+    if (!(typeof (source.pageId) === "undefined")) {
+        text = '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all">' +
+            '<img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon" style="max-height: 1em; max-width: 1em; padding-right: 7px;">'
+            + source.title + '</a>';
+    }
+    return text;
+}
+
+function createURLButton(source) {
+    var text = "";
+    if (!(typeof (source.URL) === "undefined")) {
+        text = '<a href="' + source.URL + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all">' +
+             source.title + '</a>';
+    }
+    return text;
+}
+
+function createOrigin(source) {
+    var text = "";
+    if (!(typeof (source.origin) === "undefined")) {
+        text = '<p><b>Origin:</b> ' + source.origin + '</p>';
+    }
+    return text;
+}
+
+function createType(source) {
+    var text = "";
+    if (!(typeof (source.type) === "undefined")) {
+        text = '<p><b>Source:</b> ' + source.type + '</p>';
+    }
+    return text;
+}
+
 /* highlight word in text */
 function higlight(word, text) {
-    var wordForRGXP=word.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
+    var wordForRGXP = word.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
     var rgxp = new RegExp(wordForRGXP, 'g');
     var repl = '<span class="higlight">' + word + '</span>';
     return text.replace(rgxp, repl);
