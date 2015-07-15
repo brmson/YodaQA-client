@@ -10,10 +10,12 @@ var qid;  // id of the last posed question
 var gen_sources, gen_answers;  // when this number changes, re-render
 var answers;
 
+
 /* Ajax function for retrieving questions and answers */
 $(function () {
     $("#ask").ajaxForm({
         success: function (response) {
+            $('#verticalCenter').animate({marginTop : '0px'}, 'slow');
             setTimeout(function () {
                 loadQuestion(JSON.parse(response).id)
             }, 500);
@@ -37,6 +39,22 @@ $(document).on("pagecreate", "#mainPage", function () {
         loadQuestion(qID);
     }
 });
+
+$(document).on('pageshow', '#mainPage', function (e, data) {
+    if (qid == null) {
+        $('#verticalCenter').animate({opacity: '1.0'}, 100);
+        $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() - ($('#verticalCenter').outerHeight())) / 2);
+    }else{
+        $('#verticalCenter').css('opacity',1.0);
+    }
+});
+
+$(window).resize(function () {
+    if (qid == null) {
+        $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() - ($('#verticalCenter').outerHeight())) / 2);
+    }
+});
+
 
 /* Gets parameter by name */
 function getParameterByName(name, url) {
@@ -91,6 +109,7 @@ function showQuestionList(area, listContainerID, title, list) {
 /* Shows answers to selected questions and jumps to main page */
 function showAnsweredQuestion(qId) {
     loadQuestion(qId);
+    $('#verticalCenter').css('margin-top',0);
     window.location.href = "#mainPage?qID=" + qId;
 }
 
@@ -232,7 +251,7 @@ function showSnippets(a, snippets, sources) {
     var texts = "";
     a.snippetIDs.forEach(function (snippetID) {
         if (!(typeof (snippets[snippetID].passageText) === "undefined")) {
-            texts += '<p>' + higlight(a.text.replace(/"/g, "&#34;"),snippets[snippetID].passageText) + '</p>';
+            texts += '<p>' + higlight(a.text.replace(/"/g, "&#34;"), snippets[snippetID].passageText) + '</p>';
             texts += '<a href="http://en.wikipedia.org/?curid=' + sources[snippets[snippetID].sourceID].pageId + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all">' +
                 '<img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon" style="max-height: 1em; max-width: 1em; padding-right: 7px;">'
                 + sources[snippets[snippetID].sourceID].title + '</a>';
@@ -244,7 +263,8 @@ function showSnippets(a, snippets, sources) {
 
 /* highlight word in text */
 function higlight(word, text) {
-    var rgxp = new RegExp(word, 'g');
+    var wordForRGXP=word.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
+    var rgxp = new RegExp(wordForRGXP, 'g');
     var repl = '<span class="higlight">' + word + '</span>';
     return text.replace(rgxp, repl);
 }
@@ -272,16 +292,16 @@ function createDropDownList(container, liID, title, divID) {
 /* Create a box with answer sources. */
 function showSources(container, sources) {
     container.empty();
-    var map=[];
-    var indexes=[];
+    var map = [];
+    var indexes = [];
     $.each(sources, function (sid, source) {
-        if (!(typeof (source.pageId) === "undefined") && source.origin!="document title") { //this forces to only show en wiki and without "document title"
-            deduplicateSources(map,indexes, source.pageId, source.title, source.origin);
+        if (!(typeof (source.pageId) === "undefined") && source.origin != "document title") { //this forces to only show en wiki and without "document title"
+            deduplicateSources(map, indexes, source.pageId, source.title, source.origin);
         }
     });
-    var toAppend="";
-    indexes.forEach(function(index){
-        toAppend+='<li>' +
+    var toAppend = "";
+    indexes.forEach(function (index) {
+        toAppend += '<li>' +
             '<a href="http://en.wikipedia.org/?curid=' + map[index]["pageId"] + '" target="_blank">' +
             '<img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">' + map[index]["title"] + ' (' + map[index]["origin"] + ')' +
             '</a>' +
@@ -292,16 +312,16 @@ function showSources(container, sources) {
 }
 
 /* Deduplicate sources and connects origins */
-function deduplicateSources(map,indexes, pageId, title, origin) {
+function deduplicateSources(map, indexes, pageId, title, origin) {
     if (pageId in map) {
-        map[pageId]["origin"]+=", "+origin;
+        map[pageId]["origin"] += ", " + origin;
     } else {
         indexes.push(pageId);
         var source = [];
         source["pageId"] = pageId;
         source["title"] = title;
         source["origin"] = origin;
-        map[pageId]=source;
+        map[pageId] = source;
     }
 }
 
