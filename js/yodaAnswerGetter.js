@@ -256,6 +256,7 @@ function showSnippets(a, snippets, sources) {
         texts += createPropertyLabel(a, snippet);
         texts += createOrigin(source);
         texts += createType(source);
+        texts += '<br>';
         texts += createWikipediaButton(source);
         texts += createURLButton(source);
         texts += '<br><hr>';
@@ -266,7 +267,7 @@ function showSnippets(a, snippets, sources) {
 function createTitle(a, snipet) {
     var text = "";
     if (!(typeof (snipet.passageText) === "undefined")) {
-        text = '<p><b>Title:</b> ' + higlight(a.text.replace(/"/g, "&#34;"), snipet.passageText) + '</p>';
+        text = '<p>' + higlight(a.text.replace(/"/g, "&#34;"), snipet.passageText) + '</p>';
     }
     return text;
 }
@@ -301,7 +302,7 @@ function createURLButton(source) {
 function createOrigin(source) {
     var text = "";
     if (!(typeof (source.origin) === "undefined")) {
-        text = '<p><b>Origin:</b> ' + source.origin + '</p>';
+        text = '<span><b>Origin:</b> ' + source.origin + '</span>';
     }
     return text;
 }
@@ -309,7 +310,7 @@ function createOrigin(source) {
 function createType(source) {
     var text = "";
     if (!(typeof (source.type) === "undefined")) {
-        text = '<p><b>Source:</b> ' + source.type + '</p>';
+        text = '<span> <b>Source:</b> ' + source.type + '</span>';
     }
     return text;
 }
