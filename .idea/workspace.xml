@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="07753a12-6d48-4a43-aa4e-a41916860fd1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/yodaAnswerGetter.js" afterPath="$PROJECT_DIR$/www/js/yodaAnswerGetter.js" />
     </list>
@@ -37,10 +36,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.730769">
+            <state vertical-scroll-proportion="0.45259392">
               <caret line="39" column="66" selection-start-line="39" selection-start-column="66" selection-end-line="39" selection-end-column="66" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -61,14 +60,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="yodaAnswerGetter.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="yodaAnswerGetter.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/yodaAnswerGetter.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="7.7356114">
-              <caret line="253" column="47" selection-start-line="253" selection-start-column="47" selection-end-line="253" selection-end-column="47" />
+            <state vertical-scroll-proportion="14.655172">
+              <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
               <folding>
-                <marker date="1436967974406" expanded="true" signature="7357:7426" placeholder="..." />
-                <marker date="1436967974406" expanded="true" signature="9509:9561" placeholder="..." />
+                <marker date="1436969169088" expanded="true" signature="7358:7427" placeholder="..." />
+                <marker date="1436969169088" expanded="true" signature="9510:9562" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -403,7 +402,13 @@
       <option name="project" value="LOCAL" />
       <updated>1436960715609</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="All snippets showed in answers">
+      <created>1436969158433</created>
+      <option name="number" value="00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1436969158434</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -463,7 +468,8 @@
     <MESSAGE value="New desktop visual, highlight of answers in snippets, buttons to wikipedia" />
     <MESSAGE value="CNAME returned" />
     <MESSAGE value="Centered search on main page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Centered search on main page" />
+    <MESSAGE value="All snippets showed in answers" />
+    <option name="LAST_COMMIT_MESSAGE" value="All snippets showed in answers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -505,8 +511,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1436967974406" expanded="true" signature="7357:7426" placeholder="..." />
-            <marker date="1436967974406" expanded="true" signature="9509:9561" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="7358:7427" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="9510:9562" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -546,8 +552,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1436967974406" expanded="true" signature="7357:7426" placeholder="..." />
-            <marker date="1436967974406" expanded="true" signature="9509:9561" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="7358:7427" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="9510:9562" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -617,8 +623,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1436967974406" expanded="true" signature="7357:7426" placeholder="..." />
-            <marker date="1436967974406" expanded="true" signature="9509:9561" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="7358:7427" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="9510:9562" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -658,8 +664,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="125" column="49" selection-start-line="125" selection-start-column="49" selection-end-line="125" selection-end-column="49" />
           <folding>
-            <marker date="1436967974406" expanded="true" signature="7357:7426" placeholder="..." />
-            <marker date="1436967974406" expanded="true" signature="9509:9561" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="7358:7427" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="9510:9562" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -705,8 +711,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
           <folding>
-            <marker date="1436967974406" expanded="true" signature="7357:7426" placeholder="..." />
-            <marker date="1436967974406" expanded="true" signature="9509:9561" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="7358:7427" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="9510:9562" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -738,8 +744,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1436967974406" expanded="true" signature="7357:7426" placeholder="..." />
-            <marker date="1436967974406" expanded="true" signature="9509:9561" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="7358:7427" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="9510:9562" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -835,18 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.730769">
-          <caret line="39" column="66" selection-start-line="39" selection-start-column="66" selection-end-line="39" selection-end-column="66" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-15.655172">
@@ -857,11 +851,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/www/js/yodaAnswerGetter.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.7356114">
-          <caret line="253" column="47" selection-start-line="253" selection-start-column="47" selection-end-line="253" selection-end-column="47" />
+        <state vertical-scroll-proportion="14.655172">
+          <caret line="5" column="46" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="46" />
           <folding>
-            <marker date="1436967974406" expanded="true" signature="7357:7426" placeholder="..." />
-            <marker date="1436967974406" expanded="true" signature="9509:9561" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="7358:7427" placeholder="..." />
+            <marker date="1436969169088" expanded="true" signature="9510:9562" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45259392">
+          <caret line="39" column="66" selection-start-line="39" selection-start-column="66" selection-end-line="39" selection-end-column="66" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
