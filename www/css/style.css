@@ -91,7 +91,7 @@
 }
 
 /* highlight of answer in snippet */
-.higlight{
+.highlight{
     background-color: lightgreen;
     text-shadow:none !important;
 }
