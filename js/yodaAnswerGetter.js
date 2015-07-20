@@ -420,15 +420,21 @@ function showSources(container, sources) {
     var map = [];
     var indexes = [];
     $.each(sources, function (sid, source) {
-        if (!(typeof (source.pageId) === "undefined") && source.origin != "document title") { //this forces to only show en wiki and without "document title"
+        if (source.origin != "document title") {
             deduplicateSources(map, indexes, source);
         }
     });
     var toAppend = "";
     indexes.forEach(function (index) {
         var source = map[index];
+        var url;
+        if (source.type == "enwiki") {
+            url = 'http://en.wikipedia.org/?curid=' + source.pageId;
+        } else {
+            url = source.URL;
+        }
         toAppend += '<li>' +
-            '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" target="_blank">' +
+            '<a href="' + url + '" target="_blank">' +
             createButtonImage(source) +
             source.title + ' (' + source.origin + ')' +
             '</a>' +
@@ -440,11 +446,12 @@ function showSources(container, sources) {
 
 /* Deduplicate sources and connects origins */
 function deduplicateSources(map, indexes, source) {
-    if (source.pageId in map) {
-        map[pageId].origin += ", " + source.origin;
+    var id = source.type == "enwiki" ? source.pageId : source.URL;
+    if (id in map) {
+        map[id].origin += ", " + source.origin;
     } else {
-        indexes.push(pageId);
-        map[pageId] = JSON.parse(JSON.stringify(source)); // copy object
+        indexes.push(id);
+        map[id] = JSON.parse(JSON.stringify(source)); // copy object
     }
 }
 
