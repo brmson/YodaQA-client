@@ -333,7 +333,7 @@ function createWikipediaButton(source) {
     var text = "";
     if (!(typeof (source.pageId) === "undefined")) {
         text = '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">' +
-            '<img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon" style="max-height: 1em; max-width: 1em; padding-right: 7px;">'
+            + createButtonImage(source)
             + source.title + '</a>';
     }
     return text;
@@ -344,7 +344,7 @@ function createURLButton(source) {
     var text = "";
     var image="";
     if (!(typeof (source.URL) === "undefined")) {
-        image=createSnippetButtonImage(source);
+        image=createButtonImage(source);
         text = '<a href="' + source.URL + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">' +
             image+
             source.title + '</a>';
@@ -352,12 +352,16 @@ function createURLButton(source) {
     return text;
 }
 
-function createSnippetButtonImage(source) {
+function createButtonImage(source) {
     if (!(typeof (source.type) === "undefined")) {
         var imageSource;
         var alt;
         var size;
-        if (source.type == "freebase") {
+        if (source.type == "enwiki") {
+            imageSource="img/wikipedia-w-logo.png";
+            alt="Wikipedia";
+            size=1;
+        } else if (source.type == "freebase") {
             imageSource="img/freebase_logo.png";
             alt="Freebase";
             size=1;
@@ -425,7 +429,8 @@ function showSources(container, sources) {
         var source = map[index];
         toAppend += '<li>' +
             '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" target="_blank">' +
-            '<img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">' + source.title + ' (' + source.origin + ')' +
+            createButtonImage(source) +
+            source.title + ' (' + source.origin + ')' +
             '</a>' +
             '</li>';
     });
