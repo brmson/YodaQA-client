@@ -276,7 +276,7 @@ function showOneAnswer(a, i, container, snippets, sources) {
         '</span>' +
         score_bar(a.confidence) +
         '</H2>' +
-        '<p>' + showSnippets(a, snippets, sources) + '</p>' +
+        '<div>' + showSnippets(a, snippets, sources) + '</div>' +
         '</div>')
     container.append(toAppend);
 }
