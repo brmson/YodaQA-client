@@ -366,7 +366,7 @@ function createSnippetButtonImage(source) {
             alt="DBpedia";
             size=1.5;
         }else{
-            return "";
+            return '[' + source.type + '] '; // return at least type text if we have no icon
         }
       return  '<img src="'+ imageSource +'" alt="'+alt+'" class="ui-li-icon" style="max-height: '+size+'em; max-width: '+size+'em; padding-right: 7px;">'
     }
