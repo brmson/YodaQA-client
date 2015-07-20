@@ -32,18 +32,32 @@ $(function () {
     setInterval(getAnsweredJson, 2900);
 });
 
-/* Shows question from url */
-$(document).on("pagebeforeshow","#mainPage",function(){
+/* Handles back navigation */
+$(function () {
+    // Bind the event.
+    $(window).hashchange(hashchanged);
+    // Trigger the event (useful on page load).
+    hashchanged();
+});
+
+/* Url changed, redraw page */
+function hashchanged() {
     var qID = getParameterByName("qID", window.location.href);
+    // If qID is present, show answer
     if (qID != null) {
         loadQuestion(qID);
-    }else{
-        $('#verticalCenter').css('opacity', 1.0);
-        $('#verticalCenter').animate({opacity: '0.0'}, 100);
-        clearResult();
-        qid=null;
+        $('#verticalCenter').css('margin-top', 0);
     }
-});
+    //if there is no qID clear show search area to center and clear resuts
+    else {
+        $('#verticalCenter').css('opacity', 0.0);
+        $('#verticalCenter').animate({opacity: '1.0'}, 100);
+        $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() -
+            ($('#verticalCenter').outerHeight())) / 2);
+        clearResult();
+        qid = null;
+    }
+}
 
 /* Centers search area if there is no answers */
 $(document).on('pageshow', '#mainPage', function (e, data) {
@@ -64,20 +78,20 @@ $(window).resize(function () {
     }
 });
 
-/* Clears results of answer during back navigation */
-function clearResult(){
-    $("#answers_area").empty();
-    $("#concept_area").empty();
-    $("#answerType_area").empty();
-    $("#sources_area").empty();
-    $('input[name="text"]').val("");
-}
-
 /* Gets parameter by name */
 function getParameterByName(name, url) {
     var match = RegExp('[?&]' + name + '=([^&]*)')
         .exec(url);
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+}
+
+/* Clears results of answer during back navigation */
+function clearResult() {
+    $("#answers_area").empty();
+    $("#concept_area").empty();
+    $("#answerType_area").empty();
+    $("#sources_area").empty();
+    $('input[name="text"]').val("");
 }
 
 /* Gets question information and shows it */
@@ -127,7 +141,6 @@ function showQuestionList(area, listContainerID, title, list) {
 function showAnsweredQuestion(qId) {
     loadQuestion(qId);
     $('#verticalCenter').css('margin-top', 0);
-    //window.location.href = "#mainPage?qID=" + qId;
 }
 
 /* Retrieve, process and display json question information. */
@@ -257,7 +270,7 @@ function showAnswer(a, i, container, snippets, sources) {
         '<span>' +
         text +
         '</span>' +
-        score_bar(a.confidence)+
+        score_bar(a.confidence) +
         '</H2>' +
         '<p>' + showSnippets(a, snippets, sources) + '</p>' +
         '</div>')
@@ -316,7 +329,7 @@ function createURLButton(source) {
     var text = "";
     if (!(typeof (source.URL) === "undefined")) {
         text = '<a href="' + source.URL + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all">' +
-             source.title + '</a>';
+            source.title + '</a>';
     }
     return text;
 }
@@ -405,18 +418,13 @@ function deduplicateSources(map, indexes, pageId, title, origin) {
 
 /* Returns color for score */
 function score_color(score) {
-    /*var green = Math.round(200 * score + 25);
-    var red = Math.round(200 * (1 - score) + 25);
-    return 'rgb(' + red + ',' + green + ',0)';*/
-    var hue= 120 * score;
-    var saturation = 75 + 25*score;
-    var light = 25+30*(1-score);
-    return 'hsl('+hue+', '+saturation+'%, '+light+'%);';
+    var hue = 120 * score;
+    var saturation = 75 + 25 * score;
+    var light = 25 + 30 * (1 - score);
+    return 'hsl(' + hue + ', ' + saturation + '%, ' + light + '%);';
 }
 
 /* Create a fancy score bar representing confidence of an answer. */
 function score_bar(score) {
-    var green = Math.round(200 * score + 25);
-    var red = Math.round(200 * (1-score) + 25);
-    return '<hr class="scorebar" style="width:'+(score*(100-20))+'%; background-color:rgb('+red+','+green+',0)"> ';
+    return '<hr class="scorebar" style="width:' + (score * 100) + '%; background-color:' + score_color(score) + '"> ';
 }
