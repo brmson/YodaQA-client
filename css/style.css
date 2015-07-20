@@ -106,3 +106,15 @@ hr {
 #verticalCenter{
     opacity: 0.0;
 }
+
+.scorebar {
+    height: 1ex;
+    margin-top: 3px;
+    margin-bottom: -5px;
+    vertical-align: middle;
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
+    border: 0pt;
+    border-radius: 7px 7px 7px 7px;
+}
