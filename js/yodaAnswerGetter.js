@@ -33,14 +33,6 @@ $(function () {
 });
 
 /* Shows question from url */
-/*$(document).on("pagecreate", "#mainPage", function () {
-    var qID = getParameterByName("qID", window.location.href);
-    if (qID != null) {
-        loadQuestion(qID);
-    }
-});*/
-
-/* Shows question from url */
 $(document).on("pagebeforeshow","#mainPage",function(){
     var qID = getParameterByName("qID", window.location.href);
     if (qID != null) {
@@ -265,6 +257,7 @@ function showAnswer(a, i, container, snippets, sources) {
         '<span>' +
         text +
         '</span>' +
+        score_bar(a.confidence)+
         '</H2>' +
         '<p>' + showSnippets(a, snippets, sources) + '</p>' +
         '</div>')
@@ -293,7 +286,7 @@ function showSnippets(a, snippets, sources) {
 function createPassageText(a, snipet) {
     var text = "";
     if (!(typeof (snipet.passageText) === "undefined")) {
-        text = '<p>' + higlight(a.text.replace(/"/g, "&#34;"), snipet.passageText) + '</p>';
+        text = '<p>' + highlight(a.text.replace(/"/g, "&#34;"), snipet.passageText) + '</p>';
     }
     return text;
 }
@@ -302,7 +295,7 @@ function createPassageText(a, snipet) {
 function createPropertyLabel(a, snipet) {
     var text = "";
     if (!(typeof (snipet.propertyLabel) === "undefined")) {
-        text = '<p>' + higlight(a.text.replace(/"/g, "&#34;"), snipet.propertyLabel) + '</p>';
+        text = '<p>' + highlight(a.text.replace(/"/g, "&#34;"), snipet.propertyLabel) + '</p>';
     }
     return text;
 }
@@ -347,10 +340,10 @@ function createType(source) {
 }
 
 /* highlight word in text */
-function higlight(word, text) {
+function highlight(word, text) {
     var wordForRGXP = word.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
     var rgxp = new RegExp(wordForRGXP, 'g');
-    var repl = '<span class="higlight">' + word + '</span>';
+    var repl = '<span class="highlight">' + word + '</span>';
     return text.replace(rgxp, repl);
 }
 
@@ -412,7 +405,18 @@ function deduplicateSources(map, indexes, pageId, title, origin) {
 
 /* Returns color for score */
 function score_color(score) {
-    var green = Math.round(200 * score + 25);
+    /*var green = Math.round(200 * score + 25);
     var red = Math.round(200 * (1 - score) + 25);
-    return 'rgb(' + red + ',' + green + ',0)';
+    return 'rgb(' + red + ',' + green + ',0)';*/
+    var hue= 120 * score;
+    var saturation = 75 + 25*score;
+    var light = 25+30*(1-score);
+    return 'hsl('+hue+', '+saturation+'%, '+light+'%);';
+}
+
+/* Create a fancy score bar representing confidence of an answer. */
+function score_bar(score) {
+    var green = Math.round(200 * score + 25);
+    var red = Math.round(200 * (1-score) + 25);
+    return '<hr class="scorebar" style="width:'+(score*(100-20))+'%; background-color:rgb('+red+','+green+',0)"> ';
 }
