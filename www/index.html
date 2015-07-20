@@ -33,7 +33,7 @@
 			<div data-role="main" class="ui-content">
 
 				<div id="verticalCenter">
-					<H1 class="mainHeader">YodaQA Live</H1>
+					<a href="javascript:mainLogoClick()" class="mainHeaderLink"><H1 class="mainHeader">YodaQA Live</H1></a>
 
 					<!--Form for asking Yoda-->
 
@@ -83,7 +83,7 @@
 			<!--Page's main content-->
 			<div data-role="main" class="ui-content">
 
-				<H1 class="mainHeader">YodaQA Live</H1>
+				<a href="javascript:mainLogoClick()" class="mainHeaderLink"><H1 class="mainHeader">YodaQA Live</H1></a>
 
 				<!--Area for answered questions-->
 				<div id="answered_area"></div>
@@ -100,8 +100,8 @@
 			<div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
 				<div data-role="navbar">
 					<ul>
-						<li><a href="#mainPage" data-icon="search" data-ajax="false">Ask</a></li>
-						<li><a href="#" class="ui-btn-active ui-state-persist">Asked questions</a></li>
+						<li><a href="#mainPage" data-icon="search">Ask</a></li>
+						<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="info">Asked questions</a></li>
 					</ul>
 				</div>
 			</div>

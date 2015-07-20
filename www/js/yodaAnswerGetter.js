@@ -48,12 +48,15 @@ function hashchanged() {
         loadQuestion(qID);
         $('#verticalCenter').css('margin-top', 0);
     }
-    //if there is no qID clear show search area to center and clear resuts
+    //if there is no qID clear show search area to center and clear results
     else {
-        $('#verticalCenter').css('opacity', 0.0);
-        $('#verticalCenter').animate({opacity: '1.0'}, 100);
-        $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() -
-            ($('#verticalCenter').outerHeight())) / 2);
+        //if page is not loaded, don't position anything (page is loaded only during back navigation)
+        if ($('[data-role=header]').height() != null) {
+            $('#verticalCenter').css('opacity', 0.0);
+            $('#verticalCenter').animate({opacity: '1.0'}, 100);
+            $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() -
+                ($('#verticalCenter').outerHeight())) / 2);
+        }
         clearResult();
         qid = null;
     }
@@ -92,6 +95,7 @@ function clearResult() {
     $("#answerType_area").empty();
     $("#sources_area").empty();
     $('input[name="text"]').val("");
+    $('#verticalCenter').css('opacity', 0.0);
 }
 
 /* Gets question information and shows it */
@@ -135,6 +139,10 @@ function showQuestionList(area, listContainerID, title, list) {
         listContainer.append('<li><a href="javascript:showAnsweredQuestion(' + q.id + ')">' + q.text + '</a></li>');
     });
     $("#" + listContainerID).listview().listview("refresh");
+}
+
+function mainLogoClick() {
+    window.location.href = "#mainPage";
 }
 
 /* Shows answers to selected questions and jumps to main page */
@@ -245,7 +253,7 @@ function showAnswers(container, answers, snippets, sources) {
         // FIXME: also deal with < > &
         //text = a.text.replace(/"/g, "&#34;");
         if (i <= DIRECTLY_SHOWED_QUESTIONS) {
-            showAnswer(a, i, container, snippets, sources);
+            showOneAnswer(a, i, container, snippets, sources);
         } else {
             showAnswersInDropDown(a, i, container, snippets, sources);
         }
@@ -261,7 +269,7 @@ function showAnswers(container, answers, snippets, sources) {
 }
 
 /* Shows best answers directly */
-function showAnswer(a, i, container, snippets, sources) {
+function showOneAnswer(a, i, container, snippets, sources) {
     text = a.text.replace(/"/g, "&#34;");
     var toAppend = $('' +
         '<div data-role="collapsible" id="' + i + '" class="answer" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">' +
@@ -280,8 +288,10 @@ function showAnswer(a, i, container, snippets, sources) {
 /* Show snippets in answer collapsible */
 function showSnippets(a, snippets, sources) {
     var texts = "";
-    a.snippetIDs.forEach(function (snippetID) {
-        var snippet = snippets[snippetID];
+    var snippetIDs=a.snippetIDs;
+    var len = snippetIDs.length;
+    for (var i = 0; i < len; i++) {
+        var snippet = snippets[snippetIDs[i]];
         var source = sources[snippet.sourceID];
         texts += createPassageText(a, snippet);
         texts += createPropertyLabel(a, snippet);
@@ -290,8 +300,10 @@ function showSnippets(a, snippets, sources) {
         texts += '<br>';
         texts += createWikipediaButton(source);
         texts += createURLButton(source);
-        texts += '<br><hr>';
-    });
+        if (i != len - 1) {
+            texts += '<br><hr>';
+        }
+    }
     return texts;
 }
 
@@ -367,7 +379,7 @@ function showAnswersInDropDown(a, i, container, snippets, sources) {
         createDropDownList(container, "answersDropDownLI", "More answers...", "moreAnswers");
         dropDownList = $("#moreAnswers");
     }
-    showAnswer(a, i, dropDownList, snippets, sources);
+    showOneAnswer(a, i, dropDownList, snippets, sources);
 }
 
 /* Creates base for drop down menu */
