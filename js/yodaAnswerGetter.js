@@ -141,10 +141,6 @@ function showQuestionList(area, listContainerID, title, list) {
     $("#" + listContainerID).listview().listview("refresh");
 }
 
-function mainLogoClick() {
-    window.location.href = "#mainPage";
-}
-
 /* Shows answers to selected questions and jumps to main page */
 function showAnsweredQuestion(qId) {
     loadQuestion(qId);
@@ -288,30 +284,27 @@ function showOneAnswer(a, i, container, snippets, sources) {
 /* Show snippets in answer collapsible */
 function showSnippets(a, snippets, sources) {
     var texts = "";
-    var snippetIDs=a.snippetIDs;
+    var snippetIDs = a.snippetIDs;
     var len = snippetIDs.length;
     for (var i = 0; i < len; i++) {
         var snippet = snippets[snippetIDs[i]];
         var source = sources[snippet.sourceID];
-        texts += createPassageText(a, snippet);
-        texts += createPropertyLabel(a, snippet);
-        texts += createOrigin(source);
-        texts += createType(source);
-        texts += '<br>';
         texts += createWikipediaButton(source);
         texts += createURLButton(source);
+        texts += '<div style="overflow: hidden;"><span style="vertical-align: middle;display: inline-block;min-height: 55px; padding-top: 10px">'+
+            createPassageText(a, snippet,source) + createPropertyLabel(a, snippet) + createOrigin(source)+'</span></div>';
         if (i != len - 1) {
-            texts += '<br><hr>';
+            texts += '<hr>';
         }
     }
     return texts;
 }
 
 /* Creates text of snippet */
-function createPassageText(a, snipet) {
+function createPassageText(a, snipet, source) {
     var text = "";
     if (!(typeof (snipet.passageText) === "undefined")) {
-        text = '<p>' + highlight(a.text.replace(/"/g, "&#34;"), snipet.passageText) + '</p>';
+        text = highlight(a.text.replace(/"/g, "&#34;"), snipet.passageText);
     }
     return text;
 }
@@ -320,7 +313,7 @@ function createPassageText(a, snipet) {
 function createPropertyLabel(a, snipet) {
     var text = "";
     if (!(typeof (snipet.propertyLabel) === "undefined")) {
-        text = '<p>' + highlight(a.text.replace(/"/g, "&#34;"), snipet.propertyLabel) + '</p>';
+        text = highlight(a.text.replace(/"/g, "&#34;"), snipet.propertyLabel);
     }
     return text;
 }
@@ -329,7 +322,7 @@ function createPropertyLabel(a, snipet) {
 function createWikipediaButton(source) {
     var text = "";
     if (!(typeof (source.pageId) === "undefined")) {
-        text = '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all">' +
+        text = '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">' +
             '<img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon" style="max-height: 1em; max-width: 1em; padding-right: 7px;">'
             + source.title + '</a>';
     }
@@ -339,27 +332,42 @@ function createWikipediaButton(source) {
 /* Creates url button for snippet */
 function createURLButton(source) {
     var text = "";
+    var image="";
     if (!(typeof (source.URL) === "undefined")) {
-        text = '<a href="' + source.URL + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all">' +
+        image=createSnippetButtonImage(source);
+        text = '<a href="' + source.URL + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">' +
+            image+
             source.title + '</a>';
     }
     return text;
+}
+
+function createSnippetButtonImage(source) {
+    if (!(typeof (source.type) === "undefined")) {
+        var imageSource;
+        var alt;
+        var size;
+        if (source.type == "freebase") {
+            imageSource="img/freebase_logo.png";
+            alt="Freebase";
+            size=1;
+        } else if (source.type == "dbpedia") {
+            imageSource="img/dbpedia_logo.png";
+            alt="DBpedia";
+            size=1.5;
+        }else{
+            return "";
+        }
+      return  '<img src="'+ imageSource +'" alt="'+alt+'" class="ui-li-icon" style="max-height: '+size+'em; max-width: '+size+'em; padding-right: 7px;">'
+    }
+    return "";
 }
 
 /* Creates origin of snippet */
 function createOrigin(source) {
     var text = "";
     if (!(typeof (source.origin) === "undefined")) {
-        text = '<span><b>Origin:</b> ' + source.origin + '</span>';
-    }
-    return text;
-}
-
-/* Creates type of snippet */
-function createType(source) {
-    var text = "";
-    if (!(typeof (source.type) === "undefined")) {
-        text = '<span> <b>Source:</b> ' + source.type + '</span>';
+        text = '<i> (' + source.origin + ')</i>';
     }
     return text;
 }
