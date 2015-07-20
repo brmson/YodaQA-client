@@ -33,28 +33,53 @@ $(function () {
 });
 
 /* Shows question from url */
-$(document).on("pagecreate", "#mainPage", function () {
+/*$(document).on("pagecreate", "#mainPage", function () {
     var qID = getParameterByName("qID", window.location.href);
     if (qID != null) {
         loadQuestion(qID);
     }
+});*/
+
+/* Shows question from url */
+$(document).on("pagebeforeshow","#mainPage",function(){
+    var qID = getParameterByName("qID", window.location.href);
+    if (qID != null) {
+        loadQuestion(qID);
+    }else{
+        $('#verticalCenter').css('opacity', 1.0);
+        $('#verticalCenter').animate({opacity: '0.0'}, 100);
+        clearResult();
+        qid=null;
+    }
 });
 
+/* Centers search area if there is no answers */
 $(document).on('pageshow', '#mainPage', function (e, data) {
     if (qid == null) {
         $('#verticalCenter').animate({opacity: '1.0'}, 100);
-        $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() - ($('#verticalCenter').outerHeight())) / 2);
+        $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() -
+            ($('#verticalCenter').outerHeight())) / 2);
     } else {
         $('#verticalCenter').css('opacity', 1.0);
     }
 });
 
+/* Centers search area on page resize */
 $(window).resize(function () {
     if (qid == null) {
-        $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() - ($('#verticalCenter').outerHeight())) / 2);
+        $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() -
+            ($('#verticalCenter').outerHeight())) / 2);
     }
 });
 
+/* Clears results of answer during back navigation */
+function clearResult(){
+    $("#answers_area").empty();
+    $("#concept_area").empty();
+    $("#answerType_area").empty();
+    $("#sources_area").empty();
+    $('input[name="text"]').val("");
+}
 
 /* Gets parameter by name */
 function getParameterByName(name, url) {
@@ -110,7 +135,7 @@ function showQuestionList(area, listContainerID, title, list) {
 function showAnsweredQuestion(qId) {
     loadQuestion(qId);
     $('#verticalCenter').css('margin-top', 0);
-    window.location.href = "#mainPage?qID=" + qId;
+    //window.location.href = "#mainPage?qID=" + qId;
 }
 
 /* Retrieve, process and display json question information. */
@@ -252,7 +277,7 @@ function showSnippets(a, snippets, sources) {
     a.snippetIDs.forEach(function (snippetID) {
         var snippet = snippets[snippetID];
         var source = sources[snippet.sourceID];
-        texts += createTitle(a, snippet);
+        texts += createPassageText(a, snippet);
         texts += createPropertyLabel(a, snippet);
         texts += createOrigin(source);
         texts += createType(source);
@@ -264,7 +289,8 @@ function showSnippets(a, snippets, sources) {
     return texts;
 }
 
-function createTitle(a, snipet) {
+/* Creates text of snippet */
+function createPassageText(a, snipet) {
     var text = "";
     if (!(typeof (snipet.passageText) === "undefined")) {
         text = '<p>' + higlight(a.text.replace(/"/g, "&#34;"), snipet.passageText) + '</p>';
@@ -272,14 +298,16 @@ function createTitle(a, snipet) {
     return text;
 }
 
+/* Creates property label of snippet */
 function createPropertyLabel(a, snipet) {
     var text = "";
     if (!(typeof (snipet.propertyLabel) === "undefined")) {
-        text = '<p><b>Property Label:</b> ' + higlight(a.text.replace(/"/g, "&#34;"), snipet.propertyLabel) + '</p>';
+        text = '<p>' + higlight(a.text.replace(/"/g, "&#34;"), snipet.propertyLabel) + '</p>';
     }
     return text;
 }
 
+/* Creates wikipedia button for snippet*/
 function createWikipediaButton(source) {
     var text = "";
     if (!(typeof (source.pageId) === "undefined")) {
@@ -290,6 +318,7 @@ function createWikipediaButton(source) {
     return text;
 }
 
+/* Creates url button for snippet */
 function createURLButton(source) {
     var text = "";
     if (!(typeof (source.URL) === "undefined")) {
@@ -299,6 +328,7 @@ function createURLButton(source) {
     return text;
 }
 
+/* Creates origin of snippet */
 function createOrigin(source) {
     var text = "";
     if (!(typeof (source.origin) === "undefined")) {
@@ -307,6 +337,7 @@ function createOrigin(source) {
     return text;
 }
 
+/* Creates type of snippet */
 function createType(source) {
     var text = "";
     if (!(typeof (source.type) === "undefined")) {
