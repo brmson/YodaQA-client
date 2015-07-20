@@ -3,7 +3,7 @@
  */
 
 
-var CONNECTION_ADDRESS = "http://qa.ailao.eu"; //address of endpoint
+var CONNECTION_ADDRESS = "http://qa.ailao.eu/"; //address of endpoint
 var DIRECTLY_SHOWED_QUESTIONS = 5; // Number of questions above drop down menu
 
 var qid;  // id of the last posed question
@@ -58,12 +58,16 @@ function hashchanged() {
                 ($('#verticalCenter').outerHeight())) / 2);
         }
         clearResult();
-        qid = null;
+        //qid = null;
     }
 }
 
 /* Centers search area if there is no answers */
 $(document).on('pageshow', '#mainPage', function (e, data) {
+    var endpoint= getParameterByName("e", window.location.href);
+    if (endpoint!=null){
+        changeEndpoint(endpoint);
+    }
     if (qid == null) {
         $('#verticalCenter').animate({opacity: '1.0'}, 100);
         $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() -
@@ -83,8 +87,9 @@ $(window).resize(function () {
 
 /* Gets parameter by name */
 function getParameterByName(name, url) {
+    var arr = url.split('#');
     var match = RegExp('[?&]' + name + '=([^&]*)')
-        .exec(url);
+        .exec(arr[0]);
     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
 }
 
@@ -95,7 +100,12 @@ function clearResult() {
     $("#answerType_area").empty();
     $("#sources_area").empty();
     $('input[name="text"]').val("");
-    $('#verticalCenter').css('opacity', 0.0);
+    //$('#verticalCenter').css('opacity', 0.0);
+}
+
+function changeEndpoint(endpoint){
+    CONNECTION_ADDRESS=endpoint;
+    $("#ask").attr("action",  endpoint+"q");
 }
 
 /* Gets question information and shows it */
@@ -110,21 +120,21 @@ function loadQuestion(q) {
 
 /* Gets and shows answered questions in list */
 function getAnsweredJson() {
-    $.get(CONNECTION_ADDRESS + "/q/?answered", function (r) {
+    $.get(CONNECTION_ADDRESS + "q/?answered", function (r) {
         showQuestionList($("#answered_area"), "answered", "Answered questions", r);
     });
 }
 
 /* Gets and shows answers in progress in list */
 function getInProgressJson() {
-    $.get(CONNECTION_ADDRESS + "/q/?inProgress", function (r) {
+    $.get(CONNECTION_ADDRESS + "q/?inProgress", function (r) {
         showQuestionList($("#inProgress_area"), "inProgress", "In progress", r);
     });
 }
 
 /* Gets and shows answers in processing in list */
 function getToAnswerJson() {
-    $.get(CONNECTION_ADDRESS + "/q/?toAnswer", function (r) {
+    $.get(CONNECTION_ADDRESS + "q/?toAnswer", function (r) {
         showQuestionList($("#toAnswer_area"), "toAnswer", "Question queue", r);
     });
 }
@@ -149,7 +159,7 @@ function showAnsweredQuestion(qId) {
 
 /* Retrieve, process and display json question information. */
 function getQuestionJson() {
-    $.get(CONNECTION_ADDRESS + "/q/" + qid, function (r) {
+    $.get(CONNECTION_ADDRESS + "q/" + qid, function (r) {
         $('input[name="text"]').val(r.text);
 
         //shows answers
