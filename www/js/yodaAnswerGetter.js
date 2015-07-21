@@ -112,10 +112,11 @@ function clearResult() {
 function changeEndpoint(endpoint) {
     if (endpoint == null) {
         CONNECTION_ADDRESS = DEFAULT_ADDRESS;
+        $("#ask").attr("action", DEFAULT_ADDRESS + "q");
     } else {
         CONNECTION_ADDRESS = endpoint;
+        $("#ask").attr("action", endpoint + "q");
     }
-    $("#ask").attr("action", endpoint + "q");
 }
 
 function reloadAnswered(){
@@ -146,6 +147,10 @@ function loadQuestion(q, reload) {
         }
     }
     getQuestionJson();
+}
+
+function showFeedbackForm(){
+
 }
 
 /* Gets and shows answered questions in list */
@@ -225,6 +230,7 @@ function getQuestionJson() {
             }
 
             if (r.finished) {
+                restoreFeedback();
                 $("#spinner").hide();
             } else {
                 // keep watching
@@ -316,10 +322,10 @@ function showAnswers(container, answers, snippets, sources) {
 function showOneAnswer(a, i, container, snippets, sources) {
     text = a.text.replace(/"/g, "&#34;");
     var toAppend = $('' +
-        '<div data-role="collapsible" id="' + i + '" class="answer" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">' +
+        '<div data-role="collapsible" class="answer" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">' +
         '<H2>' +
         '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">' + (a.confidence * 100).toFixed(1) + '%' + '</span>' +
-        '<span>' +
+        '<span id="answerText' + i + '">' +
         text +
         '</span>' +
         score_bar(a.confidence) +
@@ -370,7 +376,8 @@ function createPropertyLabel(a, snipet) {
 function createWikipediaButton(source) {
     var text = "";
     if (!(typeof (source.pageId) === "undefined")) {
-        text = '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">' + +createButtonImage(source)
+        text = '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">'
+            +createButtonImage(source)
             + source.title + '</a>';
     }
     return text;
