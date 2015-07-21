@@ -9,7 +9,7 @@ var DIRECTLY_SHOWED_QUESTIONS = 5; // Number of questions above drop down menu
 var qid;  // id of the last posed question
 var gen_sources, gen_answers;  // when this number changes, re-render
 var answers;
-
+var endpoint;
 
 /* Ajax function for retrieving questions and answers */
 $(function () {
@@ -41,10 +41,17 @@ $(function () {
 });
 
 /* Url changed, redraw page */
+//TODO dont redraw when only qID is added during asking question
 function hashchanged() {
+    //load and change endpoint
+    endpoint= getParameterByName("e", window.location.href);
+    if (endpoint!=null){
+        changeEndpoint(endpoint);
+    }
     var qID = getParameterByName("qID", window.location.href);
-    // If qID is present, show answer
-    if (qID != null) {
+    // If qID is present and we are on main page, show answer
+    var arr = window.location.href.split('#');
+    if (qID != null && (arr[1]=="mainPage" || arr[1]==null)) {
         loadQuestion(qID);
         $('#verticalCenter').css('margin-top', 0);
     }
@@ -64,10 +71,6 @@ function hashchanged() {
 
 /* Centers search area if there is no answers */
 $(document).on('pageshow', '#mainPage', function (e, data) {
-    var endpoint= getParameterByName("e", window.location.href);
-    if (endpoint!=null){
-        changeEndpoint(endpoint);
-    }
     if (qid == null) {
         $('#verticalCenter').animate({opacity: '1.0'}, 100);
         $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() -
@@ -114,7 +117,11 @@ function loadQuestion(q) {
     qid = q;
     gen_sources = 0;
     gen_answers = 0;
-    window.location.href = "#mainPage?qID=" + qid;
+    if (endpoint==null){
+        window.location.href = "?qID=" + qid+"#mainPage";
+    }else{
+        window.location.href="?e="+endpoint+"&qID=" + qid+"#mainPage";
+    }
     getQuestionJson();
 }
 
