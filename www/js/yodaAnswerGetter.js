@@ -3,7 +3,8 @@
  */
 
 
-var CONNECTION_ADDRESS = "http://qa.ailao.eu/"; //address of endpoint
+var DEFAULT_ADDRESS = "http://qa.ailao.eu/"; //default address of endpoint
+var CONNECTION_ADDRESS; //address of endpoint
 
 var DIRECTLY_SHOWED_QUESTIONS = 5; // Number of questions above drop down menu
 
@@ -19,7 +20,7 @@ $(function () {
         success: function (response) {
             $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
             setTimeout(function () {
-                loadQuestion(JSON.parse(response).id,false)
+                loadQuestion(JSON.parse(response).id, false)
             }, 500);
         }
     });
@@ -45,15 +46,15 @@ $(function () {
 /* Url changed, redraw page */
 function hashchanged() {
     //load and change endpoint
-    endpoint= getParameterByName("e", window.location.href);
-    if (endpoint!=null){
-        changeEndpoint(endpoint);
-    }
+    endpoint = getParameterByName("e", window.location.href);
+    changeEndpoint(endpoint);
+    reloadAnswered();
+
     var qID = getParameterByName("qID", window.location.href);
     // If qID is present and we are on main page, show answer
     var arr = window.location.href.split('#');
-    if (qID != null && (arr[1]=="mainPage" || arr[1]==null)) {
-        loadQuestion(qID,false);
+    if (qID != null && (arr[1] == "mainPage" || arr[1] == null)) {
+        loadQuestion(qID, false);
         $('#verticalCenter').css('margin-top', 0);
     }
     //if there is no qID clear show search area to center and clear results
@@ -108,56 +109,70 @@ function clearResult() {
 }
 
 /* Changes endpoint for JSON and form */
-function changeEndpoint(endpoint){
-    CONNECTION_ADDRESS=endpoint;
-    $("#ask").attr("action",  endpoint+"q");
+function changeEndpoint(endpoint) {
+    if (endpoint == null) {
+        CONNECTION_ADDRESS = DEFAULT_ADDRESS;
+    } else {
+        CONNECTION_ADDRESS = endpoint;
+    }
+    $("#ask").attr("action", endpoint + "q");
+}
+
+function reloadAnswered(){
+    getToAnswerJson();
+    getInProgressJson();
+    getAnsweredJson();
 }
 
 /* Gets question information and shows it
-*  Reload determines if (true) page will be reloaded or (false) only url will be changed without reload
-*/
+ *  Reload determines if (true) page will be reloaded or (false) only url will be changed without reload
+ */
 function loadQuestion(q, reload) {
     $("#answers_area").empty();
     qid = q;
     gen_sources = 0;
     gen_answers = 0;
-    if (reload){
-        if (endpoint==null){
-            window.location.href = "?qID=" + qid+"#mainPage";
-        }else{
-            window.location.href="?qID="+qid+"&e=" + endpoint+"#mainPage";
+    if (reload) {
+        if (endpoint == null) {
+            window.location.href = "?qID=" + qid + "#mainPage";
+        } else {
+            window.location.href = "?qID=" + qid + "&e=" + endpoint + "#mainPage";
         }
-    }else{
-        if (endpoint==null){
-            window.history.pushState("object or string", "Title", "?qID=" + qid+"#mainPage");
-        }else{
-            window.history.pushState("object or string", "Title", "?qID="+qid+"&e=" + endpoint+"#mainPage");
+    } else {
+        if (endpoint == null) {
+            window.history.pushState("object or string", "Title", "?qID=" + qid + "#mainPage");
+        } else {
+            window.history.pushState("object or string", "Title", "?qID=" + qid + "&e=" + endpoint + "#mainPage");
         }
     }
-
-
     getQuestionJson();
 }
 
 /* Gets and shows answered questions in list */
 function getAnsweredJson() {
-    $.get(CONNECTION_ADDRESS + "q/?answered", function (r) {
-        showQuestionList($("#answered_area"), "answered", "Answered questions", r);
-    });
+    if (CONNECTION_ADDRESS != null) {
+        $.get(CONNECTION_ADDRESS + "q/?answered", function (r) {
+            showQuestionList($("#answered_area"), "answered", "Answered questions", r);
+        });
+    }
 }
 
 /* Gets and shows answers in progress in list */
 function getInProgressJson() {
-    $.get(CONNECTION_ADDRESS + "q/?inProgress", function (r) {
-        showQuestionList($("#inProgress_area"), "inProgress", "In progress", r);
-    });
+    if (CONNECTION_ADDRESS != null) {
+        $.get(CONNECTION_ADDRESS + "q/?inProgress", function (r) {
+            showQuestionList($("#inProgress_area"), "inProgress", "In progress", r);
+        });
+    }
 }
 
 /* Gets and shows answers in processing in list */
 function getToAnswerJson() {
-    $.get(CONNECTION_ADDRESS + "q/?toAnswer", function (r) {
-        showQuestionList($("#toAnswer_area"), "toAnswer", "Question queue", r);
-    });
+    if (CONNECTION_ADDRESS != null) {
+        $.get(CONNECTION_ADDRESS + "q/?toAnswer", function (r) {
+            showQuestionList($("#toAnswer_area"), "toAnswer", "Question queue", r);
+        });
+    }
 }
 
 /* Create a titled listing of questions. */
@@ -174,47 +189,49 @@ function showQuestionList(area, listContainerID, title, list) {
 
 /* Shows answers to selected questions and jumps to main page */
 function showAnsweredQuestion(qId) {
-    loadQuestion(qId,true);
+    loadQuestion(qId, true);
     $('#verticalCenter').css('margin-top', 0);
 }
 
 /* Retrieve, process and display json question information. */
 function getQuestionJson() {
-    $.get(CONNECTION_ADDRESS + "q/" + qid, function (r) {
-        $('input[name="text"]').val(r.text);
+    if (CONNECTION_ADDRESS != null) {
+        $.get(CONNECTION_ADDRESS + "q/" + qid, function (r) {
+            $('input[name="text"]').val(r.text);
 
-        //shows answers
-        if (r.answers && gen_answers != r.gen_answers) {
-            var container = createList("#answers_area", "answers", null, false, true);
-            showAnswers(container, r.answers, r.snippets, r.sources);
-            gen_answers = r.gen_answers;
-        }
-
-        //shows concepts and summary
-        if (r.summary) {
-            if (r.summary.concepts.length) {
-                var container = createList("#concept_area", "concepts", "Concepts", true, false);
-                showConcept(container, r.summary.concepts);
-            } else {
-                $("#concept_area").empty();
+            //shows answers
+            if (r.answers && gen_answers != r.gen_answers) {
+                var container = createList("#answers_area", "answers", null, false, true);
+                showAnswers(container, r.answers, r.snippets, r.sources);
+                gen_answers = r.gen_answers;
             }
-            showAnswerType(r.summary);
-        }
 
-        //shows sources
-        if (!$.isEmptyObject(r.sources) && gen_sources != r.gen_sources) {
-            var container = createList("#sources_area", "questionSources", "Answer sources", true, false);
-            showSources(container, r.sources);
-            gen_sources = r.gen_sources;
-        }
+            //shows concepts and summary
+            if (r.summary) {
+                if (r.summary.concepts.length) {
+                    var container = createList("#concept_area", "concepts", "Concepts", true, false);
+                    showConcept(container, r.summary.concepts);
+                } else {
+                    $("#concept_area").empty();
+                }
+                showAnswerType(r.summary);
+            }
 
-        if (r.finished) {
-            $("#spinner").hide();
-        } else {
-            // keep watching
-            setTimeout(getQuestionJson, 500);
-        }
-    });
+            //shows sources
+            if (!$.isEmptyObject(r.sources) && gen_sources != r.gen_sources) {
+                var container = createList("#sources_area", "questionSources", "Answer sources", true, false);
+                showSources(container, r.sources);
+                gen_sources = r.gen_sources;
+            }
+
+            if (r.finished) {
+                $("#spinner").hide();
+            } else {
+                // keep watching
+                setTimeout(getQuestionJson, 500);
+            }
+        });
+    }
 }
 
 /* Shows answer type */
@@ -322,8 +339,8 @@ function showSnippets(a, snippets, sources) {
         var source = sources[snippet.sourceID];
         texts += createWikipediaButton(source);
         texts += createURLButton(source);
-        texts += '<div style="overflow: hidden;"><span style="vertical-align: middle;display: inline-block;min-height: 55px; padding-top: 10px">'+
-            createPassageText(a, snippet,source) + createPropertyLabel(a, snippet) + createOrigin(source)+'</span></div>';
+        texts += '<div style="overflow: hidden;"><span style="vertical-align: middle;display: inline-block;min-height: 55px; padding-top: 10px">' +
+            createPassageText(a, snippet, source) + createPropertyLabel(a, snippet) + createOrigin(source) + '</span></div>';
         if (i != len - 1) {
             texts += '<hr>';
         }
@@ -353,8 +370,7 @@ function createPropertyLabel(a, snipet) {
 function createWikipediaButton(source) {
     var text = "";
     if (!(typeof (source.pageId) === "undefined")) {
-        text = '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">' +
-            + createButtonImage(source)
+        text = '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">' + +createButtonImage(source)
             + source.title + '</a>';
     }
     return text;
@@ -363,11 +379,11 @@ function createWikipediaButton(source) {
 /* Creates url button for snippet */
 function createURLButton(source) {
     var text = "";
-    var image="";
+    var image = "";
     if (!(typeof (source.URL) === "undefined")) {
-        image=createButtonImage(source);
+        image = createButtonImage(source);
         text = '<a href="' + source.URL + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">' +
-            image+
+            image +
             source.title + '</a>';
     }
     return text;
@@ -380,21 +396,21 @@ function createButtonImage(source) {
         var alt;
         var size;
         if (source.type == "enwiki") {
-            imageSource="img/wikipedia-w-logo.png";
-            alt="Wikipedia";
-            size=1;
+            imageSource = "img/wikipedia-w-logo.png";
+            alt = "Wikipedia";
+            size = 1;
         } else if (source.type == "freebase") {
-            imageSource="img/freebase_logo.png";
-            alt="Freebase";
-            size=1;
+            imageSource = "img/freebase_logo.png";
+            alt = "Freebase";
+            size = 1;
         } else if (source.type == "dbpedia") {
-            imageSource="img/dbpedia_logo.png";
-            alt="DBpedia";
-            size=1.5;
-        }else{
+            imageSource = "img/dbpedia_logo.png";
+            alt = "DBpedia";
+            size = 1.5;
+        } else {
             return '[' + source.type + '] '; // return at least type text if we have no icon
         }
-      return  '<img src="'+ imageSource +'" alt="'+alt+'" class="ui-li-icon" style="max-height: '+size+'em; max-width: '+size+'em; padding-right: 7px;">'
+        return '<img src="' + imageSource + '" alt="' + alt + '" class="ui-li-icon" style="max-height: ' + size + 'em; max-width: ' + size + 'em; padding-right: 7px;">'
     }
     return "";
 }
