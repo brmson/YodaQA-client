@@ -4,7 +4,9 @@
 
 
 var CONNECTION_ADDRESS = "http://qa.ailao.eu/"; //address of endpoint
+
 var DIRECTLY_SHOWED_QUESTIONS = 5; // Number of questions above drop down menu
+
 
 var qid;  // id of the last posed question
 var gen_sources, gen_answers;  // when this number changes, re-render
@@ -17,7 +19,7 @@ $(function () {
         success: function (response) {
             $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
             setTimeout(function () {
-                loadQuestion(JSON.parse(response).id)
+                loadQuestion(JSON.parse(response).id,false)
             }, 500);
         }
     });
@@ -52,7 +54,7 @@ function hashchanged() {
     // If qID is present and we are on main page, show answer
     var arr = window.location.href.split('#');
     if (qID != null && (arr[1]=="mainPage" || arr[1]==null)) {
-        loadQuestion(qID);
+        loadQuestion(qID,false);
         $('#verticalCenter').css('margin-top', 0);
     }
     //if there is no qID clear show search area to center and clear results
@@ -65,7 +67,7 @@ function hashchanged() {
                 ($('#verticalCenter').outerHeight())) / 2);
         }
         clearResult();
-        //qid = null;
+        qid = null;
     }
 }
 
@@ -111,17 +113,29 @@ function changeEndpoint(endpoint){
     $("#ask").attr("action",  endpoint+"q");
 }
 
-/* Gets question information and shows it */
-function loadQuestion(q) {
+/* Gets question information and shows it
+*  Reload determines if (true) page will be reloaded or (false) only url will be changed without reload
+*/
+function loadQuestion(q, reload) {
     $("#answers_area").empty();
     qid = q;
     gen_sources = 0;
     gen_answers = 0;
-    if (endpoint==null){
-        window.location.href = "?qID=" + qid+"#mainPage";
+    if (reload){
+        if (endpoint==null){
+            window.location.href = "?qID=" + qid+"#mainPage";
+        }else{
+            window.location.href="?qID="+qid+"&e=" + endpoint+"#mainPage";
+        }
     }else{
-        window.location.href="?e="+endpoint+"&qID=" + qid+"#mainPage";
+        if (endpoint==null){
+            window.history.pushState("object or string", "Title", "?qID=" + qid+"#mainPage");
+        }else{
+            window.history.pushState("object or string", "Title", "?qID="+qid+"&e=" + endpoint+"#mainPage");
+        }
     }
+
+
     getQuestionJson();
 }
 
@@ -160,7 +174,7 @@ function showQuestionList(area, listContainerID, title, list) {
 
 /* Shows answers to selected questions and jumps to main page */
 function showAnsweredQuestion(qId) {
-    loadQuestion(qId);
+    loadQuestion(qId,true);
     $('#verticalCenter').css('margin-top', 0);
 }
 
