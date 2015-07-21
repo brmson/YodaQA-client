@@ -16,6 +16,7 @@
 		<script src="js/jQuery/jquery.form.js"></script>
 		<script src="cordova.js"></script>
 		<script src="js/androidControl.js"></script>
+		<script src="js/feedbackHandler.js"></script>
 	</head>
 	<body>
 
@@ -36,7 +37,6 @@
 					<H1 class="mainHeader">YodaQA Live</H1>
 
 					<!--Form for asking Yoda-->
-
 					<form method="post" action="http://qa.ailao.eu/q" id="ask">
 							<input type="search" name="text" id="search" placeholder="Who wrote Ender's Game?" required>
 							<input type="submit" value="Ask me!">
@@ -44,7 +44,36 @@
 				</div>
 
 				<!--Area with answers-->
+
 				<div id="answers_area" style="position: relative;">
+				</div>
+
+				<div id="feedback_area">
+					<h2>Feedback</h2>
+
+					<div id="feedbackButtons">
+					<div class="ui-grid-a">
+						<div class="ui-block-a"><button type="submit" data-icon="check" style="color: darkgreen" id="correctButton">Correct</button></div>
+						<div class="ui-block-b"><button type="submit" data-icon="delete" style="color: darkred" id="incorrectButton">Incorrect</button></div>
+					</div>
+					</div>
+					<div style="display:none" id="feedbackAnswers">
+						<input id="ea1" placeholder="Expected answer one" name="ea1">
+						<input id="ea2" placeholder="Expected answer two" name="ea2">
+						<input id="ea3" placeholder="Expected answer three" name="ea3">
+						<input id="ea4" placeholder="Expected answer four" name="ea4">
+						<input id="ea5" placeholder="Expected answer five" name="ea5">
+						<input id="ea6" placeholder="Expected answer six" name="ea6">
+					</div>
+					<div style="display:none" id="feedbackEmail">
+						<input id="email" placeholder="email" name="email">
+					</div>
+					<div style="display:none" id="feedbackSubmit">
+						<button id="form-submit" type="submit">SUBMIT</button>
+					</div>
+					<div style="display:none;text-align: center;" id="feedbackThank">
+						<H3>Thank you!</H3>
+					</div>
 				</div>
 
 				<!--Area with concepts-->
