@@ -43,7 +43,6 @@ $(function () {
 });
 
 /* Url changed, redraw page */
-//TODO dont redraw when only qID is added during asking question
 function hashchanged() {
     //load and change endpoint
     endpoint= getParameterByName("e", window.location.href);
@@ -108,6 +107,7 @@ function clearResult() {
     //$('#verticalCenter').css('opacity', 0.0);
 }
 
+/* Changes endpoint for JSON and form */
 function changeEndpoint(endpoint){
     CONNECTION_ADDRESS=endpoint;
     $("#ask").attr("action",  endpoint+"q");
@@ -373,6 +373,7 @@ function createURLButton(source) {
     return text;
 }
 
+/* Creates image for snippet's button */
 function createButtonImage(source) {
     if (!(typeof (source.type) === "undefined")) {
         var imageSource;
@@ -407,7 +408,7 @@ function createOrigin(source) {
     return text;
 }
 
-/* highlight word in text */
+/* Highlight word in text */
 function highlight(word, text) {
     var wordForRGXP = word.replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
     var rgxp = new RegExp(wordForRGXP, 'g');
