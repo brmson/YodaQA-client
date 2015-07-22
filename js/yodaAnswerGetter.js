@@ -14,6 +14,8 @@ var gen_sources, gen_answers;  // when this number changes, re-render
 var answers;
 var endpoint;
 
+var numberOfShowedAnswers;
+
 /* Ajax function for retrieving questions and answers */
 $(function () {
     $("#ask").ajaxForm({
@@ -149,10 +151,6 @@ function loadQuestion(q, reload) {
     getQuestionJson();
 }
 
-function showFeedbackForm(){
-
-}
-
 /* Gets and shows answered questions in list */
 function getAnsweredJson() {
     if (CONNECTION_ADDRESS != null) {
@@ -230,7 +228,7 @@ function getQuestionJson() {
             }
 
             if (r.finished) {
-                restoreFeedback();
+                showFeedback(numberOfShowedAnswers);
                 $("#spinner").hide();
             } else {
                 // keep watching
@@ -309,7 +307,7 @@ function showAnswers(container, answers, snippets, sources) {
         }
         i++;
     });
-
+    numberOfShowedAnswers=i;
     $("#moreAnswers").collapsibleset();
     $("#answers").collapsibleset();
 
@@ -322,12 +320,14 @@ function showAnswers(container, answers, snippets, sources) {
 function showOneAnswer(a, i, container, snippets, sources) {
     text = a.text.replace(/"/g, "&#34;");
     var toAppend = $('' +
-        '<div data-role="collapsible" class="answer" data-collapsed-icon="carat-d" data-expanded-icon="carat-u">' +
+        '<div data-role="collapsible" class="answer" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" >' +
         '<H2>' +
         '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">' + (a.confidence * 100).toFixed(1) + '%' + '</span>' +
         '<span id="answerText' + i + '">' +
         text +
         '</span>' +
+        '<span style="float: right" id="feedbackButtonArea'+i+'" class="feedbackButton">'+
+        '</span>'+
         score_bar(a.confidence) +
         '</H2>' +
         '<div>' + showSnippets(a, snippets, sources) + '</div>' +
