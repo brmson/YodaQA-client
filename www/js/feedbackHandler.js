@@ -4,7 +4,7 @@
 
 var BASE_URL = 'https://docs.google.com/forms/d/1Vra6SgNnso6Nn45adZNd0mVWtTMe5_W4QABhlYxfP8I/formResponse?';
 var FIELDS_IDS = ["entry.557679011", "entry.668964305", "entry.315539511", "entry.807998585", "entry.1331990072",
-    "entry.540581579", "entry.799866241", "entry.1492550795"];
+    "entry.540581579", "entry.799866241", "entry.1492550795","entry.1983407746"];
 var SUBMIT_REF = '&submit=Submit';
 
 var CORRECT_A = true;
@@ -40,7 +40,7 @@ function sendWithCorrect(email) {
         alert("Please mark correct answers");
     } else {
         if (question != "") {
-            sendFeedback(email, question, ea[0], ea[1], ea[2], ea[3], ea[4], ea[5]);
+            sendFeedback(email, question, ea[0], ea[1], ea[2], ea[3], ea[4], ea[5], ea[6]);
             $('#feedbackThank').css('display', "inline");
             $('#feedbackSubmit').css('display', "none");
             $('#feedbackEmail').css('display', "none");
@@ -66,7 +66,7 @@ function sendWithIncorrect(email) {
         if (ea[0] == "" && ea[1] == "" && ea[2] == "" && ea[3] == "" && ea[4] == "" && ea[5] == "") {
             alert("Please fill expected answer");
         } else {
-            sendFeedback(email, question, ea[0], ea[1], ea[2], ea[3], ea[4], ea[5]);
+            sendFeedback(email, question, ea[0], ea[1], ea[2], ea[3], ea[4], ea[5], "");
             $('#feedbackThank').css('display', "inline");
             $('#feedbackSubmit').css('display', "none");
             $('#feedbackEmail').css('display', "none");
@@ -122,7 +122,7 @@ function supports_html5_storage() {
 }
 
 //sends feedback to google form
-function sendFeedback(email, question, ea1, ea2, ea3, ea4, ea5, ea6) {
+function sendFeedback(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mca) {
     var LEmail = FIELDS_IDS[0];
     var LQuestion = FIELDS_IDS[1];
     var LEa = [];
@@ -132,6 +132,8 @@ function sendFeedback(email, question, ea1, ea2, ea3, ea4, ea5, ea6) {
     LEa[3] = FIELDS_IDS[5];
     LEa[4] = FIELDS_IDS[6];
     LEa[5] = FIELDS_IDS[7];
+
+    var LMca=FIELDS_IDS[8];
 
     var VEmail = encodeURIComponent(email);
     var VQuestion = encodeURIComponent(question);
@@ -143,6 +145,8 @@ function sendFeedback(email, question, ea1, ea2, ea3, ea4, ea5, ea6) {
     VEa[4] = encodeURIComponent(ea5);
     VEa[5] = encodeURIComponent(ea6);
 
+    var Vmca = encodeURIComponent(mca);
+
     var submitURL = (BASE_URL +
     LEmail + "=" + VEmail + "&" +
     LQuestion + "=" + VQuestion + "&" +
@@ -151,7 +155,8 @@ function sendFeedback(email, question, ea1, ea2, ea3, ea4, ea5, ea6) {
     LEa[2] + "=" + VEa[2] + "&" +
     LEa[3] + "=" + VEa[3] + "&" +
     LEa[4] + "=" + VEa[4] + "&" +
-    LEa[5] + "=" + VEa[5] +
+    LEa[5] + "=" + VEa[5] + "&" +
+    LMca + "=" + Vmca +
     SUBMIT_REF);
     $.post(submitURL);
 }
