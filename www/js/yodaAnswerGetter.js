@@ -13,6 +13,7 @@ var qid;  // id of the last posed question
 var gen_sources, gen_answers;  // when this number changes, re-render
 var answers;
 var endpoint;
+var showFeedbackBool;
 
 var numberOfShowedAnswers;
 
@@ -51,6 +52,8 @@ function hashchanged() {
     endpoint = getParameterByName("e", window.location.href);
     changeEndpoint(endpoint);
     reloadAnswered();
+
+    showFeedbackBool = getParameterByName("feedback", window.location.href);
 
     var qID = getParameterByName("qID", window.location.href);
     // If qID is present and we are on main page, show answer
@@ -121,7 +124,7 @@ function changeEndpoint(endpoint) {
     }
 }
 
-function reloadAnswered(){
+function reloadAnswered() {
     getToAnswerJson();
     getInProgressJson();
     getAnsweredJson();
@@ -136,19 +139,24 @@ function loadQuestion(q, reload) {
     gen_sources = 0;
     gen_answers = 0;
     if (reload) {
-        if (endpoint == null) {
-            window.location.href = "?qID=" + qid + "#mainPage";
-        } else {
-            window.location.href = "?qID=" + qid + "&e=" + endpoint + "#mainPage";
-        }
+        window.location.href=createURL(qid);
     } else {
-        if (endpoint == null) {
-            window.history.pushState("object or string", "Title", "?qID=" + qid + "#mainPage");
-        } else {
-            window.history.pushState("object or string", "Title", "?qID=" + qid + "&e=" + endpoint + "#mainPage");
-        }
+        window.history.pushState("object or string", "Title", createURL(qid));
     }
     getQuestionJson();
+}
+
+/* Creates URL with parameters */
+function createURL(qid){
+    var url="?qID=" + qid;
+    if (endpoint != null){
+        url+="&e=" + endpoint;
+    }
+    if(showFeedbackBool){
+        url+="&feedback=true";
+    }
+    url+="#mainPage";
+    return url;
 }
 
 /* Gets and shows answered questions in list */
@@ -228,7 +236,9 @@ function getQuestionJson() {
             }
 
             if (r.finished) {
-                showFeedback(numberOfShowedAnswers);
+                if (showFeedbackBool=='true') {
+                    showFeedback(numberOfShowedAnswers);
+                }
                 $("#spinner").hide();
             } else {
                 // keep watching
@@ -307,7 +317,7 @@ function showAnswers(container, answers, snippets, sources) {
         }
         i++;
     });
-    numberOfShowedAnswers=i;
+    numberOfShowedAnswers = i;
     $("#moreAnswers").collapsibleset();
     $("#answers").collapsibleset();
 
@@ -326,8 +336,8 @@ function showOneAnswer(a, i, container, snippets, sources) {
         '<span id="answerText' + i + '">' +
         text +
         '</span>' +
-        '<span style="float: right" id="feedbackButtonArea'+i+'" class="feedbackButton">'+
-        '</span>'+
+        '<span style="float: right" id="feedbackButtonArea' + i + '" class="feedbackButton">' +
+        '</span>' +
         score_bar(a.confidence) +
         '</H2>' +
         '<div>' + showSnippets(a, snippets, sources) + '</div>' +
@@ -377,7 +387,7 @@ function createWikipediaButton(source) {
     var text = "";
     if (!(typeof (source.pageId) === "undefined")) {
         text = '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">'
-            +createButtonImage(source)
+            + createButtonImage(source)
             + source.title + '</a>';
     }
     return text;

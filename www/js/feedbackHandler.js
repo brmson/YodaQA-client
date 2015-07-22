@@ -177,6 +177,7 @@ function showFeedback(numberOfAnswers) {
     $('#ea6').val("");
     $('#feedbackThank').css('display', "none");
     $('#feedbackButtons').css('display', "inline");
+    $('#feedback_area').css('display','inline');
     showAnswerFeedbackButton(numberOfAnswers);
 }
 
