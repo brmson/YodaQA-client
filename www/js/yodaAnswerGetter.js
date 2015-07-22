@@ -353,10 +353,12 @@ function showSnippets(a, snippets, sources) {
     for (var i = 0; i < len; i++) {
         var snippet = snippets[snippetIDs[i]];
         var source = sources[snippet.sourceID];
+        texts+='<div style="overflow: hidden">';
         texts += createWikipediaButton(source);
         texts += createURLButton(source);
-        texts += '<div style="overflow: hidden;"><span style="vertical-align: middle;display: inline-block;min-height: 55px; padding-top: 10px">' +
+        texts += '<div style="overflow: hidden"><span style="vertical-align: middle;display: inline-block;min-height: 55px; padding-top: 10px">' +
             createPassageText(a, snippet, source) + createPropertyLabel(a, snippet) + createOrigin(source) + '</span></div>';
+        texts+="</div>";
         if (i != len - 1) {
             texts += '<hr>';
         }
@@ -386,7 +388,7 @@ function createPropertyLabel(a, snipet) {
 function createWikipediaButton(source) {
     var text = "";
     if (!(typeof (source.pageId) === "undefined")) {
-        text = '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">'
+        text = '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" target="_blank" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">'
             + createButtonImage(source)
             + source.title + '</a>';
     }
@@ -399,7 +401,7 @@ function createURLButton(source) {
     var image = "";
     if (!(typeof (source.URL) === "undefined")) {
         image = createButtonImage(source);
-        text = '<a href="' + source.URL + '" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">' +
+        text = '<a href="' + source.URL + '" target="_blank" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">' +
             image +
             source.title + '</a>';
     }
@@ -424,6 +426,10 @@ function createButtonImage(source) {
             imageSource = "img/dbpedia_logo.png";
             alt = "DBpedia";
             size = 1.5;
+        }else if (source.type == "bing") {
+            imageSource = "img/bing_logo.png";
+            alt = "Bing";
+            size = 1;
         } else {
             return '[' + source.type + '] '; // return at least type text if we have no icon
         }
