@@ -121,3 +121,11 @@ hr {
 
 .flipSwitchContainer .ui-slider-switch {
     width: 9em }
+
+.ui-icon-myapp-checked{
+    background:url("../img/radiobutton-checked.png") 8% 50% no-repeat;
+}
+
+.ui-icon-myapp-unchecked{
+    background:url("../img/radiobutton-unchecked.png") 10% 50% no-repeat;
+}

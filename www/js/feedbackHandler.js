@@ -192,7 +192,7 @@ function showAnswerFeedbackButton(numberOfAnswers) {
 //creates feedback buttons
 function createFeedbackButton(i) {
     feedbackButtons[i] = INCORRECT_A;
-    var feedbackButtonCorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-check ui-btn-icon-left ui-btn-inline" id="feedbackButtonCorrect' + i + '">Correct</button>';
+    var feedbackButtonCorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-myapp-unchecked ui-btn-icon-left ui-btn-inline" id="feedbackButtonCorrect' + i + '">Correct</button>';
     $("#feedbackButtonArea" + i).append(feedbackButtonCorrect);
     $('#feedbackButtonCorrect' + i).on('click', function (e) {
         clickActionCorrect(i);
@@ -201,7 +201,7 @@ function createFeedbackButton(i) {
         e.stopImmediatePropagation();
     });
 
-    var feedbackButtonIncorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-delete ui-btn-icon-left ui-btn-inline ui-btn-active" id="feedbackButtonIncorrect' + i + '">Incorrect</button>';
+    var feedbackButtonIncorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-myapp-checked ui-btn-icon-left ui-btn-inline" id="feedbackButtonIncorrect' + i + '">Incorrect</button>';
     $("#feedbackButtonArea" + i).append(feedbackButtonIncorrect);
     $('#feedbackButtonIncorrect' + i).on('click', function (e) {
         clickActionIncorrect(i);
@@ -214,15 +214,27 @@ function createFeedbackButton(i) {
 //click function on correct button
 function clickActionCorrect(i) {
     feedbackButtons[i] = CORRECT_A;
-    $('#feedbackButtonCorrect' + i).addClass("ui-btn-active");
-    $("#feedbackButtonIncorrect" + i).removeClass('ui-btn-active');
+    $('#feedbackButtonCorrect' + i).addClass("ui-icon-myapp-checked");
+    $("#feedbackButtonCorrect" + i).removeClass('ui-icon-myapp-unchecked');
+    $('#feedbackButtonCorrect' + i).css('background-position', '10% 50%');
+
+    $('#feedbackButtonIncorrect' + i).addClass("ui-icon-myapp-unchecked");
+    $("#feedbackButtonIncorrect" + i).removeClass('ui-icon-myapp-checked');
+    $('#feedbackButtonIncorrect' + i).css('background-position', '8% 50%');
+
 }
 
 //click function on incorrect button
 function clickActionIncorrect(i) {
     feedbackButtons[i] = INCORRECT_A;
-    $('#feedbackButtonIncorrect' + i).addClass("ui-btn-active");
-    $("#feedbackButtonCorrect" + i).removeClass('ui-btn-active');
+    $('#feedbackButtonCorrect' + i).addClass("ui-icon-myapp-unchecked");
+    $("#feedbackButtonCorrect" + i).removeClass('ui-icon-myapp-checked');
+    $('#feedbackButtonCorrect' + i).css('background-position', '10% 50%');
+
+    $('#feedbackButtonIncorrect' + i).addClass("ui-icon-myapp-checked");
+    $("#feedbackButtonIncorrect" + i).removeClass('ui-icon-myapp-unchecked');
+    $('#feedbackButtonIncorrect' + i).css('background-position', '8% 50%');
+
 }
 
 //returns array of correct answers
