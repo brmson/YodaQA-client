@@ -4,7 +4,7 @@
 
 var BASE_URL = 'https://docs.google.com/forms/d/1Vra6SgNnso6Nn45adZNd0mVWtTMe5_W4QABhlYxfP8I/formResponse?';
 var FIELDS_IDS = ["entry.557679011", "entry.668964305", "entry.315539511", "entry.807998585", "entry.1331990072",
-    "entry.540581579", "entry.799866241", "entry.1492550795","entry.1983407746"];
+    "entry.540581579", "entry.799866241", "entry.1492550795", "entry.1983407746"];
 var SUBMIT_REF = '&submit=Submit';
 
 var CORRECT_A = true;
@@ -133,7 +133,7 @@ function sendFeedback(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mca) {
     LEa[4] = FIELDS_IDS[6];
     LEa[5] = FIELDS_IDS[7];
 
-    var LMca=FIELDS_IDS[8];
+    var LMca = FIELDS_IDS[8];
 
     var VEmail = encodeURIComponent(email);
     var VQuestion = encodeURIComponent(question);
@@ -177,10 +177,11 @@ function showFeedback(numberOfAnswers) {
     $('#ea6').val("");
     $('#feedbackThank').css('display', "none");
     $('#feedbackButtons').css('display', "inline");
-    $('#feedback_area').css('display','inline');
+    $('#feedback_area').css('display', 'inline');
     showAnswerFeedbackButton(numberOfAnswers);
 }
 
+// shows feedback buttons near answer
 function showAnswerFeedbackButton(numberOfAnswers) {
     feedbackButtons = [];
     for (var i = 0; i < numberOfAnswers; i++) {
@@ -188,31 +189,43 @@ function showAnswerFeedbackButton(numberOfAnswers) {
     }
 }
 
+//creates feedback buttons
 function createFeedbackButton(i) {
     feedbackButtons[i] = INCORRECT_A;
-    var feedbackButton = '<button class="ui-btn ui-mini ui-corner-all ui-icon-delete ui-btn-icon-left" id="feedbackButton' + i + '">Incorrect</button>';
-    $("#feedbackButtonArea" + i).append(feedbackButton);
-    $('#feedbackButton' + i + '').on('click', function (e) {
-        clickAction(i);
+    var feedbackButtonCorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-check ui-btn-icon-left ui-btn-inline" id="feedbackButtonCorrect' + i + '">Correct</button>';
+    $("#feedbackButtonArea" + i).append(feedbackButtonCorrect);
+    $('#feedbackButtonCorrect' + i).on('click', function (e) {
+        clickActionCorrect(i);
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+    });
+
+    var feedbackButtonIncorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-delete ui-btn-icon-left ui-btn-inline ui-btn-active" id="feedbackButtonIncorrect' + i + '">Incorrect</button>';
+    $("#feedbackButtonArea" + i).append(feedbackButtonIncorrect);
+    $('#feedbackButtonIncorrect' + i).on('click', function (e) {
+        clickActionIncorrect(i);
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
     });
 }
 
-function clickAction(i) {
-    feedbackButtons[i] = !feedbackButtons[i];
-    if (feedbackButtons[i] == true) {
-        $("#feedbackButton" + i).text("Correct");
-        $("#feedbackButton" + i).addClass('ui-icon-check');
-        $("#feedbackButton" + i).removeClass('ui-icon-delete');
-    } else {
-        $("#feedbackButton" + i).text("Incorrect");
-        $("#feedbackButton" + i).addClass('ui-icon-delete');
-        $("#feedbackButton" + i).removeClass('ui-icon-check');
-    }
+//click function on correct button
+function clickActionCorrect(i) {
+    feedbackButtons[i] = CORRECT_A;
+    $('#feedbackButtonCorrect' + i).addClass("ui-btn-active");
+    $("#feedbackButtonIncorrect" + i).removeClass('ui-btn-active');
 }
 
+//click function on incorrect button
+function clickActionIncorrect(i) {
+    feedbackButtons[i] = INCORRECT_A;
+    $('#feedbackButtonIncorrect' + i).addClass("ui-btn-active");
+    $("#feedbackButtonCorrect" + i).removeClass('ui-btn-active');
+}
+
+//returns array of correct answers
 function getCorrectAnswers() {
     var corrects = [];
     var position = 0;
@@ -236,6 +249,7 @@ function getCorrectAnswers() {
     return corrects;
 }
 
+//gets text of answer on i position
 function getAnswer(i) {
     return $('#answerText' + i).text();
 }
