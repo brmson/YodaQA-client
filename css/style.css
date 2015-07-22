@@ -118,3 +118,6 @@ hr {
     border: 0pt;
     border-radius: 7px 7px 7px 7px;
 }
+
+.flipSwitchContainer .ui-slider-switch {
+    width: 9em }
