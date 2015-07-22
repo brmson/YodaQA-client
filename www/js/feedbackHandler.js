@@ -103,6 +103,15 @@ $(document).on('click', '#incorrectButton', function () {
     }
 });
 
+//click on back
+$(document).on('click', '#back', function () {
+    $('#feedbackSubmit').css('display', "none");
+    $('#feedbackEmail').css('display', "none");
+    $('#feedbackThank').css('display', "none");
+    $('#feedbackAnswers').css('display', "none");
+    $('#feedbackButtons').css('display', "inline");
+});
+
 //checks if browser supports html5 storage
 function supports_html5_storage() {
     try {
