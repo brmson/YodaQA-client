@@ -25,6 +25,7 @@ Files genrated by Cordova for android app are located in `platforms\android`. Cu
 
   * ``?qID=N``: show question with id N
   * ``?e=http://qa.ailao.eu:4000/``: use a non-default REST API endpoint
+  * ``?feedback=true``: show feedback form
 
 ## Feedback
 Feedback form is handled by `feedbackHandler.js` located in `www/js`. To deploy feedback, create google form with 9 text
