@@ -119,6 +119,12 @@ function changeEndpoint(endpoint) {
         CONNECTION_ADDRESS = DEFAULT_ADDRESS;
         $("#ask").attr("action", DEFAULT_ADDRESS + "q");
     } else {
+        if (endpoint == "http://qa.ailao.eu:4000/") {
+            // XXX: ugly hardcoded
+            $(".mainHeader").html("YodaQA Movies");
+        } else {
+            $(".mainHeader").html("YodaQA Custom");
+        }
         CONNECTION_ADDRESS = endpoint;
         $("#ask").attr("action", endpoint + "q");
     }
