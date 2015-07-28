@@ -11,7 +11,6 @@ document.addEventListener("deviceready", onDeviceReady, false);
 function onDeviceReady() {
     checkConnection();
     navigator.tts.startup(startupWin, fail);
-    alert("IT WORKS");
 }
 
 function checkConnection(){
@@ -32,9 +31,7 @@ function isConnected() {
 }
 
 function startupWin(result) {
-    alert("Startup win");
     // When result is equal to STARTED we are ready to play
-    alert("Result "+result);
     //TTS.STARTED==2 use this once so is answered
     if (result == 2) {
         navigator.tts.getLanguage(win, fail);
@@ -43,9 +40,9 @@ function startupWin(result) {
 }
 
 function win(result) {
-    alert(result);
+    console.log(result);
 }
 
 function fail(result) {
-    alert("Error = " + result);
+    console.log("Error = " + result);
 }
