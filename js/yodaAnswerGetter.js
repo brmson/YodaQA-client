@@ -17,6 +17,7 @@ var showFeedbackBool;
 
 var numberOfShowedAnswers;
 
+
 /* Ajax function for retrieving questions and answers */
 $(function () {
     $("#ask").ajaxForm({
@@ -215,7 +216,6 @@ function getQuestionJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/" + qid, function (r) {
             $('input[name="text"]').val(r.text);
-
             //shows answers
             if (r.answers && gen_answers != r.gen_answers) {
                 var container = createList("#answers_area", "answers", null, false, true);
@@ -360,7 +360,6 @@ function showSnippets(a, snippets, sources) {
         var snippet = snippets[snippetIDs[i]];
         var source = sources[snippet.sourceID];
         texts+='<div style="overflow: hidden">';
-        texts += createWikipediaButton(source);
         texts += createURLButton(source);
         texts += '<div style="overflow: hidden"><span style="vertical-align: middle;display: inline-block;min-height: 55px; padding-top: 10px">' +
             createPassageText(a, snippet, source) + createPropertyLabel(a, snippet) + createOrigin(source) + '</span></div>';
@@ -386,17 +385,6 @@ function createPropertyLabel(a, snipet) {
     var text = "";
     if (!(typeof (snipet.propertyLabel) === "undefined")) {
         text = highlight(a.text.replace(/"/g, "&#34;"), snipet.propertyLabel);
-    }
-    return text;
-}
-
-/* Creates wikipedia button for snippet*/
-function createWikipediaButton(source) {
-    var text = "";
-    if (!(typeof (source.pageId) === "undefined")) {
-        text = '<a href="http://en.wikipedia.org/?curid=' + source.pageId + '" target="_blank" class="snippetButton ui-btn ui-btn-inline ui-corner-all" style="float: left;">'
-            + createButtonImage(source)
-            + source.title + '</a>';
     }
     return text;
 }
