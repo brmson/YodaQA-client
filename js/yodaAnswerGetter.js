@@ -336,13 +336,13 @@ function showAnswers(container, answers, snippets, sources) {
 function showOneAnswer(a, i, container, snippets, sources) {
     text = a.text.replace(/"/g, "&#34;");
     var toAppend = $('' +
-        '<div data-role="collapsible" class="answer" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" >' +
+        '<div data-role="collapsible" class="answer" data-iconpos="left" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" >' +
         '<H2>' +
         '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">' + (a.confidence * 100).toFixed(1) + '%' + '</span>' +
         '<span id="answerText' + i + '">' +
         text +
-        '</span>' +
-        '<span style="float: right" id="feedbackButtonArea' + i + '" class="feedbackButton">' +
+        '&nbsp;&nbsp;&nbsp;</span>' +
+        '<span style="" id="feedbackButtonArea' + i + '" class="feedbackButton">' +
         '</span>' +
         score_bar(a.confidence) +
         '</H2>' +
@@ -462,9 +462,9 @@ function showAnswersInDropDown(a, i, container, snippets, sources) {
 /* Creates base for drop down menu */
 function createDropDownList(container, liID, title, divID) {
     container.append('' +
-        '<div data-role="collapsible" data-iconpos="right" data-inset="true" id="' + liID + '" data-theme="c" data-content-theme="a">' +
+        '<div data-role="collapsible" data-iconpos="left" data-inset="true" id="' + liID + '" data-theme="c" data-content-theme="a">' +
         '   <h2>' + title + '</h2> ' +
-        '   <div data-role="collapsibleset" data-iconpos="right" data-inset="false"  id="' + divID + '"> ' +
+        '   <div data-role="collapsibleset" data-iconpos="left" data-inset="false"  id="' + divID + '"> ' +
         '   </div>' +
         '</div>');
 }
