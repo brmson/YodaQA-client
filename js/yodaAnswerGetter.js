@@ -462,7 +462,7 @@ function showAnswersInDropDown(a, i, container, snippets, sources) {
 /* Creates base for drop down menu */
 function createDropDownList(container, liID, title, divID) {
     container.append('' +
-        '<div data-role="collapsible" data-iconpos="right" data-inset="true" id="' + liID + '" data-theme="b" data-content-theme="a">' +
+        '<div data-role="collapsible" data-iconpos="right" data-inset="true" id="' + liID + '" data-theme="c" data-content-theme="a">' +
         '   <h2>' + title + '</h2> ' +
         '   <div data-role="collapsibleset" data-iconpos="right" data-inset="false"  id="' + divID + '"> ' +
         '   </div>' +
