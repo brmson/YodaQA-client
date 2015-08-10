@@ -40,16 +40,16 @@
 					<H1 class="mainHeader">YodaQA Live</H1>
 					<!--Form for asking Yoda-->
 					<form method="post" action="http://qa.ailao.eu/q" id="ask">
-						<div class="ui-grid-a">
-							<div class="ui-block-a" style="width:96%">
+						<div class="ui-grid-a" style="margin-bottom: -10px;">
+							<div class="ui-block-a" style="width:93%">
 								<input type="search" name="text" id="search" placeholder="Who wrote Ender's Game?"
 								       required>
 							</div>
-							<div class="ui-block-b" style="width:4%;position: relative;top:3px">
-								<a href="#" class="ui-btn ui-icon-microphone ui-btn-icon-notext" id="voice">Voice</a>
+							<div class="ui-block-b" style="width:7%;position: relative;top:3px;left:5px;">
+								<a href="#" class="ui-btn ui-corner-all" id="voice"></a>
 							</div>
 						</div>
-						<input type="submit" value="Ask me!">
+						<input type="submit" value="Ask me!" id="askMeButton">
 					</form>
 				</div>
 
@@ -58,41 +58,31 @@
 				<div id="answers_area" style="position: relative;">
 				</div>
 
-				<div id="feedback_area" style="display:none;">
-					<h2>Feedback</h2>
+				<div id="feedback_area" style="display: none;">
+					<div class="ui-grid-a" style="margin-bottom: -20px;">
 
-					<div id="feedbackButtons" style="display: none">
-						<div class="ui-grid-a">
-							<div class="ui-block-a">
-								<button type="submit" data-icon="check" style="color: darkgreen" id="correctButton">Some correct answers
-								</button>
-							</div>
-							<div class="ui-block-b">
-								<button type="submit" data-icon="delete" style="color: darkred" id="incorrectButton">
-									Incorrect
-								</button>
+						<div class="ui-block-a" style="width:79%">
+							<div class="ui-field-contain" id="correctAnswersField">
+								<label for="ea1">Correct answer:</label>
+								<input id="ea1" placeholder="Correct answer" name="ea1">
 							</div>
 						</div>
+						<div class="ui-block-b" style="width:21%" id="moreCorrectAnswerContainer">
+							<input type="button" value="Add missing answer" name="moreCorrectAnswers"
+							       id="moreCorrectAnswers"
+							       data-inline="true">
+						</div>
 					</div>
-					<div style="display:none" id="feedbackAnswers">
-						<input id="ea1" placeholder="Expected answer one" name="ea1">
-						<input id="ea2" placeholder="Expected answer two" name="ea2">
-						<input id="ea3" placeholder="Expected answer three" name="ea3">
-						<input id="ea4" placeholder="Expected answer four" name="ea4">
-						<input id="ea5" placeholder="Expected answer five" name="ea5">
-						<input id="ea6" placeholder="Expected answer six" name="ea6">
+					<div class="ui-field-contain">
+						<label for="email" style="width:15.3%">Email:</label>
+						<input id="email" placeholder="Email" name="email">
 					</div>
-					<div style="display:none" id="feedbackEmail">
-						<input id="email" placeholder="email" name="email">
-					</div>
-					<div style="display:none" id="feedbackSubmit">
-						<button id="back" type="submit" data-inline="true" data-icon="back">Back</button>
-						<button id="form-submit" type="submit" data-inline="true" data-icon="check">Submit</button>
-					</div>
-					<div style="display:none;text-align: center;" id="feedbackThank">
-						<H3>Thank you!</H3>
+					<div id="feedbackSubmit" style="margin-top: -3px;width: 99.3%;">
+						<button id="form-submit" type="submit" data-icon="check">Next question
+						</button>
 					</div>
 				</div>
+
 
 				<!--Area with concepts-->
 				<div id="concept_area"></div>
@@ -103,18 +93,18 @@
 				<!--Area with sources-->
 				<div id="sources_area" class="responsive"></div>
 
-			</div>
 
-			<!-- Footer with navbar -->
-			<div data-role="footer" data-position="fixed" data-tap-toggle="false">
-				<div data-role="navbar">
-					<ul>
-						<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="search">Ask</a></li>
-						<li><a href="#asked-questions" data-icon="info">Asked questions</a></li>
-					</ul>
+				<!-- Footer with navbar -->
+				<div data-role="footer" data-position="fixed" data-tap-toggle="false">
+					<div data-role="navbar">
+						<ul>
+							<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="search">Ask</a></li>
+							<li><a href="#asked-questions" data-icon="info">Asked questions</a></li>
+						</ul>
+					</div>
 				</div>
-			</div>
 
+			</div>
 		</div>
 
 		<!--Page with already asked questions-->
@@ -144,15 +134,18 @@
 			</div>
 
 			<!-- Footer with navbar -->
-			<div data-role="footer" data-position="fixed" data-fullscreen="true" data-tap-toggle="false">
+			<div data-role="footer" data-position="fixed"  data-tap-toggle="false">
 				<div data-role="navbar">
 					<ul>
 						<li><a href="#mainPage" data-icon="search">Ask</a></li>
-						<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="info">Asked questions</a></li>
+						<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="info">Asked
+						                                                                        questions</a>
+						</li>
 					</ul>
 				</div>
 			</div>
 
+		</div>
 		</div>
 
 	</body>

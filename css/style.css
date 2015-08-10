@@ -88,6 +88,8 @@
     font-size: 350% !important;
     text-align: center;
     font-family: 'Roboto Slab';
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 /* highlight of answer in snippet */
@@ -139,22 +141,20 @@ hr {
 .ui-nosvg .ui-icon-microphone:after { background: url('../img/microphone.png');background-position-x:5px;}
 
 
-@keyframes pulse {
-    100%{background-size: 0% 0%;
-    }
-    75%{background-size: 50% 50%;
-    }
-    50% {background-size: 80% 80%;
-    }
-    25%{background-size: 50% 50%;
-    }
-    0%{background-size: 0% 0%;
-    }
-}
 
 .backgroundRed {
-    background: url("../img/Red-background.png");
-    background-repeat: no-repeat;
+    background-color:crimson !important;
+}
+
+.feedbackButton{
+    padding-right: 10px;
+}
+
+#voice{
+    height: 15px; position: relative;
+    top:-4px;
+    background-image: url("../img/microphone.png");
+    background-size: 23px 31px;
     background-position: center;
-    animation: pulse 0.6s ease 1;
+    background-repeat: no-repeat;
 }

@@ -10,102 +10,86 @@ var SUBMIT_REF = '&submit=Submit';
 var CORRECT_A = true;
 var INCORRECT_A = false;
 
-var correct;
+
+var correctAnswerFieldNumber = 1;
 
 var feedbackButtons;
 
 //click on submit button
 $(document).on('click', '#form-submit', function () {
-        var email = $('#email').val();
-        if (supports_html5_storage()) {
-            localStorage.setItem("email", email);
-        }
-        if (correct) {
-            sendWithCorrect(email);
-        } else {
-            sendWithIncorrect(email);
-        }
+    var email = $('#email').val();
+    if (supports_html5_storage()) {
+        localStorage.setItem("email", email);
+    }
+    sendAndReload(email);
+
+});
+
+//click on more correct button
+$(document).on('click', '#moreCorrectAnswers', function () {
+    var toAppend = $('<label for="ea' + (correctAnswerFieldNumber + 1) + '" id="eaLabel' + (correctAnswerFieldNumber + 1) + '">Correct answer:</label><input id="ea' +
+        (correctAnswerFieldNumber + 1) + '" placeholder="Correct answer" name="ea' + (correctAnswerFieldNumber + 1) + '">');
+    $("#ea" + correctAnswerFieldNumber).parent().after(toAppend);
+    $('#ea' + (correctAnswerFieldNumber + 1)).textinput();
+    /*$("#ea"+correctAnswerFieldNumber).parent().css("width","104%");
+     $("#ea"+correctAnswerFieldNumber).parent().css("position","relative");
+     $("#ea"+correctAnswerFieldNumber).parent().css("left","165px");
+     $("#ea"+correctAnswerFieldNumber).parent().css("top",(-28*correctAnswerFieldNumber)+"px");
+     $("#ea"+(correctAnswerFieldNumber+1)).parent().css("position","relative");
+     $("#ea"+(correctAnswerFieldNumber+1)).parent().css("top",(-28*correctAnswerFieldNumber)+"px");
+     $("#eaLabel"+(correctAnswerFieldNumber+1)).css("position","relative");
+     $("#eaLabel"+(correctAnswerFieldNumber+1)).css("top",(-28*correctAnswerFieldNumber)+"px");*/
+    $("#moreCorrectAnswerContainer").css("position", "relative");
+    $("#moreCorrectAnswerContainer").css("top", 5 + 37 * correctAnswerFieldNumber);
+    correctAnswerFieldNumber++;
 });
 
 //send if answer was correct
-function sendWithCorrect(email) {
+function sendAndReload(email) {
     var question = $('#search').val();
     var ea = getCorrectAnswers();
-    if (ea[0] == "") {
-        alert("Please mark correct answers");
+    ea = addFeedbackFromInputFields(ea);
+    if (ea[0] != "") {
+        sendFeedbackAndReload(email, question, ea[0], ea[1], ea[2], ea[3], ea[4], ea[5], ea[6]);
     } else {
-        if (question != "") {
-            sendFeedback(email, question, ea[0], ea[1], ea[2], ea[3], ea[4], ea[5], ea[6]);
-            $('#feedbackThank').css('display', "inline");
-            $('#feedbackSubmit').css('display', "none");
-            $('#feedbackEmail').css('display', "none");
-            $('#feedbackAnswers').css('display', "none");
-            $('#feedbackButtons').css('display', "none");
-        } else {
-            alert("Please don't delete question from search");
-        }
+        alert("Fill feedback at first please.")
     }
 }
 
-//send if answer was incorrect
-function sendWithIncorrect(email) {
-    var ea = [];
-    ea[0] = $('#ea1').val();
-    ea[1] = $('#ea2').val();
-    ea[2] = $('#ea3').val();
-    ea[3] = $('#ea4').val();
-    ea[4] = $('#ea5').val();
-    ea[5] = $('#ea6').val();
-    var question = $('#search').val();
-    if (question != "") {
-        if (ea[0] == "" && ea[1] == "" && ea[2] == "" && ea[3] == "" && ea[4] == "" && ea[5] == "") {
-            alert("Please fill expected answer");
-        } else {
-            sendFeedback(email, question, ea[0], ea[1], ea[2], ea[3], ea[4], ea[5], "");
-            $('#feedbackThank').css('display', "inline");
-            $('#feedbackSubmit').css('display', "none");
-            $('#feedbackEmail').css('display', "none");
-            $('#feedbackAnswers').css('display', "none");
-            $('#feedbackButtons').css('display', "none");
+function addFeedbackFromInputFields(ea) {
+    var inputFieldPosition = 1;
+    for (var i = 0; i < ea.length; i++) {
+        if (ea[i] == null || ea[i] == "") {
+            for (inputFieldPosition; ; inputFieldPosition++) {
+                if ($("#ea" + inputFieldPosition).length) {
+                    if ($("#ea" + inputFieldPosition).val() != "") {
+                        ea[i] = $("#ea" + inputFieldPosition).val();
+                        inputFieldPosition++;
+                        break;
+                    } else {
+                        continue;
+                    }
+                }
+                break;
+            }
         }
-    } else {
-        alert("Please don't delete question from search");
+        if (i == 6 && ea[i] != "") {
+            for (inputFieldPosition; ; inputFieldPosition++) {
+                if ($("#ea" + inputFieldPosition).length) {
+                    if ($("#ea" + inputFieldPosition).val() != "") {
+                        ea[i] += "|" + $("#ea" + inputFieldPosition).val();
+                    } else {
+                        continue;
+                    }
+                } else {
+                    break;
+                }
+            }
+        }
     }
+    return ea;
 }
 
-//click on correct button
-$(document).on('click', '#correctButton', function () {
-    correct = true;
-    $('#feedbackSubmit').css('display', "inline");
-    $('#feedbackEmail').css('display', "inline");
-    $('#feedbackButtons').css('display', "none");
-    if (supports_html5_storage()) {
-        var email = localStorage.getItem("email");
-        $('#email').val(email);
-    }
-});
-
-//click on incorrect button
-$(document).on('click', '#incorrectButton', function () {
-    correct = false;
-    $('#feedbackSubmit').css('display', "inline");
-    $('#feedbackEmail').css('display', "inline");
-    $('#feedbackAnswers').css('display', "inline");
-    $('#feedbackButtons').css('display', "none");
-    if (supports_html5_storage()) {
-        var email = localStorage.getItem("email");
-        $('#email').val(email);
-    }
-});
-
-//click on back
-$(document).on('click', '#back', function () {
-    $('#feedbackSubmit').css('display', "none");
-    $('#feedbackEmail').css('display', "none");
-    $('#feedbackThank').css('display', "none");
-    $('#feedbackAnswers').css('display', "none");
-    $('#feedbackButtons').css('display', "inline");
-});
 
 //checks if browser supports html5 storage
 function supports_html5_storage() {
@@ -117,7 +101,7 @@ function supports_html5_storage() {
 }
 
 //sends feedback to google form
-function sendFeedback(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mca) {
+function sendFeedbackAndReload(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mca) {
     var LEmail = FIELDS_IDS[0];
     var LQuestion = FIELDS_IDS[1];
     var LEa = [];
@@ -153,51 +137,21 @@ function sendFeedback(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mca) {
     LEa[5] + "=" + VEa[5] + "&" +
     LMca + "=" + Vmca +
     SUBMIT_REF);
-    $.post(submitURL);
+
+    $.post(submitURL)
+        .always(function () {
+            window.location.href = createURL(null);
+        });
 }
 
 //restores feedback to default state
 function showFeedback(numberOfAnswers) {
-    $('#ea1').val("");
-    $('#ea2').val("");
-    $('#ea3').val("");
-    $('#ea4').val("");
-    $('#ea5').val("");
-    $('#ea6').val("");
-    $('#feedbackThank').css('display', "none");
-    $('#feedbackButtons').css('display', "inline");
     $('#feedback_area').css('display', 'inline');
     showAnswerFeedbackButton(numberOfAnswers);
-}
-
-// shows feedback buttons near answer
-function showAnswerFeedbackButton(numberOfAnswers) {
-    feedbackButtons = [];
-    for (var i = 0; i < numberOfAnswers; i++) {
-        createFeedbackButton(i);
-    }
-}
-
-//creates feedback buttons
-function createFeedbackButton(i) {
-    feedbackButtons[i] = INCORRECT_A;
-    var feedbackButtonCorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-myapp-unchecked ui-btn-icon-left ui-btn-inline" id="feedbackButtonCorrect' + i + '">Correct</button>';
-    $("#feedbackButtonArea" + i).append(feedbackButtonCorrect);
-    $('#feedbackButtonCorrect' + i).on('click', function (e) {
-        clickActionCorrect(i);
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-    });
-
-    var feedbackButtonIncorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-myapp-checked ui-btn-icon-left ui-btn-inline" id="feedbackButtonIncorrect' + i + '">Incorrect</button>';
-    $("#feedbackButtonArea" + i).append(feedbackButtonIncorrect);
-    $('#feedbackButtonIncorrect' + i).on('click', function (e) {
-        clickActionIncorrect(i);
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-    });
+    $('#askMeButton').parent().css("display", "none");
+    $('#search').textinput('disable');
+    $('#voice').prop('disabled', true).addClass('ui-disabled');
+    $('#email').parent().css("width", "82%");
 }
 
 //click function on correct button
@@ -226,6 +180,37 @@ function clickActionIncorrect(i) {
 
 }
 
+// shows feedback buttons near answer
+function showAnswerFeedbackButton(numberOfAnswers) {
+    feedbackButtons = [];
+    for (var i = 0; i < numberOfAnswers; i++) {
+        createFeedbackButton(i);
+    }
+}
+
+//creates feedback buttons
+function createFeedbackButton(i) {
+    feedbackButtons[i] = INCORRECT_A;
+    var feedbackButtonIncorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-myapp-checked ui-btn-icon-left ui-btn-inline" id="feedbackButtonIncorrect' + i + '">Incorrect</button>';
+    $("#feedbackButtonArea" + i).append(feedbackButtonIncorrect);
+    $('#feedbackButtonIncorrect' + i).on('click', function (e) {
+        clickActionIncorrect(i);
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+    });
+
+    var feedbackButtonCorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-myapp-unchecked ui-btn-icon-left ui-btn-inline" id="feedbackButtonCorrect' + i + '">Correct</button>';
+    $("#feedbackButtonArea" + i).append(feedbackButtonCorrect);
+    $('#feedbackButtonCorrect' + i).on('click', function (e) {
+        clickActionCorrect(i);
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+    });
+}
+
+
 //returns array of correct answers
 function getCorrectAnswers() {
     var corrects = [];
@@ -244,8 +229,10 @@ function getCorrectAnswers() {
             }
         }
     }
-    for (var i = position; i < 6; i++) {
-        corrects[i] = "";
+    if (position < 6) {
+        for (var i = position; i < 7; i++) {
+            corrects[i] = "";
+        }
     }
     return corrects;
 }
