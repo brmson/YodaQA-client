@@ -15,14 +15,26 @@ var correctAnswerFieldNumber = 1;
 
 var feedbackButtons;
 
+
+$(document).on('pageshow', '#mainPage', function (e, data) {
+    if (localStorage.getItem("previousQuestionActive")=="true") {
+        $('#search').val(localStorage.getItem("previousQuestion"));
+        localStorage.setItem("previousQuestionActive","false");
+    }
+});
+
 //click on submit button
 $(document).on('click', '#form-submit', function () {
     var email = $('#email').val();
+    var previousQuestion = $('#search').val();
     if (supports_html5_storage()) {
         localStorage.setItem("email", email);
     }
+    if (supports_html5_storage()) {
+        localStorage.setItem("previousQuestion", previousQuestion);
+        localStorage.setItem("previousQuestionActive", "true");
+    }
     sendAndReload(email);
-
 });
 
 //click on more correct button
@@ -40,7 +52,7 @@ $(document).on('click', '#moreCorrectAnswers', function () {
      $("#eaLabel"+(correctAnswerFieldNumber+1)).css("position","relative");
      $("#eaLabel"+(correctAnswerFieldNumber+1)).css("top",(-28*correctAnswerFieldNumber)+"px");*/
     $("#moreCorrectAnswerContainer").css("position", "relative");
-    $("#moreCorrectAnswerContainer").css("top", 5 + 37 * correctAnswerFieldNumber);
+    $("#moreCorrectAnswerContainer").css("top", 37 * correctAnswerFieldNumber);
     correctAnswerFieldNumber++;
 });
 
@@ -152,15 +164,16 @@ function showFeedback(numberOfAnswers) {
     $('#search').textinput('disable');
     $('#voice').prop('disabled', true).addClass('ui-disabled');
     $('#email').parent().css("width", "82%");
+    $('#email').val(localStorage.getItem("email"));
 }
 
 //click function on correct button
 function clickActionCorrect(i) {
-    if (feedbackButtons[i]==INCORRECT_A){
+    if (feedbackButtons[i] == INCORRECT_A) {
         feedbackButtons[i] = CORRECT_A;
         $('#feedbackButtonCorrect' + i).addClass("ui-icon-myapp-checked");
         $("#feedbackButtonCorrect" + i).removeClass('ui-icon-myapp-unchecked');
-    }else{
+    } else {
         feedbackButtons[i] = INCORRECT_A;
         $('#feedbackButtonCorrect' + i).addClass("ui-icon-myapp-unchecked");
         $("#feedbackButtonCorrect" + i).removeClass('ui-icon-myapp-checked');
@@ -168,23 +181,23 @@ function clickActionCorrect(i) {
 
 
     /*$('#feedbackButtonIncorrect' + i).addClass("ui-icon-myapp-unchecked");
-    $("#feedbackButtonIncorrect" + i).removeClass('ui-icon-myapp-checked');
-    $('#feedbackButtonIncorrect' + i).css('background-position', '8% 50%');*/
+     $("#feedbackButtonIncorrect" + i).removeClass('ui-icon-myapp-checked');
+     $('#feedbackButtonIncorrect' + i).css('background-position', '8% 50%');*/
 
 }
 
 //click function on incorrect button
 /*function clickActionIncorrect(i) {
-    feedbackButtons[i] = INCORRECT_A;
-    $('#feedbackButtonCorrect' + i).addClass("ui-icon-myapp-unchecked");
-    $("#feedbackButtonCorrect" + i).removeClass('ui-icon-myapp-checked');
-    $('#feedbackButtonCorrect' + i).css('background-position', '10% 50%');
+ feedbackButtons[i] = INCORRECT_A;
+ $('#feedbackButtonCorrect' + i).addClass("ui-icon-myapp-unchecked");
+ $("#feedbackButtonCorrect" + i).removeClass('ui-icon-myapp-checked');
+ $('#feedbackButtonCorrect' + i).css('background-position', '10% 50%');
 
-    $('#feedbackButtonIncorrect' + i).addClass("ui-icon-myapp-checked");
-    $("#feedbackButtonIncorrect" + i).removeClass('ui-icon-myapp-unchecked');
-    $('#feedbackButtonIncorrect' + i).css('background-position', '8% 50%');
+ $('#feedbackButtonIncorrect' + i).addClass("ui-icon-myapp-checked");
+ $("#feedbackButtonIncorrect" + i).removeClass('ui-icon-myapp-unchecked');
+ $('#feedbackButtonIncorrect' + i).css('background-position', '8% 50%');
 
-}*/
+ }*/
 
 // shows feedback buttons near answer
 function showAnswerFeedbackButton(numberOfAnswers) {
@@ -198,13 +211,13 @@ function showAnswerFeedbackButton(numberOfAnswers) {
 function createFeedbackButton(i) {
     feedbackButtons[i] = INCORRECT_A;
     /*var feedbackButtonIncorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-myapp-checked ui-btn-icon-left ui-btn-inline" id="feedbackButtonIncorrect' + i + '">Incorrect</button>';
-    $("#feedbackButtonArea" + i).append(feedbackButtonIncorrect);
-    $('#feedbackButtonIncorrect' + i).on('click', function (e) {
-        clickActionIncorrect(i);
-        e.preventDefault();
-        e.stopPropagation();
-        e.stopImmediatePropagation();
-    });*/
+     $("#feedbackButtonArea" + i).append(feedbackButtonIncorrect);
+     $('#feedbackButtonIncorrect' + i).on('click', function (e) {
+     clickActionIncorrect(i);
+     e.preventDefault();
+     e.stopPropagation();
+     e.stopImmediatePropagation();
+     });*/
 
     var feedbackButtonCorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-myapp-unchecked ui-btn-icon-left ui-btn-inline ui-nodisc-icon" id="feedbackButtonCorrect' + i + '">Correct</button>';
     $("#feedbackButtonArea" + i).append(feedbackButtonCorrect);
