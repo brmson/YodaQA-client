@@ -19,6 +19,7 @@ var feedbackButtons;
 $(document).on('pageshow', '#mainPage', function (e, data) {
     if (localStorage.getItem("previousQuestionActive")=="true") {
         $('#search').val(localStorage.getItem("previousQuestion"));
+        $('#search').focus();
         localStorage.setItem("previousQuestionActive","false");
     }
 });
