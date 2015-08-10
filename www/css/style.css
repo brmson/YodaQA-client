@@ -29,6 +29,7 @@
         margin: 0 auto !important;
         position: relative !important;
         padding: 10px !important;
+        overflow: visible !important;
     }
 
     .extnav{
@@ -148,6 +149,9 @@ hr {
 
 .feedbackButton{
     padding-right: 10px;
+    position: absolute;
+    left: -100px;
+    top:7px;
 }
 
 #voice{
