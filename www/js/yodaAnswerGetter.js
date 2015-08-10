@@ -6,7 +6,7 @@
 var DEFAULT_ADDRESS = "http://qa.ailao.eu/"; //default address of endpoint
 var CONNECTION_ADDRESS; //address of endpoint
 
-var DIRECTLY_SHOWED_QUESTIONS = 5; // Number of questions above drop down menu
+var DIRECTLY_SHOWED_QUESTIONS = 3; // Number of questions above drop down menu
 
 
 var qid;  // id of the last posed question
@@ -146,7 +146,7 @@ function loadQuestion(q, reload) {
     gen_sources = 0;
     gen_answers = 0;
     if (reload) {
-        window.location.href=createURL(qid);
+        window.location.href = createURL(qid);
     } else {
         window.history.pushState("object or string", "Title", createURL(qid));
     }
@@ -154,15 +154,27 @@ function loadQuestion(q, reload) {
 }
 
 /* Creates URL with parameters */
-function createURL(qid){
-    var url="?qID=" + qid;
-    if (endpoint != null){
-        url+="&e=" + endpoint;
+function createURL(qid) {
+    var appersand=false;
+    var url="?";
+    if (qid != null) {
+        url += "qID=" + qid;
+        appersand=true;
     }
-    if(showFeedbackBool){
-        url+="&feedback=true";
+    if (endpoint != null) {
+        if (appersand){
+            url += "&";
+        }
+        url += "e=" + endpoint;
+        appersand=true;
     }
-    url+="#mainPage";
+    if (showFeedbackBool) {
+        if (appersand){
+            url += "&";
+        }
+        url += "feedback=true";
+    }
+    url += "#mainPage";
     return url;
 }
 
@@ -242,7 +254,7 @@ function getQuestionJson() {
             }
 
             if (r.finished) {
-                if (showFeedbackBool=='true') {
+                if (showFeedbackBool == 'true') {
                     showFeedback(numberOfShowedAnswers);
                 }
                 $("#spinner").hide();
@@ -336,13 +348,13 @@ function showAnswers(container, answers, snippets, sources) {
 function showOneAnswer(a, i, container, snippets, sources) {
     text = a.text.replace(/"/g, "&#34;");
     var toAppend = $('' +
-        '<div data-role="collapsible" class="answer" data-iconpos="left" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" >' +
+        '<div data-role="collapsible" class="answer" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" >' +
         '<H2>' +
         '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">' + (a.confidence * 100).toFixed(1) + '%' + '</span>' +
+        '<span style="" id="feedbackButtonArea' + i + '" class="feedbackButton">' +
+        '</span>' +
         '<span id="answerText' + i + '">' +
         text +
-        '&nbsp;&nbsp;&nbsp;</span>' +
-        '<span style="" id="feedbackButtonArea' + i + '" class="feedbackButton">' +
         '</span>' +
         score_bar(a.confidence) +
         '</H2>' +
@@ -359,11 +371,11 @@ function showSnippets(a, snippets, sources) {
     for (var i = 0; i < len; i++) {
         var snippet = snippets[snippetIDs[i]];
         var source = sources[snippet.sourceID];
-        texts+='<div style="overflow: hidden">';
+        texts += '<div style="overflow: hidden">';
         texts += createURLButton(source);
         texts += '<div style="overflow: hidden"><span style="vertical-align: middle;display: inline-block;min-height: 55px; padding-top: 10px">' +
             createPassageText(a, snippet, source) + createPropertyLabel(a, snippet) + createOrigin(source) + '</span></div>';
-        texts+="</div>";
+        texts += "</div>";
         if (i != len - 1) {
             texts += '<hr>';
         }
@@ -420,7 +432,7 @@ function createButtonImage(source) {
             imageSource = "img/dbpedia_logo.png";
             alt = "DBpedia";
             size = 1.5;
-        }else if (source.type == "bing") {
+        } else if (source.type == "bing") {
             imageSource = "img/bing_logo.png";
             alt = "Bing";
             size = 1;
@@ -462,9 +474,9 @@ function showAnswersInDropDown(a, i, container, snippets, sources) {
 /* Creates base for drop down menu */
 function createDropDownList(container, liID, title, divID) {
     container.append('' +
-        '<div data-role="collapsible" data-iconpos="left" data-inset="true" id="' + liID + '" data-theme="c" data-content-theme="a">' +
+        '<div data-role="collapsible" data-iconpos="right" data-inset="true" id="' + liID + '" data-theme="c" data-content-theme="a">' +
         '   <h2>' + title + '</h2> ' +
-        '   <div data-role="collapsibleset" data-iconpos="left" data-inset="false"  id="' + divID + '"> ' +
+        '   <div data-role="collapsibleset" data-iconpos="right" data-inset="false"  id="' + divID + '"> ' +
         '   </div>' +
         '</div>');
 }

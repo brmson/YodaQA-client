@@ -6,11 +6,9 @@ var RECOGNIZER_LANG = "en-US";
 var RECOGNIZER_INTERIM_RESULTS = true;
 
 var recognizer = null;
-var blinkMicrophone = false;
 
 //Click on voice input button
 $(document).on('click', '#voice', function (e) {
-    blinkMicrophone = true;
     recognize();
 });
 
@@ -27,8 +25,6 @@ function recognize() {
             $('#search').val((event.results[i])[0].transcript);
             //trigering search
             if (event.results[i].isFinal == true) {
-                console.log("final");
-                blinkMicrophone = false;
                 $("#voice").removeClass("backgroundRed");
                 recognizer.stop();
                 $('form#ask').submit();
@@ -42,15 +38,9 @@ function recognize() {
 
     //start of recognition
     recognizer.start();
+    $("#voice").addClass("backgroundRed");
     $('#search').val("");
 }
-
-//blinking of voice input icon
-setInterval(function () {
-    if (blinkMicrophone == true) {
-        $("#voice").toggleClass("backgroundRed");
-    }
-}, 500);
 
 //detect if voice input is supported by browser
 function isVoiceInputSupported() {
