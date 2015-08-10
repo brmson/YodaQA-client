@@ -158,3 +158,8 @@ hr {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+#noAnswersFound{
+    text-align: center;
+    margin-top: 50px;
+}

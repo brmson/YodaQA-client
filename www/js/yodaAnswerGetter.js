@@ -142,6 +142,8 @@ function reloadAnswered() {
  */
 function loadQuestion(q, reload) {
     $("#answers_area").empty();
+    $("#concept_area").empty();
+    $("#sources_area").empty();
     qid = q;
     gen_sources = 0;
     gen_answers = 0;
@@ -155,21 +157,21 @@ function loadQuestion(q, reload) {
 
 /* Creates URL with parameters */
 function createURL(qid) {
-    var appersand=false;
-    var url="?";
+    var appersand = false;
+    var url = "?";
     if (qid != null) {
         url += "qID=" + qid;
-        appersand=true;
+        appersand = true;
     }
     if (endpoint != null) {
-        if (appersand){
+        if (appersand) {
             url += "&";
         }
         url += "e=" + endpoint;
-        appersand=true;
+        appersand = true;
     }
     if (showFeedbackBool) {
-        if (appersand){
+        if (appersand) {
             url += "&";
         }
         url += "feedback=true";
@@ -231,7 +233,7 @@ function getQuestionJson() {
             //shows answers
             if (r.answers && gen_answers != r.gen_answers) {
                 var container = createList("#answers_area", "answers", null, false, true);
-                showAnswers(container, r.answers, r.snippets, r.sources);
+                showResultAnswers(container, r.answers, r.snippets, r.sources);
                 gen_answers = r.gen_answers;
             }
 
@@ -321,9 +323,24 @@ function createList(area, containerID, title, br, collapsibleSet) {
 }
 
 /* Create a table with answers. */
-function showAnswers(container, answers, snippets, sources) {
+function showResultAnswers(container, answers, snippets, sources) {
     container.empty();
 
+    //Special case, nothing has been founded
+    if (answers.length == 1 && answers[0].text == "") {
+        showNoAnswer();
+    }
+    //normal case
+    else {
+        showAnswers(container, answers, snippets, sources);
+    }
+}
+
+function showNoAnswer(container){
+    $("#answers_area").html("<H1 id='noAnswersFound'>No answers found, we are sorry.</H1>");
+}
+
+function showAnswers(container, answers, snippets, sources){
     var i = 1;
     answers.forEach(function (a) {
         // FIXME: also deal with < > &
