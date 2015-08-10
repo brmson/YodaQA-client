@@ -193,6 +193,7 @@ function createFeedbackButton(i) {
         e.stopPropagation();
         e.stopImmediatePropagation();
     });
+    $("#feedbackButtonArea" + i).parent().css("overflow","visible");
 }
 
 
