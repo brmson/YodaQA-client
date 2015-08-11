@@ -153,9 +153,10 @@ function sendFeedbackAndReload(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mc
 function showFeedback(numberOfAnswers) {
     $('#feedback_area').css('display', 'inline');
     showAnswerFeedbackButton(numberOfAnswers);
-    $('#askMeButton').parent().css("display", "none");
+    $('#askMeButton').parent().prop('disabled', true).addClass('ui-disabled');
     $('#search').textinput('disable');
     $('#voice').prop('disabled', true).addClass('ui-disabled');
+
     $('#email').parent().css("width", "82%");
     $('#email').val(localStorage.getItem("email"));
 }

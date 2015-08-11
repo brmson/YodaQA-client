@@ -28,7 +28,7 @@
 
 			<!-- Links to homepage and github -->
 			<div class="extnav" style="display: none;">
-				<a href="http://ailao.eu/yodaqa/" target="_blank">Homepage</a><br>
+				<a href="http://ailao.eu/yodaqa/" target="_blank" style="margin-right: 10px">Homepage</a>
 				<a href="https://github.com/brmson/yodaqa" target="_blank">GitHub</a>
 			</div>
 
@@ -37,20 +37,28 @@
 			<div data-role="main" class="ui-content">
 
 				<div id="verticalCenter">
-					<H1 class="mainHeader">YodaQA Live</H1>
+					<H1 class="mainHeader"><a onclick="gotoMainPage();" class="mainHeaderLink">YodaQA Live</a></H1>
 					<!--Form for asking Yoda-->
 					<form method="post" action="http://qa.ailao.eu/q" id="ask">
-						<div class="ui-grid-a" style="margin-bottom: -10px;">
-							<div class="ui-block-a" style="width:93%">
+						<div class="ui-grid-b" style="margin-bottom: -10px;">
+							<div class="ui-block-a" style="width:93%" id="searchBlock">
 								<input type="search" name="text" id="search" placeholder="Who wrote Ender's Game?"
 								       required>
 							</div>
-							<div class="ui-block-b" style="width:7%;position: relative;top:3px;left:5px;">
+							<div class="ui-block-b" id="askBlock" style="width:0%;position: relative;top:1px;left:3px; display:none">
+								<input type="submit" value="Ask me!" class="askMeButton" id="askMeButton" data-mini="true" data-inline="true" data-shadow="false">
+							</div>
+							<div class="ui-block-c" id="voiceBlock" style="width:7%;position: relative;top:3px;left:5px;">
 								<a href="#" class="ui-btn ui-corner-all" id="voice"></a>
 							</div>
 						</div>
-						<input type="submit" value="Ask me!" id="askMeButton">
+						<div style="text-align: center" class="searchButtons">
+							<input type="submit" value="Ask me!" class="askMeButton" data-mini="true" data-inline="true">
+							<a href="#asked-questions" class="ui-btn ui-btn-inline ui-corner-all ui-mini ui-shadow">Past questions</a>
+						</div>
+
 					</form>
+
 				</div>
 
 				<!--Area with answers-->
@@ -96,16 +104,6 @@
 				<div id="sources_area" class="responsive"></div>
 
 
-				<!-- Footer with navbar -->
-				<div data-role="footer" data-position="fixed" data-tap-toggle="false">
-					<div data-role="navbar">
-						<ul>
-							<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="search">Ask</a></li>
-							<li><a href="#asked-questions" data-icon="info">Asked questions</a></li>
-						</ul>
-					</div>
-				</div>
-
 			</div>
 		</div>
 
@@ -122,7 +120,7 @@
 			<!--Page's main content-->
 			<div data-role="main" class="ui-content">
 
-				<H1 class="mainHeader">YodaQA Live</H1>
+				<H1 class="mainHeader"><a onclick="gotoMainPage();" class="mainHeaderLink">YodaQA Live</a></H1>
 
 				<!--Area for answered questions-->
 				<div id="answered_area"></div>
@@ -133,18 +131,6 @@
 				<!--Area for questions in queue-->
 				<div id="toAnswer_area"></div>
 
-			</div>
-
-			<!-- Footer with navbar -->
-			<div data-role="footer" data-position="fixed"  data-tap-toggle="false">
-				<div data-role="navbar">
-					<ul>
-						<li><a href="#mainPage" data-icon="search">Ask</a></li>
-						<li><a href="#" class="ui-btn-active ui-state-persist" data-icon="info">Asked
-						                                                                        questions</a>
-						</li>
-					</ul>
-				</div>
 			</div>
 
 		</div>

@@ -30,6 +30,7 @@
         position: relative !important;
         padding: 10px !important;
         overflow: visible !important;
+        margin-bottom: 55px !important;
     }
 
     .extnav{
@@ -166,4 +167,31 @@ hr {
 #noAnswersFound{
     text-align: center;
     margin-top: 50px;
+}
+
+.mainHeaderLink{
+    color: #333 !important;
+    cursor: pointer;
+}
+
+.mainHeaderLink:hover{
+    color: #38c !important;
+}
+
+.searchButtons > .ui-btn{
+    width: 100px !important;
+}
+
+.searchButtons{
+    margin-top: 12px;
+}
+
+#askBlock > .ui-btn{
+    padding-top: 11px;
+    padding-bottom: 10px;
+    width: 65px !important;
+}
+
+.extnav > a{
+    text-decoration: none;
 }
