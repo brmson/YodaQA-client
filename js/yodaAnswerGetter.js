@@ -23,8 +23,9 @@ $(function () {
     $("#ask").ajaxForm({
         success: function (response) {
             $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
+            switchToSearchAfterAnswer();
             setTimeout(function () {
-                loadQuestion(JSON.parse(response).id, false)
+                loadQuestion(JSON.parse(response).id, true)
             }, 500);
         }
     });
@@ -38,6 +39,13 @@ $(function () {
     getAnsweredJson();
     setInterval(getAnsweredJson, 2900);
 });
+
+function switchToSearchAfterAnswer(){
+    $('.searchButtons').empty();
+    $('#searchBlock').css("width","83%");
+    $('#askBlock').css("width","10%");
+    $('#askBlock').css("display","inline");
+}
 
 /* Handles back navigation */
 $(function () {
@@ -60,8 +68,9 @@ function hashchanged() {
     // If qID is present and we are on main page, show answer
     var arr = window.location.href.split('#');
     if (qID != null && (arr[1] == "mainPage" || arr[1] == null)) {
-        loadQuestion(qID, false);
+        loadQuestion(qID, true);
         $('#verticalCenter').css('margin-top', 0);
+        switchToSearchAfterAnswer();
     }
     //if there is no qID clear show search area to center and clear results
     else {
@@ -69,8 +78,7 @@ function hashchanged() {
         if ($('[data-role=header]').height() != null) {
             $('#verticalCenter').css('opacity', 0.0);
             $('#verticalCenter').animate({opacity: '1.0'}, 100);
-            $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() -
-                ($('#verticalCenter').outerHeight())) / 2);
+            $('#verticalCenter').css('margin-top', ($(window).height()/2  - ($('#verticalCenter').outerHeight())/1.5));
         }
         clearResult();
         qid = null;
@@ -81,8 +89,7 @@ function hashchanged() {
 $(document).on('pageshow', '#mainPage', function (e, data) {
     if (qid == null) {
         $('#verticalCenter').animate({opacity: '1.0'}, 100);
-        $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() -
-            ($('#verticalCenter').outerHeight())) / 2);
+        $('#verticalCenter').css('margin-top', ($(window).height()/2- ($('#verticalCenter').outerHeight())/1.5));
     } else {
         $('#verticalCenter').css('opacity', 1.0);
     }
@@ -91,10 +98,13 @@ $(document).on('pageshow', '#mainPage', function (e, data) {
 /* Centers search area on page resize */
 $(window).resize(function () {
     if (qid == null) {
-        $('#verticalCenter').css('margin-top', ($(window).height() - $('[data-role=header]').height() - $('[data-role=footer]').height() -
-            ($('#verticalCenter').outerHeight())) / 2);
+        $('#verticalCenter').css('margin-top', ($(window).height()/2 - ($('#verticalCenter').outerHeight())/1.5) );
     }
 });
+
+function gotoMainPage(){
+    window.location.href = createURL(null);
+}
 
 /* Gets parameter by name */
 function getParameterByName(name, url) {
@@ -122,9 +132,9 @@ function changeEndpoint(endpoint) {
     } else {
         if (endpoint == "http://qa.ailao.eu:4000/") {
             // XXX: ugly hardcoded
-            $(".mainHeader").html("YodaQA Movies");
+            $(".mainHeaderLink").html("YodaQA Movies");
         } else {
-            $(".mainHeader").html("YodaQA Custom");
+            $(".mainHeaderLink").html("YodaQA Custom");
         }
         CONNECTION_ADDRESS = endpoint;
         $("#ask").attr("action", endpoint + "q");
