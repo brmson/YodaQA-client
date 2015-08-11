@@ -40,6 +40,7 @@
         text-align: right;
         display: inline !important;
 	font-family: 'Roboto Slab';
+	z-index: 1;
     }
 
     .responsive .ui-listview li {
@@ -197,4 +198,6 @@ hr {
 
 .extnav > a{
     text-decoration: none;
+    color:#38c;
+    font-weight:700;
 }
