@@ -1,10 +1,17 @@
 # YodaQA Client
 Client for YodaQA writen in HTML5 with jQuery mobile and Cordova.
 
-You can see it live on http://brmson.github.io/YodaQA-client/ .
+You can see it live on http://brmson.github.io/YodaQA-client/ or
+http://live.ailao.eu/ .
 That's the gh-pages branch; to push there, use:
 	
 	git subtree push --prefix www origin gh-pages
+
+## API
+
+  * ``?qID=N``: show question with id N
+  * ``?e=http://qa.ailao.eu:4000/``: use a non-default REST API endpoint
+  * ``?feedback=true``: show feedback form
 
 ## Structure
 
@@ -20,12 +27,6 @@ CSS files are located in `www/css`. `style.css` contains custom stylesheet. jQue
 
 ### Android app
 Files genrated by Cordova for android app are located in `platforms\android`. Current apk file is in `platforms\android\build\outputs\apk`. There are Cordova plugins in `plugins` folder.
-
-## API
-
-  * ``?qID=N``: show question with id N
-  * ``?e=http://qa.ailao.eu:4000/``: use a non-default REST API endpoint
-  * ``?feedback=true``: show feedback form
 
 ## Feedback
 Feedback form is handled by `feedbackHandler.js` located in `www/js`. To deploy feedback, create google form with 9 text
