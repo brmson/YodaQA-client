@@ -45,6 +45,7 @@ function switchToSearchAfterAnswer(){
     $('#searchBlock').css("width","83%");
     $('#askBlock').css("width","10%");
     $('#askBlock').css("display","inline");
+    $('#mainPage .mainHeader').removeClass("mainHeaderLone");
 }
 
 /* Handles back navigation */
