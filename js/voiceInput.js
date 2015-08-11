@@ -21,13 +21,18 @@ function recognize() {
 
     //detecting voice
     recognizer.onresult = function (event) {
+        var recognized = "";
         for (var i = event.resultIndex; i < event.results.length; ++i) {
-            $('#search').val((event.results[i])[0].transcript);
             //trigering search
             if (event.results[i].isFinal == true) {
                 $("#voice").removeClass("backgroundRed");
                 recognizer.stop();
                 $('form#ask').submit();
+            }
+            //keep recognizing
+            else {
+                recognized+=((event.results[i])[0].transcript);
+                $('#search').val(recognized);
             }
         }
     };
