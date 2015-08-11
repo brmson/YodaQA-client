@@ -45,6 +45,7 @@ function switchToSearchAfterAnswer(){
     $('#searchBlock').css("width","83%");
     $('#askBlock').css("width","10%");
     $('#askBlock').css("display","inline");
+    $('#blurb').css("display","none");
     $('#mainPage .mainHeader').removeClass("mainHeaderLone");
 }
 
@@ -134,8 +135,10 @@ function changeEndpoint(endpoint) {
         if (endpoint == "http://qa.ailao.eu:4000/") {
             // XXX: ugly hardcoded
             $(".mainHeaderLink").html("YodaQA Movies");
+	    $("#blurb").html("Ask question about movies and TV series.<br>We don't have the storylines, but know the <strong>metadata</strong><br>(credits, dates, episodes, awards, ...).");
         } else {
             $(".mainHeaderLink").html("YodaQA Custom");
+	    $("#blurb").html("This is an unofficial YodaQA version.");
         }
         CONNECTION_ADDRESS = endpoint;
         $("#ask").attr("action", endpoint + "q");

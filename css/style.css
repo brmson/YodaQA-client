@@ -101,6 +101,12 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto Slab';
 }
 
+#blurb {
+	margin-top: 50pt;
+    text-align: center;
+    font-family: 'Roboto Slab';
+}
+
 /* highlight of answer in snippet */
 .highlight{
     background-color: lightgreen;
