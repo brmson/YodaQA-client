@@ -39,6 +39,7 @@
         top: 1ex;
         text-align: right;
         display: inline !important;
+	font-family: 'Roboto Slab';
     }
 
     .responsive .ui-listview li {
@@ -89,9 +90,11 @@
 .mainHeader{
     font-size: 350% !important;
     text-align: center;
-    font-family: 'Roboto Slab';
     margin-bottom: 10px;
     margin-top: 10px;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto Slab';
 }
 
 /* highlight of answer in snippet */
