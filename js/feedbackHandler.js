@@ -2,10 +2,22 @@
  * Created by Petr Marek on 21.7.2015.
  */
 
-var BASE_URL = 'https://docs.google.com/forms/d/1Vra6SgNnso6Nn45adZNd0mVWtTMe5_W4QABhlYxfP8I/formResponse?';
-var FIELDS_IDS = ["entry.557679011", "entry.668964305", "entry.315539511", "entry.807998585", "entry.1331990072",
-    "entry.540581579", "entry.799866241", "entry.1492550795", "entry.1983407746"];
-var SUBMIT_REF = '&submit=Submit';
+var feedback_endpoints = {
+    'movies': {
+        'BASE_URL': 'https://docs.google.com/forms/d/1Vra6SgNnso6Nn45adZNd0mVWtTMe5_W4QABhlYxfP8I/formResponse?',
+        'FIELDS_IDS': ["entry.557679011", "entry.668964305", "entry.315539511", "entry.807998585", "entry.1331990072",
+            "entry.540581579", "entry.799866241", "entry.1492550795", "entry.1983407746"],
+        'SUBMIT_REF': '&submit=Submit',
+	'FORM_URL': 'https://docs.google.com/spreadsheets/d/1FELqTPH6EUws5l_qR14igg1aomsKJ8V7iQEKJ5VEefM/edit?usp=sharing'
+    },
+    'live': {
+        'BASE_URL': 'https://docs.google.com/forms/d/1_BYRxEZlej9gDgkUsXFw_IcdYvytSYyT1KZTHVi7kQ4/formResponse?',
+        'FIELDS_IDS': ["entry.2044281262", "entry.13984642", "entry.728405979", "entry.1756526559", "entry.1872170637",
+            "entry.1059431403", "entry.1228282374", "entry.17475393", "entry.2052512670"],
+        'SUBMIT_REF': '&submit=Submit',
+	'FORM_URL': 'https://docs.google.com/spreadsheets/d/16ynWvmgh3S5byEzgizDp53K9pN7jLoORgauFnHpnzMk/edit'
+    }
+};
 
 var CORRECT_A = true;
 var INCORRECT_A = false;
@@ -14,6 +26,12 @@ var INCORRECT_A = false;
 var correctAnswerFieldNumber = 1;
 
 var feedbackButtons;
+
+
+var feedback_endpoint = feedback_endpoints['live'];
+function setFeedbackEndpoint(name) {
+    feedback_endpoint = feedback_endpoints[name];
+}
 
 
 $(document).on('pageshow', '#mainPage', function (e, data) {
@@ -107,6 +125,7 @@ function supports_html5_storage() {
 
 //sends feedback to google form
 function sendFeedbackAndReload(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mca) {
+    var FIELDS_IDS = feedback_endpoint['FIELDS_IDS'];
     var LEmail = FIELDS_IDS[0];
     var LQuestion = FIELDS_IDS[1];
     var LEa = [];
@@ -131,7 +150,7 @@ function sendFeedbackAndReload(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mc
 
     var Vmca = encodeURIComponent(mca);
 
-    var submitURL = (BASE_URL +
+    var submitURL = (feedback_endpoint['BASE_URL'] +
     LEmail + "=" + VEmail + "&" +
     LQuestion + "=" + VQuestion + "&" +
     LEa[0] + "=" + VEa[0] + "&" +
@@ -141,7 +160,7 @@ function sendFeedbackAndReload(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mc
     LEa[4] + "=" + VEa[4] + "&" +
     LEa[5] + "=" + VEa[5] + "&" +
     LMca + "=" + Vmca +
-    SUBMIT_REF);
+    feedback_endpoint['SUBMIT_REF']);
 
     $.post(submitURL)
         .always(function () {
