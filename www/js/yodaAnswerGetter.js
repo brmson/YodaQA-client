@@ -5,8 +5,8 @@
 
 var DEFAULT_ADDRESS = "http://qa.ailao.eu/"; //default address of endpoint
 var CONNECTION_ADDRESS; //address of endpoint
-
 var DIRECTLY_SHOWED_QUESTIONS = 3; // Number of questions above drop down menu
+var showFeedbackDefault = true;
 
 
 var qid;  // id of the last posed question
@@ -64,7 +64,11 @@ function hashchanged() {
     changeEndpoint(endpoint);
     reloadAnswered();
 
-    showFeedbackBool = getParameterByName("feedback", window.location.href);
+    var showFeedback = getParameterByName("feedback", window.location.href);
+    if (showFeedback != null)
+        showFeedbackBool = showFeedback.toLowerCase() === 'true';
+    else
+        showFeedbackBool = showFeedbackDefault;
 
     var qID = getParameterByName("qID", window.location.href);
     // If qID is present and we are on main page, show answer
@@ -171,6 +175,11 @@ function loadQuestion(q, reload) {
     getQuestionJson();
 }
 
+function toggleFeedback() {
+    showFeedbackBool = !showFeedbackBool;
+    loadQuestion(getParameterByName("qID", window.location.href), true);
+}
+
 /* Creates URL with parameters */
 function createURL(qid) {
     var appersand = false;
@@ -186,11 +195,11 @@ function createURL(qid) {
         url += "e=" + endpoint;
         appersand = true;
     }
-    if (showFeedbackBool) {
+    if (showFeedbackBool != showFeedbackDefault) {
         if (appersand) {
             url += "&";
         }
-        url += "feedback=true";
+        url += "feedback=" + showFeedbackBool;
     }
     url += "#mainPage";
     return url;
@@ -272,7 +281,7 @@ function getQuestionJson() {
             }
 
             if (r.finished) {
-                if (showFeedbackBool == 'true') {
+                if (showFeedbackBool) {
                     showFeedback(numberOfShowedAnswers);
                 }
                 $("#spinner").hide();
