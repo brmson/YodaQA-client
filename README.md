@@ -32,5 +32,5 @@ Files genrated by Cordova for android app are located in `platforms\android`. Cu
 Feedback form is handled by `feedbackHandler.js` located in `www/js`. To deploy feedback, create google form with 9 text
 fields (email,question,expected answer[0-5],more correct answers). To variable `BASE_URL` copy form's id, to array `FIELDS_IDS` copy text field's
 ids in order: email,question,expected answer[0-5],more correct answers. `SUBMIT_REF` holds name and action of form's button.
-Current feedback form can be viewed on https://docs.google.com/spreadsheets/d/1FELqTPH6EUws5l_qR14igg1aomsKJ8V7iQEKJ5VEefM/edit?usp=sharing .
 Field `more correct answers` stores answers separated by vertical bar (`answer|answer|answer`).
+See the top of the feedbackHandler source code for the form URLs.

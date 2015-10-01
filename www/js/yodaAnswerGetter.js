@@ -131,11 +131,13 @@ function changeEndpoint(endpoint) {
     if (endpoint == null) {
         CONNECTION_ADDRESS = DEFAULT_ADDRESS;
         $("#ask").attr("action", DEFAULT_ADDRESS + "q");
+        setFeedbackEndpoint("live");
     } else {
         if (endpoint == "http://qa.ailao.eu:4000/") {
             // XXX: ugly hardcoded
             $(".mainHeaderLink").html("YodaQA Movies");
 	    $("#blurb").html("Ask question about movies and TV series.<br>We don't have the storylines, but know the <strong>metadata</strong><br>(credits, dates, episodes, awards, ...).");
+            setFeedbackEndpoint("movies");
         } else {
             $(".mainHeaderLink").html("YodaQA Custom");
 	    $("#blurb").html("This is an unofficial YodaQA version.");
