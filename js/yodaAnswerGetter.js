@@ -17,17 +17,23 @@ var showFeedbackBool;
 
 var numberOfShowedAnswers;
 
-
 /* Ajax function for retrieving questions and answers */
 $(function () {
-    $("#ask").ajaxForm({
-        success: function (response) {
-            $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
-            switchToSearchAfterAnswer();
-            setTimeout(function () {
-                loadQuestion(JSON.parse(response).id, true)
-            }, 500);
-        }
+
+    $(document).on('click', '.askMeButton', function (e) {
+        $.ajax({
+            type: "POST",
+            url: CONNECTION_ADDRESS+"q",
+            data: $("#ask").serialize(),
+            success: function (response) {
+                $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
+                switchToSearchAfterAnswer();
+                setTimeout(function () {
+                    loadQuestion(JSON.parse(response).id, true)
+                }, 500);
+            }
+        });
+
     });
 
     getToAnswerJson();
