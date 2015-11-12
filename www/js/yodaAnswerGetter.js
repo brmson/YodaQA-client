@@ -17,6 +17,8 @@ var showFeedbackBool;
 
 var numberOfShowedAnswers;
 
+var generatedConcepts;
+
 /* Ajax function for retrieving questions and answers */
 $(function () {
 
@@ -24,7 +26,7 @@ $(function () {
         $.ajax({
             type: "POST",
             url: CONNECTION_ADDRESS+"q",
-            data: $("#ask").serialize(),
+            data: getDataToSend(),
             success: function (response) {
                 $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
                 switchToSearchAfterAnswer();
@@ -45,6 +47,28 @@ $(function () {
     getAnsweredJson();
     setInterval(getAnsweredJson, 2900);
 });
+
+function getDataToSend(){
+    var data={};
+    data.question=$("#search").val();
+    var numberOfConcepts=$("#numberOfConcepts").val();
+    var i=1;
+    for(;i<=numberOfConcepts;i++){
+        data['fullLabel' + i]=$("#fullLabel"+i).val();
+        data['pageID' + i]=$("#pageID"+i).val();
+    }
+    if (generatedConcepts!=null){
+        for(var j=0;j<generatedConcepts.length;j++){
+            if (conceptButtons[j+1]==SELECTED){
+            data['fullLabel' + i]=generatedConcepts[j].title;
+            data['pageID' + i]=generatedConcepts[j].pageId;
+            i++;
+            }
+        }
+    }
+    data.numberOfConcepts= i;
+    return data;
+}
 
 function switchToSearchAfterAnswer(){
     $('.searchButtons').empty();
@@ -256,6 +280,7 @@ function getQuestionJson() {
             //shows concepts and summary
             if (r.summary) {
                 if (r.summary.concepts.length) {
+                    generatedConcepts=r.summary.concepts;
                     var container = createList("#concept_area", "concepts", "Concepts", true, false);
                     showConcept(container, r.summary.concepts);
                 } else {
@@ -276,6 +301,7 @@ function getQuestionJson() {
                     showFeedback(numberOfShowedAnswers);
                 }
                 $("#spinner").hide();
+                showChooseConceptButton(r.summary.concepts.length);
             } else {
                 // keep watching
                 setTimeout(getQuestionJson, 500);
@@ -311,7 +337,9 @@ function showConcept(container, concepts) {
             '   <a href="http://en.wikipedia.org/?curid=' + a.pageId + '" target="_blank">' +
             '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
             + a.title +
+            '<span style="" id="conceptButtonArea' + i + '" class="conceptButtonArea">' +
             '   </a>' +
+            '</span>' +
             '</li>');
         i++;
     });
