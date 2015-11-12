@@ -40,12 +40,11 @@
 				<div id="verticalCenter">
 					<H1 class="mainHeader"><a onclick="gotoMainPage();" class="mainHeaderLink">YodaQA Live</a></H1>
 					<!--Form for asking Yoda-->
-					<form method="post" action="http://qa.ailao.eu/q" id="ask">
 						<div class="ui-grid-b" style="margin-bottom: -10px;">
 							<div class="ui-block-a" style="width:93%" id="searchBlock">
 								<input type="search" name="text" id="search" placeholder="Who wrote Ender's Game?"
 								       required>
-								<div id="artificialConceptsBlock">
+								<!--<div id="artificialConceptsBlock">
 									<input type="hidden" name="numberOfConcepts" id="numberOfConcepts" value="1">
 									<br>
 									<input type="text" name="fullLabel1" id="fullLabel1" placeholder="Concept Label" >
@@ -53,7 +52,7 @@
 								</div>
 								<div id="artificialConceptButtonBlock">
 									<input type="button" name="moreConceptButton" id="moreConceptButton" value="Add concept">
-								</div>
+								</div>-->
 							</div>
 							<div class="ui-block-b" id="askBlock" style="width:0%;position: relative;top:1px;left:3px; display:none">
 								<input type="button" value="Ask me!" class="askMeButton" id="askMeButton" data-mini="true" data-inline="true" data-shadow="false" data-theme="d">
@@ -66,8 +65,6 @@
 							<input type="button" value="Ask me!" class="askMeButton" data-mini="true" data-inline="true">
 							<a href="#asked-questions" class="ui-btn ui-btn-inline ui-corner-all ui-mini ui-shadow">Past questions</a>
 						</div>
-
-					</form>
 
 				</div>
 

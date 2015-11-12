@@ -70,10 +70,10 @@ function showChooseConceptButton(numberOfGeneratedConcepts) {
 function createChooseConceptButton(i) {
     conceptButtons[i] = NONSELECTED;
 
-    var conceptButton = '<button class="ui-btn ui-mini ui-corner-all ui-icon-myapp-unchecked ui-btn-icon-left ui-btn-inline ui-nodisc-icon" id="conceptButton' + i + '">Selected</button>';
+    var conceptButton = '<button class="ui-btn ui-mini ui-corner-all ui-icon-myapp-unchecked ui-btn-icon-left ui-btn-inline ui-nodisc-icon" id="conceptButton' + i + '">Select</button>';
     $("#conceptButtonArea" + i).append(conceptButton);
     $('#conceptButtonArea' + i).on('click', function (e) {
-        clickActionCorrect(i);
+        clickActionSelect(i);
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
@@ -82,14 +82,16 @@ function createChooseConceptButton(i) {
 }
 
 //click function on correct button
-function clickActionCorrect(i) {
+function clickActionSelect(i) {
     if (conceptButtons[i] == NONSELECTED) {
         conceptButtons[i] = SELECTED;
         $('#conceptButton' + i).addClass("ui-icon-myapp-checked");
         $("#conceptButton" + i).removeClass('ui-icon-myapp-unchecked');
+        $("#conceptButton" + i).text("Selected");
     } else {
         conceptButtons[i] = NONSELECTED;
         $('#conceptButton' + i).addClass("ui-icon-myapp-unchecked");
         $("#conceptButton" + i).removeClass('ui-icon-myapp-checked');
+        $("#conceptButton" + i).text("Select");
     }
 }
