@@ -18,25 +18,15 @@ var showFeedbackBool;
 var numberOfShowedAnswers;
 
 var generatedConcepts;
+var question;
 
 /* Ajax function for retrieving questions and answers */
 $(function () {
 
     $(document).on('click', '.askMeButton', function (e) {
-        $.ajax({
-            type: "POST",
-            url: CONNECTION_ADDRESS+"q",
-            data: getDataToSend(),
-            success: function (response) {
-                $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
-                switchToSearchAfterAnswer();
-                setTimeout(function () {
-                    loadQuestion(JSON.parse(response).id, true)
-                }, 500);
-            }
-        });
-
+        submit();
     });
+
 
     getToAnswerJson();
     setInterval(getToAnswerJson, 3100);
@@ -47,6 +37,30 @@ $(function () {
     getAnsweredJson();
     setInterval(getAnsweredJson, 2900);
 });
+
+$(document).bind('pageinit', function () {
+    $('#search').keypress(function(event) {
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            submit();
+        }});
+    $('#search').val(question);
+})
+
+function submit(){
+    $.ajax({
+        type: "POST",
+        url: CONNECTION_ADDRESS+"q",
+        data: getDataToSend(),
+        success: function (response) {
+            $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
+            switchToSearchAfterAnswer();
+            setTimeout(function () {
+                loadQuestion(JSON.parse(response).id, true)
+            }, 500);
+        }
+    });
+}
 
 function getDataToSend(){
     var data={};
@@ -158,7 +172,7 @@ function clearResult() {
 function changeEndpoint(endpoint) {
     if (endpoint == null) {
         CONNECTION_ADDRESS = DEFAULT_ADDRESS;
-        $("#ask").attr("action", DEFAULT_ADDRESS + "q");
+        //$("#ask").attr("action", DEFAULT_ADDRESS + "q");
     } else {
         if (endpoint == "http://qa.ailao.eu:4000/") {
             // XXX: ugly hardcoded
@@ -167,7 +181,7 @@ function changeEndpoint(endpoint) {
             $(".mainHeaderLink").html("YodaQA Custom");
         }
         CONNECTION_ADDRESS = endpoint;
-        $("#ask").attr("action", endpoint + "q");
+        //$("#ask").attr("action", endpoint + "q");
     }
 }
 
@@ -270,6 +284,7 @@ function getQuestionJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/" + qid, function (r) {
             $('input[name="text"]').val(r.text);
+            question=r.text;
             //shows answers
             if (r.answers && gen_answers != r.gen_answers) {
                 var container = createList("#answers_area", "answers", null, false, true);
