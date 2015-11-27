@@ -281,6 +281,9 @@ function getQuestionJson() {
             }
 
             if (r.finished) {
+                if (r.answerSentence) {
+                    $("#answers_area").prepend('<div id="answersent">' + r.answerSentence + '</div>');
+                }
                 if (showFeedbackBool) {
                     showFeedback(numberOfShowedAnswers);
                 }

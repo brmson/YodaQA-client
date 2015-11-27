@@ -210,3 +210,9 @@ hr {
     color:#38c;
     font-weight:700;
 }
+
+#answersent {
+    text-align: center;
+    font-size: 24pt;
+    margin: 2ex 0;
+}
