@@ -443,6 +443,9 @@ function createPropertyLabel(a, snipet) {
     if (!(typeof (snipet.propertyLabel) === "undefined")) {
         text = highlight(a.text.replace(/"/g, "&#34;"), snipet.propertyLabel);
     }
+    if (!(typeof (snipet.witnessLabel) ==="undefined")) {
+        text += " (" + snipet.witnessLabel + ")";
+    }
     return text;
 }
 
