@@ -197,7 +197,11 @@ hr {
 }
 
 
-.conceptButtonArea > button {
+.conceptButtonArea {
+	float: right;
+}
+.conceptButtonArea > .ui-btn {
     position:absolute;
     top: -2px;
+    right: 50px;
 }

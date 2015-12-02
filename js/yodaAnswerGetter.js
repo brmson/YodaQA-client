@@ -23,10 +23,15 @@ var question;
 /* Ajax function for retrieving questions and answers */
 $(function () {
 
-    $(document).on('click', '.askMeButton', function (e) {
-        submit();
+    $("#ask").ajaxForm({
+        success: function (response) {
+            $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
+            switchToSearchAfterAnswer();
+            setTimeout(function () {
+                loadQuestion(JSON.parse(response).id, true)
+            }, 500);
+        }
     });
-
 
     getToAnswerJson();
     setInterval(getToAnswerJson, 3100);
@@ -37,52 +42,6 @@ $(function () {
     getAnsweredJson();
     setInterval(getAnsweredJson, 2900);
 });
-
-$(document).bind('pageinit', function () {
-    $('#search').keypress(function(event) {
-        var keycode = (event.keyCode ? event.keyCode : event.which);
-        if(keycode == '13'){
-            submit();
-        }});
-    $('#search').val(question);
-})
-
-function submit(){
-    $.ajax({
-        type: "POST",
-        url: CONNECTION_ADDRESS+"q",
-        data: getDataToSend(),
-        success: function (response) {
-            $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
-            switchToSearchAfterAnswer();
-            setTimeout(function () {
-                loadQuestion(JSON.parse(response).id, true)
-            }, 500);
-        }
-    });
-}
-
-function getDataToSend(){
-    var data={};
-    data.text=$("#search").val();
-    var numberOfConcepts=$("#numberOfConcepts").val();
-    var i=1;
-    for(;i<=numberOfConcepts;i++){
-        data['fullLabel' + i]=$("#fullLabel"+i).val();
-        data['pageID' + i]=$("#pageID"+i).val();
-    }
-    if (generatedConcepts!=null){
-        for(var j=0;j<generatedConcepts.length;j++){
-            if (conceptButtons[j+1]==SELECTED){
-            data['fullLabel' + i]=generatedConcepts[j].title;
-            data['pageID' + i]=generatedConcepts[j].pageId;
-            i++;
-            }
-        }
-    }
-    data.numberOfConcepts= i;
-    return data;
-}
 
 function switchToSearchAfterAnswer(){
     $('.searchButtons').empty();
@@ -172,7 +131,7 @@ function clearResult() {
 function changeEndpoint(endpoint) {
     if (endpoint == null) {
         CONNECTION_ADDRESS = DEFAULT_ADDRESS;
-        //$("#ask").attr("action", DEFAULT_ADDRESS + "q");
+        $("#ask").attr("action", DEFAULT_ADDRESS + "q");
     } else {
         if (endpoint == "http://qa.ailao.eu:4000/") {
             // XXX: ugly hardcoded
@@ -181,7 +140,7 @@ function changeEndpoint(endpoint) {
             $(".mainHeaderLink").html("YodaQA Custom");
         }
         CONNECTION_ADDRESS = endpoint;
-        //$("#ask").attr("action", endpoint + "q");
+        $("#ask").attr("action", endpoint + "q");
     }
 }
 
@@ -316,7 +275,7 @@ function getQuestionJson() {
                     showFeedback(numberOfShowedAnswers);
                 }
                 $("#spinner").hide();
-                showChooseConceptButton(r.summary.concepts.length);
+                showChooseConceptButtons(r.summary.concepts);
             } else {
                 // keep watching
                 setTimeout(getQuestionJson, 500);
@@ -352,9 +311,8 @@ function showConcept(container, concepts) {
             '   <a href="http://en.wikipedia.org/?curid=' + a.pageId + '" target="_blank">' +
             '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
             + a.title +
-            '<span style="" id="conceptButtonArea' + i + '" class="conceptButtonArea">' +
             '   </a>' +
-            '</span>' +
+            '   <span style="" id="conceptButtonArea' + i + '" class="conceptButtonArea"></span>' +
             '</li>');
         i++;
     });
