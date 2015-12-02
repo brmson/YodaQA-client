@@ -17,12 +17,8 @@ var showFeedbackBool;
 
 var numberOfShowedAnswers;
 
-var generatedConcepts;
-var question;
-
 /* Ajax function for retrieving questions and answers */
 $(function () {
-
     $("#ask").ajaxForm({
         success: function (response) {
             $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
@@ -243,7 +239,6 @@ function getQuestionJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/" + qid, function (r) {
             $('input[name="text"]').val(r.text);
-            question=r.text;
             //shows answers
             if (r.answers && gen_answers != r.gen_answers) {
                 var container = createList("#answers_area", "answers", null, false, true);
@@ -254,7 +249,6 @@ function getQuestionJson() {
             //shows concepts and summary
             if (r.summary) {
                 if (r.summary.concepts.length) {
-                    generatedConcepts=r.summary.concepts;
                     var container = createList("#concept_area", "concepts", "Concepts", true, false);
                     showConcept(container, r.summary.concepts);
                 } else {
