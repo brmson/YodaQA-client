@@ -64,7 +64,7 @@ function submit(){
 
 function getDataToSend(){
     var data={};
-    data.question=$("#search").val();
+    data.text=$("#search").val();
     var numberOfConcepts=$("#numberOfConcepts").val();
     var i=1;
     for(;i<=numberOfConcepts;i++){
