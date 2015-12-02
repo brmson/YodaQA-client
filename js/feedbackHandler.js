@@ -162,10 +162,9 @@ function sendFeedbackAndReload(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mc
     LMca + "=" + Vmca +
     feedback_endpoint['SUBMIT_REF']);
 
-    $.post(submitURL)
-        .always(function () {
+    $.post(submitURL).always(function () {
             window.location.href = createURL(null);
-        });
+    });
 }
 
 //restores feedback to default state
