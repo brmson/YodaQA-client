@@ -17,7 +17,6 @@ var showFeedbackBool;
 
 var numberOfShowedAnswers;
 
-
 /* Ajax function for retrieving questions and answers */
 $(function () {
     $("#ask").ajaxForm({
@@ -288,6 +287,7 @@ function getQuestionJson() {
                     showFeedback(numberOfShowedAnswers);
                 }
                 $("#spinner").hide();
+                showChooseConceptButtons(r.summary.concepts);
             } else {
                 // keep watching
                 setTimeout(getQuestionJson, 500);
@@ -324,6 +324,7 @@ function showConcept(container, concepts) {
             '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
             + a.title +
             '   </a>' +
+            '   <span style="" id="conceptButtonArea' + i + '" class="conceptButtonArea"></span>' +
             '</li>');
         i++;
     });

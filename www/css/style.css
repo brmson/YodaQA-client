@@ -216,3 +216,12 @@ hr {
     font-size: 24pt;
     margin: 2ex 0;
 }
+
+.conceptButtonArea {
+	float: right;
+}
+.conceptButtonArea > .ui-btn {
+    position:absolute;
+    top: -2px;
+    right: 50px;
+}
