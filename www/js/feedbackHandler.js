@@ -15,8 +15,6 @@ var correctAnswerFieldNumber = 1;
 
 var feedbackButtons;
 
-var numberOfFeedbackButtons;
-
 
 $(document).on('pageshow', '#mainPage', function (e, data) {
     if (localStorage.getItem("previousQuestionActive")=="true") {
@@ -57,7 +55,7 @@ function sendAndReload(email) {
     var ea = getCorrectAnswers();
     ea = addFeedbackFromInputFields(ea);
     if (ea[0] != "") {
-        sendFeedbackAndRemove(email, question, ea[0], ea[1], ea[2], ea[3], ea[4], ea[5], ea[6]);
+        sendFeedbackAndReload(email, question, ea[0], ea[1], ea[2], ea[3], ea[4], ea[5], ea[6]);
     } else {
         alert("Mark correct answers please.")
     }
@@ -108,7 +106,7 @@ function supports_html5_storage() {
 }
 
 //sends feedback to google form
-function sendFeedbackAndRemove(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mca) {
+function sendFeedbackAndReload(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mca) {
     var LEmail = FIELDS_IDS[0];
     var LQuestion = FIELDS_IDS[1];
     var LEa = [];
@@ -145,32 +143,18 @@ function sendFeedbackAndRemove(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mc
     LMca + "=" + Vmca +
     SUBMIT_REF);
 
-    hideFeedback(numberOfFeedbackButtons);
-
-    $.post(submitURL);
+    $.post(submitURL).always(function () {
+            window.location.href = createURL(null);
+    });
 }
 
 //restores feedback to default state
 function showFeedback(numberOfAnswers) {
-    numberOfFeedbackButtons=numberOfAnswers;
     $('#feedback_area').css('display', 'inline');
     showAnswerFeedbackButton(numberOfAnswers);
     $('#askMeButton').parent().prop('disabled', true).addClass('ui-disabled');
-
-    $('#search').parent().prop('disabled', true).addClass('ui-disabled');
+    $('#search').textinput('disable');
     $('#voice').prop('disabled', true).addClass('ui-disabled');
-
-    $('#email').parent().css("width", "82%");
-    $('#email').val(localStorage.getItem("email"));
-}
-
-function hideFeedback(numberOfAnswers){
-    $('#feedback_area').css('display', 'none');
-    destroyFeedbackButton(numberOfAnswers);
-    $('#askMeButton').parent().prop('disabled', false).removeClass('ui-disabled');
-
-    $('#search').parent().prop('disabled', false).removeClass('ui-disabled');
-    $('#voice').prop('disabled', false).removeClass('ui-disabled');
 
     $('#email').parent().css("width", "82%");
     $('#email').val(localStorage.getItem("email"));
@@ -194,12 +178,6 @@ function showAnswerFeedbackButton(numberOfAnswers) {
     feedbackButtons = [];
     for (var i = 0; i < numberOfAnswers; i++) {
         createFeedbackButton(i);
-    }
-}
-
-function destroyFeedbackButton(numberOfAnswers){
-    for(var i=0;i<numberOfAnswers;i++){
-        $("#feedbackButtonArea" + i).remove();
     }
 }
 
