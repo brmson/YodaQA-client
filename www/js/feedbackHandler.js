@@ -172,7 +172,7 @@ function showFeedback(numberOfAnswers) {
     $('#feedback_area').css('display', 'inline');
     showAnswerFeedbackButton(numberOfAnswers);
     $('#askMeButton').parent().prop('disabled', true).addClass('ui-disabled');
-    $('#search').textinput('disable');
+    $('#search').addClass('ui-disabled');
     $('#voice').prop('disabled', true).addClass('ui-disabled');
 
     $('#email').parent().css("width", "82%");
