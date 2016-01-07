@@ -3,12 +3,25 @@
  * This class shows and handles clicks on buttons of question concepts.
  */
 
+// shows all concept related elements
+function showArtificialConcepts(concepts){
+    showChooseConceptButtons(concepts);
+    showReAskSelectedButton();
+}
+
 // shows button for choosing concepts near generated concepts
 function showChooseConceptButtons(concepts) {
     for (var i = 0; i < concepts.length; i++) {
         createChooseConceptButton(concepts[i], i+1);
     }
     $('#numberOfConcepts').attr('value', concepts.length);
+}
+
+function showReAskSelectedButton(){
+        reAskSelectedConcepts=$("#reAskSelectedConcepts");
+        button=$('<input type="submit" value="Re-ask with only selected concepts" data-inline="true" style="float: right;"></H2>');
+        reAskSelectedConcepts.append(button);
+        button.button().button('refresh');
 }
 
 //creates button for showing concept

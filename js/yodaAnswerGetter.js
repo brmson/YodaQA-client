@@ -17,6 +17,8 @@ var showFeedbackBool;
 
 var numberOfShowedAnswers;
 
+var questionText;
+
 /* Ajax function for retrieving questions and answers */
 $(function () {
     $("#ask").ajaxForm({
@@ -98,6 +100,7 @@ $(document).on('pageshow', '#mainPage', function (e, data) {
     } else {
         $('#verticalCenter').css('opacity', 1.0);
     }
+    $('input[name="text"]').val(questionText);
 });
 
 /* Centers search area on page resize */
@@ -253,6 +256,7 @@ function showAnsweredQuestion(qId) {
 function getQuestionJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/" + qid, function (r) {
+            questionText=r.text;
             $('input[name="text"]').val(r.text);
             //shows answers
             if (r.answers && gen_answers != r.gen_answers) {
@@ -287,7 +291,7 @@ function getQuestionJson() {
                     showFeedback(numberOfShowedAnswers);
                 }
                 $("#spinner").hide();
-                showChooseConceptButtons(r.summary.concepts);
+                showArtificialConcepts(r.summary.concepts);
             } else {
                 // keep watching
                 setTimeout(getQuestionJson, 500);
@@ -339,7 +343,12 @@ function createList(area, containerID, title, br, collapsibleSet) {
             $(area).append('<br>');
         }
         if (title != null) {
-            $(area).append('<H2>' + title + '</H2>');
+            titleElement=$('<H2>' + title +'</H2>');
+            if (title=="Concepts"){
+                span=$('<span style="float: right;margin: -8px;" id="reAskSelectedConcepts">');
+                titleElement.append(span);
+            }
+            $(area).append(titleElement);
         }
         if (collapsibleSet) {
             container = $('<div data-role="collapsibleset" data-iconpos="right" data-inset="true" id="' + containerID + '"></div>');
