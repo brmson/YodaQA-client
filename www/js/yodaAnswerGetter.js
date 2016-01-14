@@ -25,6 +25,7 @@ $(function () {
         success: function (response) {
             $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
             switchToSearchAfterAnswer();
+            saveUserID(JSON.parse(response).userID);
             setTimeout(function () {
                 loadQuestion(JSON.parse(response).id, true)
             }, 500);
@@ -101,6 +102,10 @@ $(document).on('pageshow', '#mainPage', function (e, data) {
         $('#verticalCenter').css('opacity', 1.0);
     }
     $('input[name="text"]').val(questionText);
+    var uID=getUserID();
+    if (uID!="" && uID!="undefined"){
+        $("#userID").val(uID);
+    }
 });
 
 /* Centers search area on page resize */
@@ -255,7 +260,12 @@ function showAnsweredQuestion(qId) {
 /* Retrieve, process and display json question information. */
 function getQuestionJson() {
     if (CONNECTION_ADDRESS != null) {
-        $.get(CONNECTION_ADDRESS + "q/" + qid, function (r) {
+        var parameters="q/" + qid;
+        var uID=getUserID();
+        if (uID!="" && uID!="undefined"){
+            parameters+="/" + uID;
+        }
+        $.get(CONNECTION_ADDRESS + parameters, function (r) {
             questionText=r.text;
             $('input[name="text"]').val(r.text);
             //shows answers
@@ -591,4 +601,15 @@ function score_color(score) {
 /* Create a fancy score bar representing confidence of an answer. */
 function score_bar(score) {
     return '<hr class="scorebar" style="width:' + (score * 100) + '%; background-color:' + score_color(score) + '"> ';
+}
+
+function saveUserID(userID){
+    var cookieName="userID";
+    if (!cookieExists(cookieName)){
+        setCookie(cookieName,userID,365);
+    }
+}
+
+function getUserID(){
+    return getCookie("userID");
 }
