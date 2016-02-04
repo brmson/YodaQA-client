@@ -14,6 +14,7 @@ var gen_sources, gen_answers;  // when this number changes, re-render
 var answers;
 var endpoint;
 var showFeedbackBool;
+var numberOfCards=0;
 
 var numberOfShowedAnswers;
 
@@ -24,7 +25,7 @@ $(function () {
     $("#ask").ajaxForm({
         success: function (response) {
             $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
-            switchToSearchAfterAnswer();
+            //switchToSearchAfterAnswer();
             saveUserID(JSON.parse(response).userID);
             setTimeout(function () {
                 loadQuestion(JSON.parse(response).id, true)
@@ -168,18 +169,36 @@ function reloadAnswered() {
  *  Reload determines if (true) page will be reloaded or (false) only url will be changed without reload
  */
 function loadQuestion(q, reload) {
-    $("#answers_area").empty();
+    /*$("#answers_area").empty();
     $("#concept_area").empty();
-    $("#sources_area").empty();
+    $("#sources_area").empty();*/
     qid = q;
     gen_sources = 0;
     gen_answers = 0;
-    if (reload) {
+
+    /*if (reload) {
         window.location.href = createURL(qid);
     } else {
         window.history.pushState("object or string", "Title", createURL(qid));
-    }
+    }*/
+    addNewCard();
     getQuestionJson();
+}
+
+function addNewCard(){
+    numberOfCards++;
+    var card=createCard();
+    $("#cards").prepend(card);
+    $("#cards").collapsibleset();
+}
+
+function createCard(){
+    var card=$('<div data-role="collapsible" data-collapsed="true" id="'+numberOfCards+'"><H2>How old is Travolta?<br><i>38</i></H2></div>');
+    card.append('<div id="answers_area'+numberOfCards+'" style="position: relative;"> </div>');
+    card.append('<div id="concept_area'+numberOfCards+'"></div>');
+    card.append('<div id="answerType_area'+numberOfCards+'"></div>');
+    card.append('<div id="sources_area'+numberOfCards+'" class="responsive"></div>');
+    return card;
 }
 
 function toggleFeedback() {
@@ -270,7 +289,7 @@ function getQuestionJson() {
             $('input[name="text"]').val(r.text);
             //shows answers
             if (r.answers && gen_answers != r.gen_answers) {
-                var container = createList("#answers_area", "answers", null, false, true);
+                var container = createList("#answers_area"+numberOfCards, "answers", null, false, true);
                 showResultAnswers(container, r.answers, r.snippets, r.sources);
                 gen_answers = r.gen_answers;
             }
@@ -278,7 +297,7 @@ function getQuestionJson() {
             //shows concepts and summary
             if (r.summary) {
                 if (r.summary.concepts.length) {
-                    var container = createList("#concept_area", "concepts", "Concepts", true, false);
+                    var container = createList("#concept_area"+numberOfCards, "concepts", "Concepts", true, false);
                     showConcept(container, r.summary.concepts);
                 } else {
                     $("#concept_area").empty();
@@ -288,7 +307,7 @@ function getQuestionJson() {
 
             //shows sources
             if (!$.isEmptyObject(r.sources) && gen_sources != r.gen_sources) {
-                var container = createList("#sources_area", "questionSources", "Answer sources", true, false);
+                var container = createList("#sources_area"+numberOfCards, "questionSources", "Answer sources", true, false);
                 showSources(container, r.sources);
                 gen_sources = r.gen_sources;
             }
