@@ -7,7 +7,7 @@ function showAnswerToQuestion (r) {
     //shows answers
     if (r.answers && gen_answers != r.gen_answers) {
         var container = createList("#answers_area"+numberOfCards, "answers"+numberOfCards, null, false, true);
-        showResultAnswers(container, r.answers, r.snippets, r.sources);
+        showResultAnswers(container, r.answers, r.snippets, r.sources, r.finished);
         gen_answers = r.gen_answers;
     }
 
@@ -45,7 +45,7 @@ function showAnswerToQuestion (r) {
 }
 
 /* Create a table with answers. */
-function showResultAnswers(container, answers, snippets, sources) {
+function showResultAnswers(container, answers, snippets, sources, finished) {
     container.empty();
 
     //Special case, nothing has been founded
@@ -54,7 +54,7 @@ function showResultAnswers(container, answers, snippets, sources) {
     }
     //normal case
     else {
-        showAnswers(container, answers, snippets, sources);
+        showAnswers(container, answers, snippets, sources, finished);
     }
 }
 
@@ -62,7 +62,7 @@ function showNoAnswer(){
     $("#answers_area"+numberOfCards).html("<H1 id='noAnswersFound'>No answers found, we are sorry.</H1>");
 }
 
-function showAnswers(container, answers, snippets, sources){
+function showAnswers(container, answers, snippets, sources, showMoreAnswers){
     var i = 1;
     answers.forEach(function (a) {
         // FIXME: also deal with < > &
@@ -70,12 +70,14 @@ function showAnswers(container, answers, snippets, sources){
         if (i <= DIRECTLY_SHOWED_QUESTIONS) {
             showOneAnswer(a, i, container, snippets, sources);
         } else {
-            showAnswersInDropDown(a, i, container, snippets, sources);
+            if (showMoreAnswers){
+                showAnswersInDropDown(a, i, container, snippets, sources);}
         }
         i++;
     });
     numberOfShowedAnswers = i;
-    $("#moreAnswers"+numberOfCards).collapsibleset();
+    if (showMoreAnswers){
+        $("#moreAnswers"+numberOfCards).collapsibleset();}
     $("#answers"+numberOfCards).collapsibleset();
 
     if (!$('#spinner'+numberOfCards).length) {
