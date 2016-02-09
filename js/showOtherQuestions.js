@@ -41,3 +41,24 @@ function showQuestionList(area, listContainerID, title, list) {
     });
     $("#" + listContainerID).listview().listview("refresh");
 }
+
+/* Shows answers to selected questions and jumps to main page */
+function showAnsweredQuestion(qId) {
+    loadQuestionNoCard(qId, true);
+    $('#verticalCenter').css('margin-top', 0);
+}
+
+function loadQuestionNoCard(q, reload){
+    $("#answers_area").empty();
+    $("#concept_area").empty();
+    $("#sources_area").empty();
+    qid = q;
+    gen_sources = 0;
+    gen_answers = 0;
+    if (reload) {
+        window.location.href = createURL(qid);
+    } else {
+        window.history.pushState("object or string", "Title", createURL(qid));
+    }
+    getQuestionJson();
+}
