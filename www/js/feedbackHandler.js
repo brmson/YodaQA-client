@@ -171,12 +171,15 @@ function sendFeedbackAndReload(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mc
 function showFeedback(numberOfAnswers) {
     $('#feedback_area').css('display', 'inline');
     showAnswerFeedbackButton(numberOfAnswers);
+    $('#email').parent().css("width", "82%");
+    $('#email').val(localStorage.getItem("email"));
+}
+
+//Dissables search ability
+function disableSearch(){
     $('#askMeButton').parent().prop('disabled', true).addClass('ui-disabled');
     $('#search').addClass('ui-disabled');
     $('#voice').prop('disabled', true).addClass('ui-disabled');
-
-    $('#email').parent().css("width", "82%");
-    $('#email').val(localStorage.getItem("email"));
 }
 
 //click function on correct button
