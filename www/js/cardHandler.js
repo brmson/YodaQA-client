@@ -13,10 +13,18 @@ function addNewCard(){
 }
 
 function createCard(){
-    var card=$('<div data-role="collapsible" data-collapsed="true" id="'+numberOfCards+'"><H2>How old is Travolta?<br><i>38</i></H2></div>');
+    var card=$('<div data-role="collapsible" data-collapsed="true" id="'+numberOfCards+'"><H2><div id="cardQuestion'+numberOfCards+'"></div><br><i id="cardAnswer'+numberOfCards+'">Thinking...</i></H2></div>');
     card.append('<div id="answers_area'+numberOfCards+'" style="position: relative;"> </div>');
     card.append('<div id="concept_area'+numberOfCards+'"></div>');
     card.append('<div id="answerType_area'+numberOfCards+'"></div>');
     card.append('<div id="sources_area'+numberOfCards+'" class="responsive"></div>');
     return card;
+}
+
+function addQuestion(cardNumber, text){
+    $("#cardQuestion"+cardNumber).text(text);
+}
+
+function addAnswer(cardNumber, text){
+    $("#cardAnswer"+cardNumber).text(text);
 }
