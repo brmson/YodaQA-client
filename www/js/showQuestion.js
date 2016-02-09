@@ -6,7 +6,7 @@ function showAnswerToQuestion (r) {
     questionText=r.text;
     //shows answers
     if (r.answers && gen_answers != r.gen_answers) {
-        var container = createList("#answers_area"+numberOfCards, "answers", null, false, true);
+        var container = createList("#answers_area"+numberOfCards, "answers"+numberOfCards, null, false, true);
         showResultAnswers(container, r.answers, r.snippets, r.sources);
         gen_answers = r.gen_answers;
     }
@@ -14,29 +14,29 @@ function showAnswerToQuestion (r) {
     //shows concepts and summary
     if (r.summary) {
         if (r.summary.concepts.length) {
-            var container = createList("#concept_area"+numberOfCards, "concepts", "Concepts", true, false);
+            var container = createList("#concept_area"+numberOfCards, "concepts"+numberOfCards, "Concepts", true, false);
             showConcept(container, r.summary.concepts);
         } else {
-            $("#concept_area").empty();
+            $("#concept_area"+numberOfCards).empty();
         }
         showAnswerType(r.summary);
     }
 
     //shows sources
     if (!$.isEmptyObject(r.sources) && gen_sources != r.gen_sources) {
-        var container = createList("#sources_area"+numberOfCards, "questionSources", "Answer sources", true, false);
+        var container = createList("#sources_area"+numberOfCards, "questionSources"+numberOfCards, "Answer sources", true, false);
         showSources(container, r.sources);
         gen_sources = r.gen_sources;
     }
 
     if (r.finished) {
         if (r.answerSentence) {
-            $("#answers_area").prepend('<div id="answersent">' + r.answerSentence + '</div>');
+            $("#answers_area"+numberOfCards).prepend('<div id="answersent">' + r.answerSentence + '</div>');
         }
         if (showFeedbackBool) {
             showFeedback(numberOfShowedAnswers);
         }
-        $("#spinner").hide();
+        $("#spinner"+numberOfCards).hide();
         showArtificialConcepts(r.summary.concepts);
     } else {
         // keep watching
@@ -59,7 +59,7 @@ function showResultAnswers(container, answers, snippets, sources) {
 }
 
 function showNoAnswer(){
-    $("#answers_area").html("<H1 id='noAnswersFound'>No answers found, we are sorry.</H1>");
+    $("#answers_area"+numberOfCards).html("<H1 id='noAnswersFound'>No answers found, we are sorry.</H1>");
 }
 
 function showAnswers(container, answers, snippets, sources){
@@ -75,11 +75,11 @@ function showAnswers(container, answers, snippets, sources){
         i++;
     });
     numberOfShowedAnswers = i;
-    $("#moreAnswers").collapsibleset();
-    $("#answers").collapsibleset();
+    $("#moreAnswers"+numberOfCards).collapsibleset();
+    $("#answers"+numberOfCards).collapsibleset();
 
-    if (!$('#spinner').length) {
-        $("#answers_area").append('<img src="img/ajax-loader.gif" id="spinner" style="position: absolute;top: 50%;left:50%;transform: translate(-50%,-50%);">');
+    if (!$('#spinner'+numberOfCards).length) {
+        $("#answers_area"+numberOfCards).append('<img src="img/ajax-loader.gif" id="spinner'+numberOfCards+'" style="position: absolute;top: 50%;left:50%;transform: translate(-50%,-50%);">');
     }
 }
 
@@ -104,9 +104,9 @@ function showOneAnswer(a, i, container, snippets, sources) {
 
 /* Shows answers in drop down menu */
 function showAnswersInDropDown(a, i, container, snippets, sources) {
-    var dropDownList = $("#moreAnswers");
+    var dropDownList = $("#moreAnswers"+numberOfCards);
     if (!dropDownList.length) {
-        createDropDownList(container, "answersDropDownLI", "More answers...", "moreAnswers");
+        createDropDownList(container, "answersDropDownLI"+numberOfCards, "More answers...", "moreAnswers"+numberOfCards);
         dropDownList = $("#moreAnswers");
     }
     showOneAnswer(a, i, dropDownList, snippets, sources);
@@ -251,7 +251,7 @@ function showConcept(container, concepts) {
             '</li>');
         i++;
     });
-    $("#concepts").listview().listview("refresh");
+    $("#concepts"+numberOfCards).listview().listview("refresh");
 }
 
 /* Shows answer type */
@@ -292,7 +292,7 @@ function showSources(container, sources) {
             '</li>';
     });
     container.append(toAppend);
-    $('#questionSources').listview().listview("refresh");
+    $('#questionSources'+numberOfCards).listview().listview("refresh");
 }
 
 /* Deduplicate sources and connects origins */
