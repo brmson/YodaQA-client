@@ -4,6 +4,7 @@
 
 function showAnswerToQuestion (r) {
     questionText=r.text;
+    addQuestion(numberOfCards, questionText);
     //shows answers
     if (r.answers && gen_answers != r.gen_answers) {
         var container = createList("#answers_area"+numberOfCards, "answers"+numberOfCards, null, false, true);
@@ -30,6 +31,10 @@ function showAnswerToQuestion (r) {
     }
 
     if (r.finished) {
+        if (r.answerSentence=="" || r.answerSentence==undefined){
+            addAnswer(numberOfCards, r.answers[0].text.replace(/"/g, "&#34;"));
+        }else{
+            addAnswer(numberOfCards, r.answerSentence);}
         if (r.answerSentence) {
             $("#answers_area"+numberOfCards).prepend('<div id="answersent">' + r.answerSentence + '</div>');
         }
