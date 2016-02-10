@@ -1,47 +1,50 @@
 /**
- * Created by ermrk on 09.02.2016.
+ * Created by Petr Marek on 09.02.2016.
+ * Showing answer to question
  */
 
-function showAnswerToQuestion (r) {
-    questionText=r.text;
-    addQuestion(numberOfCards, questionText);
+function showAnswerToQuestion(r) {
+    questionText = r.text;
+    var questionID = r.id;
+    addQuestion(questionID, questionText);
     //shows answers
     if (r.answers && gen_answers != r.gen_answers) {
-        var container = createList("#answers_area"+numberOfCards, "answers"+numberOfCards, null, false, true);
-        showResultAnswers(container, r.answers, r.snippets, r.sources, r.finished);
+        var container = createList("#answers_area" + questionID, "answers" + questionID, null, false, true);
+        showResultAnswers(container, r.answers, r.snippets, r.sources, r.finished, questionID);
         gen_answers = r.gen_answers;
     }
 
     //shows concepts and summary
     if (r.summary) {
         if (r.summary.concepts.length) {
-            var container = createList("#concept_area"+numberOfCards, "concepts"+numberOfCards, "Concepts", true, false);
-            showConcept(container, r.summary.concepts);
+            var container = createList("#concept_area" + questionID, "concepts" + questionID, "Concepts", true, false);
+            showConcept(container, r.summary.concepts,questionID);
         } else {
-            $("#concept_area"+numberOfCards).empty();
+            $("#concept_area" + questionID).empty();
         }
         showAnswerType(r.summary);
     }
 
     //shows sources
     if (!$.isEmptyObject(r.sources) && gen_sources != r.gen_sources) {
-        var container = createList("#sources_area"+numberOfCards, "questionSources"+numberOfCards, "Answer sources", true, false);
-        showSources(container, r.sources);
+        var container = createList("#sources_area" + questionID, "questionSources" + questionID, "Answer sources", true, false);
+        showSources(container, r.sources,questionID);
         gen_sources = r.gen_sources;
     }
 
     if (r.finished) {
-        if (r.answerSentence=="" || r.answerSentence==undefined){
-            addAnswer(numberOfCards, r.answers[0].text.replace(/"/g, "&#34;"));
-        }else{
-            addAnswer(numberOfCards, r.answerSentence);}
+        if (r.answerSentence == "" || r.answerSentence == undefined) {
+            addAnswer(questionID, r.answers[0].text.replace(/"/g, "&#34;"));
+        } else {
+            addAnswer(questionID, r.answerSentence);
+        }
         if (r.answerSentence) {
-            $("#answers_area"+numberOfCards).prepend('<div id="answersent">' + r.answerSentence + '</div>');
+            $("#answers_area" + questionID).prepend('<div id="answersent">' + r.answerSentence + '</div>');
         }
         if (showFeedbackBool) {
             showFeedback(numberOfShowedAnswers);
         }
-        $("#spinner"+numberOfCards).hide();
+        $("#spinner" + questionID).hide();
         showArtificialConcepts(r.summary.concepts);
     } else {
         // keep watching
@@ -50,24 +53,24 @@ function showAnswerToQuestion (r) {
 }
 
 /* Create a table with answers. */
-function showResultAnswers(container, answers, snippets, sources, finished) {
+function showResultAnswers(container, answers, snippets, sources, finished, questionID) {
     container.empty();
 
     //Special case, nothing has been founded
     if (answers.length == 1 && answers[0].text == "") {
-        showNoAnswer();
+        showNoAnswer(questionID);
     }
     //normal case
     else {
-        showAnswers(container, answers, snippets, sources, finished);
+        showAnswers(container, answers, snippets, sources, finished, questionID);
     }
 }
 
-function showNoAnswer(){
-    $("#answers_area"+numberOfCards).html("<H1 id='noAnswersFound'>No answers found, we are sorry.</H1>");
+function showNoAnswer(questionID) {
+    $("#answers_area" + questionID).html("<H1 id='noAnswersFound'>No answers found, we are sorry.</H1>");
 }
 
-function showAnswers(container, answers, snippets, sources, showMoreAnswers){
+function showAnswers(container, answers, snippets, sources, showMoreAnswers, questionID) {
     var i = 1;
     answers.forEach(function (a) {
         // FIXME: also deal with < > &
@@ -75,18 +78,20 @@ function showAnswers(container, answers, snippets, sources, showMoreAnswers){
         if (i <= DIRECTLY_SHOWED_QUESTIONS) {
             showOneAnswer(a, i, container, snippets, sources);
         } else {
-            if (showMoreAnswers){
-                showAnswersInDropDown(a, i, container, snippets, sources);}
+            if (showMoreAnswers) {
+                showAnswersInDropDown(a, i, container, snippets, sources,questionID);
+            }
         }
         i++;
     });
     numberOfShowedAnswers = i;
-    if (showMoreAnswers){
-        $("#moreAnswers"+numberOfCards).collapsibleset();}
-    $("#answers"+numberOfCards).collapsibleset();
+    if (showMoreAnswers) {
+        $("#moreAnswers" + questionID).collapsibleset();
+    }
+    $("#answers" + questionID).collapsibleset();
 
-    if (!$('#spinner'+numberOfCards).length) {
-        $("#answers_area"+numberOfCards).append('<img src="img/ajax-loader.gif" id="spinner'+numberOfCards+'" style="position: absolute;top: 50%;left:50%;transform: translate(-50%,-50%);">');
+    if (!$('#spinner' + questionID).length) {
+        $("#answers_area" + questionID).append('<img src="img/ajax-loader.gif" id="spinner' + questionID + '" style="position: absolute;top: 50%;left:50%;transform: translate(-50%,-50%);">');
     }
 }
 
@@ -110,10 +115,10 @@ function showOneAnswer(a, i, container, snippets, sources) {
 }
 
 /* Shows answers in drop down menu */
-function showAnswersInDropDown(a, i, container, snippets, sources) {
-    var dropDownList = $("#moreAnswers"+numberOfCards);
+function showAnswersInDropDown(a, i, container, snippets, sources, questionID) {
+    var dropDownList = $("#moreAnswers" + questionID);
     if (!dropDownList.length) {
-        createDropDownList(container, "answersDropDownLI"+numberOfCards, "More answers...", "moreAnswers"+numberOfCards);
+        createDropDownList(container, "answersDropDownLI" + questionID, "More answers...", "moreAnswers" + questionID);
         dropDownList = $("#moreAnswers");
     }
     showOneAnswer(a, i, dropDownList, snippets, sources);
@@ -177,7 +182,7 @@ function createPropertyLabel(a, snipet) {
     if (!(typeof (snipet.propertyLabel) === "undefined")) {
         text = highlight(a.text.replace(/"/g, "&#34;"), snipet.propertyLabel);
     }
-    if (!(typeof (snipet.witnessLabel) ==="undefined")) {
+    if (!(typeof (snipet.witnessLabel) === "undefined")) {
         text += " (" + snipet.witnessLabel + ")";
     }
     return text;
@@ -244,7 +249,7 @@ function createButtonImage(source) {
 }
 
 /* Shows concepts on main page */
-function showConcept(container, concepts) {
+function showConcept(container, concepts, questionID) {
     container.empty();
     var i = 1;
     concepts.forEach(function (a) {
@@ -258,7 +263,7 @@ function showConcept(container, concepts) {
             '</li>');
         i++;
     });
-    $("#concepts"+numberOfCards).listview().listview("refresh");
+    $("#concepts" + questionID).listview().listview("refresh");
 }
 
 /* Shows answer type */
@@ -273,7 +278,7 @@ function showAnswerType(summary) {
 }
 
 /* Create a box with answer sources. */
-function showSources(container, sources) {
+function showSources(container, sources, questionID) {
     container.empty();
     var map = [];
     var indexes = [];
@@ -299,7 +304,7 @@ function showSources(container, sources) {
             '</li>';
     });
     container.append(toAppend);
-    $('#questionSources'+numberOfCards).listview().listview("refresh");
+    $('#questionSources' + questionID).listview().listview("refresh");
 }
 
 /* Deduplicate sources and connects origins */

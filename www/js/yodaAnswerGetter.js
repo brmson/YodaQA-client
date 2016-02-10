@@ -166,11 +166,11 @@ function reloadAnswered() {
 /* Gets question information and shows it
  *  Reload determines if (true) page will be reloaded or (false) only url will be changed without reload
  */
-function loadQuestion(q, reload) {
+function loadQuestion(q) {
     qid = q;
     gen_sources = 0;
     gen_answers = 0;
-    addNewCard();
+    addNewCard(q);
     getQuestionJson();
 }
 
