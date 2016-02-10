@@ -76,7 +76,7 @@ function showAnswers(container, answers, snippets, sources, showMoreAnswers, que
         // FIXME: also deal with < > &
         //text = a.text.replace(/"/g, "&#34;");
         if (i <= DIRECTLY_SHOWED_QUESTIONS) {
-            showOneAnswer(a, i, container, snippets, sources);
+            showOneAnswer(a, i, container, snippets, sources,questionID);
         } else {
             if (showMoreAnswers) {
                 showAnswersInDropDown(a, i, container, snippets, sources,questionID);
@@ -96,13 +96,13 @@ function showAnswers(container, answers, snippets, sources, showMoreAnswers, que
 }
 
 /* Shows best answers directly */
-function showOneAnswer(a, i, container, snippets, sources) {
+function showOneAnswer(a, i, container, snippets, sources,questionID) {
     text = a.text.replace(/"/g, "&#34;");
     var toAppend = $('' +
         '<div data-role="collapsible" class="answer" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" style="position:relative;">' +
         '<H2>' +
         '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">' + (a.confidence * 100).toFixed(1) + '%' + '</span>' +
-        '<span style="" id="feedbackButtonArea' + i + '" class="feedbackButton">' +
+        '<span style="" id="feedbackButtonArea' + i + '_'+questionID+'" class="feedbackButton">' +
         '</span>' +
         '<span id="answerText' + i + '">' +
         text +
@@ -121,7 +121,7 @@ function showAnswersInDropDown(a, i, container, snippets, sources, questionID) {
         createDropDownList(container, "answersDropDownLI" + questionID, "More answers...", "moreAnswers" + questionID);
         dropDownList = $("#moreAnswers");
     }
-    showOneAnswer(a, i, dropDownList, snippets, sources);
+    showOneAnswer(a, i, dropDownList, snippets, sources,questionID);
 }
 
 /* Creates base for drop down menu */
