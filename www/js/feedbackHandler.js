@@ -8,14 +8,14 @@ var feedback_endpoints = {
         'FIELDS_IDS': ["entry.557679011", "entry.668964305", "entry.315539511", "entry.807998585", "entry.1331990072",
             "entry.540581579", "entry.799866241", "entry.1492550795", "entry.1983407746"],
         'SUBMIT_REF': '&submit=Submit',
-	'FORM_URL': 'https://docs.google.com/spreadsheets/d/1FELqTPH6EUws5l_qR14igg1aomsKJ8V7iQEKJ5VEefM/edit?usp=sharing'
+        'FORM_URL': 'https://docs.google.com/spreadsheets/d/1FELqTPH6EUws5l_qR14igg1aomsKJ8V7iQEKJ5VEefM/edit?usp=sharing'
     },
     'live': {
         'BASE_URL': 'https://docs.google.com/forms/d/1_BYRxEZlej9gDgkUsXFw_IcdYvytSYyT1KZTHVi7kQ4/formResponse?',
         'FIELDS_IDS': ["entry.2044281262", "entry.13984642", "entry.728405979", "entry.1756526559", "entry.1872170637",
             "entry.1059431403", "entry.1228282374", "entry.17475393", "entry.2052512670"],
         'SUBMIT_REF': '&submit=Submit',
-	'FORM_URL': 'https://docs.google.com/spreadsheets/d/16ynWvmgh3S5byEzgizDp53K9pN7jLoORgauFnHpnzMk/edit'
+        'FORM_URL': 'https://docs.google.com/spreadsheets/d/16ynWvmgh3S5byEzgizDp53K9pN7jLoORgauFnHpnzMk/edit'
     }
 };
 
@@ -23,9 +23,9 @@ var CORRECT_A = true;
 var INCORRECT_A = false;
 
 
-var correctAnswerFieldNumber = 1;
+var correctAnswerFieldNumber = new Object();
 
-var feedbackButtons;
+var feedbackButtons=[];
 
 
 var feedback_endpoint = feedback_endpoints['live'];
@@ -35,16 +35,17 @@ function setFeedbackEndpoint(name) {
 
 
 $(document).on('pageshow', '#mainPage', function (e, data) {
-    if (localStorage.getItem("previousQuestionActive")=="true") {
+    if (localStorage.getItem("previousQuestionActive") == "true") {
         $('#search').val(localStorage.getItem("previousQuestion"));
         $('#search').focus();
-        localStorage.setItem("previousQuestionActive","false");
+        localStorage.setItem("previousQuestionActive", "false");
     }
 });
 
 //click on submit button
-$(document).on('click', '#form-submit', function () {
-    var email = $('#email').val();
+$(document).on('click', '.form-submit', function () {
+    var questionId = event.target.id;
+    var email = $('#email' + questionId).val();
     var previousQuestion = $('#search').val();
     if (supports_html5_storage()) {
         localStorage.setItem("email", email);
@@ -57,14 +58,15 @@ $(document).on('click', '#form-submit', function () {
 });
 
 //click on more correct button
-$(document).on('click', '#moreCorrectAnswers', function () {
-    var toAppend = $('<label for="ea' + (correctAnswerFieldNumber + 1) + '" id="eaLabel' + (correctAnswerFieldNumber + 1) + '">Correct answer:</label><input id="ea' +
-        (correctAnswerFieldNumber + 1) + '" placeholder="Correct answer" name="ea' + (correctAnswerFieldNumber + 1) + '">');
-    $("#ea" + correctAnswerFieldNumber).parent().after(toAppend);
-    $('#ea' + (correctAnswerFieldNumber + 1)).textinput();
-    $("#moreCorrectAnswerContainer").css("position", "relative");
-    $("#moreCorrectAnswerContainer").css("top", 37 * correctAnswerFieldNumber);
-    correctAnswerFieldNumber++;
+$(document).on('click', '.moreCorrectAnswers', function () {
+    var questionID = event.target.id;
+    var toAppend = $('<label for="ea' + (correctAnswerFieldNumber[questionID] + 1) + '_' + questionID + '" id="eaLabel' + (correctAnswerFieldNumber[questionID] + 1) + '">Correct answer:</label><input id="ea' +
+        (correctAnswerFieldNumber[questionID] + 1) + '_' + questionID + '" placeholder="Correct answer" name="ea' + (correctAnswerFieldNumber[questionID] + 1) + '">');
+    $("#ea" + correctAnswerFieldNumber[questionID] + "_" + questionID).parent().after(toAppend);
+    $('#ea' + (correctAnswerFieldNumber[questionID] + 1) + "_" + questionID).textinput();
+    $("#moreCorrectAnswerContainer" + questionID).css("position", "relative");
+    $("#moreCorrectAnswerContainer" + questionID).css("top", 37 * correctAnswerFieldNumber[questionID]);
+    correctAnswerFieldNumber[questionID] = correctAnswerFieldNumber[questionID] + 1;
 });
 
 //send if answer was correct
@@ -162,83 +164,84 @@ function sendFeedbackAndReload(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mc
     LMca + "=" + Vmca +
     feedback_endpoint['SUBMIT_REF']);
 
-    Consle.log(submitURL);
+    console.log(submitURL);
     /*$.post(submitURL).always(function () {
-            window.location.href = createURL(null);
-    });*/
+     window.location.href = createURL(null);
+     });*/
 }
 
 //restores feedback to default state
 function showFeedback(numberOfAnswers, questionID) {
-    $('#feedback_area'+questionID).append(createFeedbackForm()).trigger("create");
-    showAnswerFeedbackButton(numberOfAnswers);
+    correctAnswerFieldNumber[questionID] = 1;
+    $('#feedback_area' + questionID).append(createFeedbackForm(questionID)).trigger("create");
+    showAnswerFeedbackButton(numberOfAnswers, questionID);
     $('#email').parent().css("width", "82%");
     $('#email').val(localStorage.getItem("email"));
 }
 
-function createFeedbackForm(){
+function createFeedbackForm(questionID) {
     return $(
-    '<div class="ui-grid-a" style="margin-bottom: -20px;">'+
-    '    <div class="ui-block-a" style="width:79%">'+
-    '       <div class="ui-field-contain" id="correctAnswersField">'+
-    '           <label for="ea1">Correct answer:</label>'+
-    '           <input id="ea1" placeholder="Correct answer" name="ea1">'+
-    '       </div>'+
-    '    </div>'+
-    '    <div class="ui-block-b" style="width:21%" id="moreCorrectAnswerContainer">'+
-    '       <input type="button" value="Add missing answer" name="moreCorrectAnswers" id="moreCorrectAnswers" data-inline="true">'+
-    '    </div>'+
-    '</div>'+
-    '<div class="ui-field-contain" style="border-bottom-style: none;">'+
-    '    <label for="email" style="width:15.3%">Email (optional):</label>'+
-    '    <input id="email" placeholder="Email (optional)" name="email">'+
-    '</div>'+
-    '<div id="feedbackSubmit" style="margin-top: -3px;width: 99.3%;">'+
-    '    <button id="form-submit" type="submit" data-icon="check" data-theme="d">Next question</button>'+
-    '</div>');
+        '<div class="ui-grid-a" style="margin-bottom: -20px;">' +
+        '    <div class="ui-block-a" style="width:79%">' +
+        '       <div class="ui-field-contain" id="correctAnswersField">' +
+        '           <label for="ea1_' + questionID + '">Correct answer:</label>' +
+        '           <input id="ea1_' + questionID + '" placeholder="Correct answer" name="ea1">' +
+        '       </div>' +
+        '    </div>' +
+        '    <div class="ui-block-b" style="width:21%" id="moreCorrectAnswerContainer' + questionID + '">' +
+        '       <input type="button" value="Add missing answer" name="moreCorrectAnswers" class="moreCorrectAnswers" id="' + questionID + '" data-inline="true">' +
+        '    </div>' +
+        '</div>' +
+        '<div class="ui-field-contain" style="border-bottom-style: none;">' +
+        '    <label for="email" style="width:15.3%">Email (optional):</label>' +
+        '    <input id="email' + questionID + '" placeholder="Email (optional)" name="email">' +
+        '</div>' +
+        '<div id="' + questionID + '" style="margin-top: -3px;width: 99.3%;">' +
+        '    <input id="form-submit" class="form-submit" type="button" data-icon="check" data-theme="d" value="Send feedback">' +
+        '</div>');
 }
 
 //Dissables search ability
-function disableSearch(){
+function disableSearch() {
     $('#askMeButton').parent().prop('disabled', true).addClass('ui-disabled');
     $('#search').addClass('ui-disabled');
     $('#voice').prop('disabled', true).addClass('ui-disabled');
 }
 
 //click function on correct button
-function clickActionCorrect(i) {
-    if (feedbackButtons[i] == INCORRECT_A) {
-        feedbackButtons[i] = CORRECT_A;
-        $('#feedbackButtonCorrect' + i).addClass("ui-icon-myapp-checked");
-        $("#feedbackButtonCorrect" + i).removeClass('ui-icon-myapp-unchecked');
+function clickActionCorrect(i, questionID) {
+    if (feedbackButtons[questionID][i] == INCORRECT_A) {
+        feedbackButtons[questionID][i] = CORRECT_A;
+        $('#feedbackButtonCorrect' + i + '_' + questionID).addClass("ui-icon-myapp-checked");
+        $("#feedbackButtonCorrect" + i + '_' + questionID).removeClass('ui-icon-myapp-unchecked');
     } else {
-        feedbackButtons[i] = INCORRECT_A;
-        $('#feedbackButtonCorrect' + i).addClass("ui-icon-myapp-unchecked");
-        $("#feedbackButtonCorrect" + i).removeClass('ui-icon-myapp-checked');
+        feedbackButtons[questionID][i] = INCORRECT_A;
+        $('#feedbackButtonCorrect' + i + '_' + questionID).addClass("ui-icon-myapp-unchecked");
+        $("#feedbackButtonCorrect" + i + '_' + questionID).removeClass('ui-icon-myapp-checked');
     }
 }
 
 // shows feedback buttons near answer
-function showAnswerFeedbackButton(numberOfAnswers) {
-    feedbackButtons = [];
+function showAnswerFeedbackButton(numberOfAnswers, questionID) {
+    feedbackButtons[questionID] = [];
     for (var i = 0; i < numberOfAnswers; i++) {
-        createFeedbackButton(i);
+        createFeedbackButton(i, questionID);
     }
 }
 
 //creates feedback buttons
-function createFeedbackButton(i) {
-    feedbackButtons[i] = INCORRECT_A;
+function createFeedbackButton(i, questionID) {
+    feedbackButtons[questionID][i] = INCORRECT_A;
 
-    var feedbackButtonCorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-myapp-unchecked ui-btn-icon-left ui-btn-inline ui-nodisc-icon" id="feedbackButtonCorrect' + i + '">Correct</button>';
-    $("#feedbackButtonArea" + i).append(feedbackButtonCorrect);
-    $('#feedbackButtonCorrect' + i).on('click', function (e) {
-        clickActionCorrect(i);
+    var feedbackButtonCorrect = '<button class="ui-btn ui-mini ui-corner-all ui-icon-myapp-unchecked ui-btn-icon-left ui-btn-inline ui-nodisc-icon" id="feedbackButtonCorrect' + i + '_' + questionID + '">Correct</button>';
+    $("#feedbackButtonArea" + i + "_" + questionID).append(feedbackButtonCorrect);
+    $('#feedbackButtonCorrect' + i + '_' + questionID).on('click', function (e) {
+        clickActionCorrect(i, questionID);
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
     });
-    $("#feedbackButtonArea" + i).parent().css("overflow","visible");
+    $("#feedbackButtonArea" + i + '_' + questionID).parent().css("overflow", "visible");
 }
 
 
