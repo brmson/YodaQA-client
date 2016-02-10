@@ -42,7 +42,7 @@ function showAnswerToQuestion(r) {
             $("#answers_area" + questionID).prepend('<div id="answersent">' + r.answerSentence + '</div>');
         }
         if (showFeedbackBool) {
-            showFeedback(numberOfShowedAnswers);
+            showFeedback(numberOfShowedAnswers,questionID);
         }
         $("#spinner" + questionID).hide();
         showArtificialConcepts(r.summary.concepts);
