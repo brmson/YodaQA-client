@@ -162,17 +162,40 @@ function sendFeedbackAndReload(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mc
     LMca + "=" + Vmca +
     feedback_endpoint['SUBMIT_REF']);
 
-    $.post(submitURL).always(function () {
+    Consle.log(submitURL);
+    /*$.post(submitURL).always(function () {
             window.location.href = createURL(null);
-    });
+    });*/
 }
 
 //restores feedback to default state
-function showFeedback(numberOfAnswers) {
-    $('#feedback_area').css('display', 'inline');
+function showFeedback(numberOfAnswers, questionID) {
+    $('#feedback_area'+questionID).append(createFeedbackForm()).trigger("create");
     showAnswerFeedbackButton(numberOfAnswers);
     $('#email').parent().css("width", "82%");
     $('#email').val(localStorage.getItem("email"));
+}
+
+function createFeedbackForm(){
+    return $(
+    '<div class="ui-grid-a" style="margin-bottom: -20px;">'+
+    '    <div class="ui-block-a" style="width:79%">'+
+    '       <div class="ui-field-contain" id="correctAnswersField">'+
+    '           <label for="ea1">Correct answer:</label>'+
+    '           <input id="ea1" placeholder="Correct answer" name="ea1">'+
+    '       </div>'+
+    '    </div>'+
+    '    <div class="ui-block-b" style="width:21%" id="moreCorrectAnswerContainer">'+
+    '       <input type="button" value="Add missing answer" name="moreCorrectAnswers" id="moreCorrectAnswers" data-inline="true">'+
+    '    </div>'+
+    '</div>'+
+    '<div class="ui-field-contain" style="border-bottom-style: none;">'+
+    '    <label for="email" style="width:15.3%">Email (optional):</label>'+
+    '    <input id="email" placeholder="Email (optional)" name="email">'+
+    '</div>'+
+    '<div id="feedbackSubmit" style="margin-top: -3px;width: 99.3%;">'+
+    '    <button id="form-submit" type="submit" data-icon="check" data-theme="d">Next question</button>'+
+    '</div>');
 }
 
 //Dissables search ability
