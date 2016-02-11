@@ -54,7 +54,7 @@ $(document).on('click', '.form-submit', function () {
         localStorage.setItem("previousQuestion", previousQuestion);
         localStorage.setItem("previousQuestionActive", "true");
     }
-    sendAndReload(email);
+    sendAndReload(email,questionId);
 });
 
 //click on more correct button
@@ -70,25 +70,26 @@ $(document).on('click', '.moreCorrectAnswers', function () {
 });
 
 //send if answer was correct
-function sendAndReload(email) {
-    var question = $('#search').val();
-    var ea = getCorrectAnswers();
-    ea = addFeedbackFromInputFields(ea);
+function sendAndReload(email,questionID) {
+    var question = $('#cardQuestion'+questionID).text();
+    var ea = getCorrectAnswers(questionID);
+    ea = addFeedbackFromInputFields(ea,questionID);
     if (ea[0] != "") {
         sendFeedbackAndReload(email, question, ea[0], ea[1], ea[2], ea[3], ea[4], ea[5], ea[6]);
+        hideFeedback(questionID);
     } else {
         alert("Mark correct answers please.")
     }
 }
 
-function addFeedbackFromInputFields(ea) {
+function addFeedbackFromInputFields(ea,questionID) {
     var inputFieldPosition = 1;
     for (var i = 0; i < ea.length; i++) {
         if (ea[i] == null || ea[i] == "") {
             for (inputFieldPosition; ; inputFieldPosition++) {
-                if ($("#ea" + inputFieldPosition).length) {
-                    if ($("#ea" + inputFieldPosition).val() != "") {
-                        ea[i] = $("#ea" + inputFieldPosition).val();
+                if ($("#ea" + inputFieldPosition+"_"+questionID).length) {
+                    if ($("#ea" + inputFieldPosition+"_"+questionID).val() != "") {
+                        ea[i] = $("#ea" + inputFieldPosition+"_"+questionID).val();
                         inputFieldPosition++;
                         break;
                     } else {
@@ -100,9 +101,9 @@ function addFeedbackFromInputFields(ea) {
         }
         if (i == 6 && ea[i] != "") {
             for (inputFieldPosition; ; inputFieldPosition++) {
-                if ($("#ea" + inputFieldPosition).length) {
-                    if ($("#ea" + inputFieldPosition).val() != "") {
-                        ea[i] += "|" + $("#ea" + inputFieldPosition).val();
+                if ($("#ea" + inputFieldPosition+"_"+questionID).length) {
+                    if ($("#ea" + inputFieldPosition+"_"+questionID).val() != "") {
+                        ea[i] += "|" + $("#ea" + inputFieldPosition+"_"+questionID).val();
                     } else {
                         continue;
                     }
@@ -164,10 +165,9 @@ function sendFeedbackAndReload(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mc
     LMca + "=" + Vmca +
     feedback_endpoint['SUBMIT_REF']);
 
-    console.log(submitURL);
-    /*$.post(submitURL).always(function () {
+    $.post(submitURL).always(function () {
      window.location.href = createURL(null);
-     });*/
+     });
 }
 
 //restores feedback to default state
@@ -175,8 +175,17 @@ function showFeedback(numberOfAnswers, questionID) {
     correctAnswerFieldNumber[questionID] = 1;
     $('#feedback_area' + questionID).append(createFeedbackForm(questionID)).trigger("create");
     showAnswerFeedbackButton(numberOfAnswers, questionID);
-    $('#email').parent().css("width", "82%");
-    $('#email').val(localStorage.getItem("email"));
+    $('#email'+questionID).parent().css("width", "82%");
+    $('#email'+questionID).val(localStorage.getItem("email"));
+}
+
+function hideFeedback(questionID){
+    $('#feedback_area' + questionID).empty();
+    var thank=$('<H1 style="text-align: center;">Thank you!</H1>')
+    $('#feedback_area' + questionID).append(thank);
+    for(var i=1;i<=feedbackButtons[questionID].length;i++){
+        $('#feedbackButtonArea'+i+'_'+questionID).empty();
+    }
 }
 
 function createFeedbackForm(questionID) {
@@ -197,7 +206,7 @@ function createFeedbackForm(questionID) {
         '    <input id="email' + questionID + '" placeholder="Email (optional)" name="email">' +
         '</div>' +
         '<div id="' + questionID + '" style="margin-top: -3px;width: 99.3%;">' +
-        '    <input id="form-submit" class="form-submit" type="button" data-icon="check" data-theme="d" value="Send feedback">' +
+        '    <input id="' + questionID + '" class="form-submit" type="button" data-icon="check" data-theme="d" value="Send feedback">' +
         '</div>');
 }
 
@@ -246,19 +255,19 @@ function createFeedbackButton(i, questionID) {
 
 
 //returns array of correct answers
-function getCorrectAnswers() {
+function getCorrectAnswers(questionID) {
     var corrects = [];
     var position = 0;
-    for (var i = 0; i < feedbackButtons.length; i++) {
-        if (feedbackButtons[i] == true) {
+    for (var i = 0; i < feedbackButtons[questionID].length; i++) {
+        if (feedbackButtons[questionID][i] == true) {
             if (position < 6) {
-                corrects[position] = getAnswer(i);
+                corrects[position] = getAnswer(i,questionID);
                 position++;
             } else {
                 if (corrects[position] == null) {
-                    corrects[position] = getAnswer(i);
+                    corrects[position] = getAnswer(i,questionID);
                 } else {
-                    corrects[position] += "|" + getAnswer(i);
+                    corrects[position] += "|" + getAnswer(i,questionID);
                 }
             }
         }
@@ -272,6 +281,6 @@ function getCorrectAnswers() {
 }
 
 //gets text of answer on i position
-function getAnswer(i) {
-    return $('#answerText' + i).text();
+function getAnswer(i,questionID) {
+    return $('#answerText' + i+'_'+questionID).text();
 }
