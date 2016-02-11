@@ -55,9 +55,10 @@ function showAnswerToQuestion(r) {
 /* Create a table with answers. */
 function showResultAnswers(container, answers, snippets, sources, finished, questionID) {
     container.empty();
+    $("#noAnswersFound"+questionID).empty();
 
     //Special case, nothing has been founded
-    if (answers.length == 1 && answers[0].text == "") {
+    if (answers.length == 1 && answers[0].text == "" && finished==true) {
         showNoAnswer(questionID);
     }
     //normal case
@@ -67,7 +68,7 @@ function showResultAnswers(container, answers, snippets, sources, finished, ques
 }
 
 function showNoAnswer(questionID) {
-    $("#answers_area" + questionID).html("<H1 id='noAnswersFound'>No answers found, we are sorry.</H1>");
+    $("#answers_area" + questionID).html("<H1 id='noAnswersFound"+questionID+"'>No answers found, we are sorry.</H1>");
 }
 
 function showAnswers(container, answers, snippets, sources, showMoreAnswers, questionID) {
