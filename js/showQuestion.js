@@ -105,7 +105,7 @@ function showOneAnswer(a, i, container, snippets, sources,questionID) {
         '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">' + (a.confidence * 100).toFixed(1) + '%' + '</span>' +
         '<span style="" id="feedbackButtonArea' + i + '_'+questionID+'" class="feedbackButton">' +
         '</span>' +
-        '<span id="answerText' + i + '">' +
+        '<span id="answerText' + i + '_'+questionID+'">' +
         text +
         '</span>' +
         score_bar(a.confidence) +
