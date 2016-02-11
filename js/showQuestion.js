@@ -46,6 +46,7 @@ function showAnswerToQuestion(r) {
         }
         $("#spinner" + questionID).hide();
         showArtificialConcepts(r.summary.concepts);
+        qidQueue.shift();
     } else {
         // keep watching
         setTimeout(getQuestionJson, 500);

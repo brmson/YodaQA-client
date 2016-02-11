@@ -9,7 +9,8 @@ var DIRECTLY_SHOWED_QUESTIONS = 3; // Number of questions above drop down menu
 var showFeedbackDefault = true;
 
 
-var qid;  // id of the last posed question
+var qidQueue = []; // queue of posed questions
+var isShowingAnswer=false;
 var gen_sources, gen_answers;  // when this number changes, re-render
 var answers;
 var endpoint;
@@ -62,7 +63,6 @@ function hashchanged() {
         showFeedbackBool = showFeedback.toLowerCase() === 'true';
     else
         showFeedbackBool = showFeedbackDefault;
-
     var qID = getParameterByName("qID", window.location.href);
     // If qID is present and we are on main page, show answer
     var arr = window.location.href.split('#');
@@ -80,7 +80,7 @@ function hashchanged() {
             $('#verticalCenter').css('margin-top', ($(window).height()/2  - ($('#verticalCenter').outerHeight())/1.5));
         }
         clearResult();
-        qid = null;
+        qidQueue=[];
     }
 }
 
@@ -95,7 +95,7 @@ function switchToSearchAfterAnswer(){
 
 /* Centers search area if there is no answers */
 $(document).on('pageshow', '#mainPage', function (e, data) {
-    if (qid == null) {
+    if (!isShowingAnswer) {
         $('#verticalCenter').animate({opacity: '1.0'}, 100);
         $('#verticalCenter').css('margin-top', ($(window).height()/2- ($('#verticalCenter').outerHeight())/1.5));
     } else {
@@ -110,7 +110,7 @@ $(document).on('pageshow', '#mainPage', function (e, data) {
 
 /* Centers search area on page resize */
 $(window).resize(function () {
-    if (qid == null) {
+    if (!isShowingAnswer) {
         $('#verticalCenter').css('margin-top', ($(window).height()/2 - ($('#verticalCenter').outerHeight())/1.5) );
     }
 });
@@ -167,10 +167,12 @@ function reloadAnswered() {
  *  Reload determines if (true) page will be reloaded or (false) only url will be changed without reload
  */
 function loadQuestion(q) {
-    qid = q;
+    isShowingAnswer=true;
+    qidQueue.push(q);
     gen_sources = 0;
     gen_answers = 0;
     addNewCard(q);
+    addQuestion(q, $('input[name="text"]').val());
     getQuestionJson();
 }
 
@@ -207,7 +209,7 @@ function createURL(qid) {
 /* Retrieve, process and display json question information. */
 function getQuestionJson() {
     if (CONNECTION_ADDRESS != null) {
-        var parameters="q/" + qid;
+        var parameters="q/" + qidQueue[0];
         var uID=getUserID();
         if (uID!="" && uID!="undefined"){
             parameters+="/" + uID;
