@@ -48,7 +48,8 @@
 
 				<div id="verticalCenter">
 					<H1 class="mainHeader mainHeaderLone"><a onclick="gotoMainPage();" class="mainHeaderLink">YodaQA Live</a></H1>
-						<div class="ui-grid-b" style="margin-bottom: -10px;">
+					<div data-role="collapsibleset" data-iconpos="right" data-inset="true" id="cards"></div>
+					<div class="ui-grid-b" style="margin-bottom: -10px;">
 							<div class="ui-block-a" style="width:93%" id="searchBlock">
 								<input type="search" name="text" id="search" placeholder="Who wrote Ender's Game?"
 								       required>
@@ -64,8 +65,6 @@
 							<input type="submit" value="Ask me!" class="askMeButton" data-mini="true" data-inline="true">
 							<a href="#asked-questions" class="ui-btn ui-btn-inline ui-corner-all ui-mini ui-shadow">Past questions</a>
 						</div>
-
-					<div data-role="collapsibleset" data-iconpos="right" data-inset="true" id="cards"></div>
 
 					<p id="blurb">We search <a href="http://en.wikipedia.org/">Wiki</a><a href="http://dbpedia.org/">pedia</a>, <a href="http://freebase.com/">Freebase</a> and <a href="http://bing.com/">the web</a> to give you the best answer.<br><em>Technology preview.</em></p>
 				</div>
