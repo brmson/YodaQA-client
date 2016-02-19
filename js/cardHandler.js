@@ -5,7 +5,7 @@
 
 function addNewCard(questionId){
     var card=createCard(questionId);
-    $("#cards").prepend(card);
+    $("#cards").append(card);
     $("#cards").collapsibleset();
 }
 
