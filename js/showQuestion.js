@@ -22,7 +22,7 @@ function showAnswerToQuestion(r) {
         } else {
             $("#concept_area" + questionID).empty();
         }
-        showAnswerType(r.summary);
+        showAnswerType(r.summary,questionID);
     }
 
     //shows sources
@@ -269,8 +269,8 @@ function showConcept(container, concepts, questionID) {
 }
 
 /* Shows answer type */
-function showAnswerType(summary) {
-    var container = $("#answerType_area");
+function showAnswerType(summary, questionID) {
+    var container = $("#answerType_area"+questionID);
     container.empty();
     if (summary.lats.length) {
         container.append('<br>');
