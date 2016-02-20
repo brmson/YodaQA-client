@@ -3,18 +3,20 @@
  * This class shows and handles clicks on buttons of question concepts.
  */
 
+var numberOfArtificialConcepts=0;
+
 // shows all concept related elements
 function showArtificialConcepts(concepts){
     showChooseConceptButtons(concepts);
-    showReAskSelectedButton();
 }
 
 // shows button for choosing concepts near generated concepts
 function showChooseConceptButtons(concepts) {
-    for (var i = 0; i < concepts.length; i++) {
-        createChooseConceptButton(concepts[i], i+1);
+    var beginningNumberOfArtificialConceps=numberOfArtificialConcepts;
+    for (; numberOfArtificialConcepts < concepts.length+beginningNumberOfArtificialConceps; numberOfArtificialConcepts++) {
+        createChooseConceptButton(concepts[numberOfArtificialConcepts-beginningNumberOfArtificialConceps], numberOfArtificialConcepts+1);
     }
-    $('#numberOfConcepts').attr('value', concepts.length);
+    $('#numberOfConcepts').attr('value', numberOfArtificialConcepts);
 }
 
 function showReAskSelectedButton(){

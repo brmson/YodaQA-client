@@ -253,7 +253,7 @@ function createButtonImage(source) {
 /* Shows concepts on main page */
 function showConcept(container, concepts, questionID) {
     container.empty();
-    var i = 1;
+    var i = numberOfArtificialConcepts+1;
     concepts.forEach(function (a) {
         container.append('' +
             '<li>' +
@@ -261,7 +261,7 @@ function showConcept(container, concepts, questionID) {
             '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
             + a.title +
             '   </a>' +
-            '   <span style="" id="conceptButtonArea' + i + '" class="conceptButtonArea"></span>' +
+            '   <span style="" id="conceptButtonArea' + i+'" class="conceptButtonArea"></span>' +
             '</li>');
         i++;
     });
