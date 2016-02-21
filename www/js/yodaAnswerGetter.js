@@ -275,7 +275,7 @@ function getQuestionJson() {
                 gen_answers = r.gen_answers;
             }
 	    if (!$('#spinner').length) {
-		    $("#answers_area").append('<img src="img/ajax-loader.gif" id="spinner" style="position: absolute;top: 50%;left:50%;transform: translate(-50%,-50%);">');
+		    $("#answers_area").append('<img src="img/ajax-loader.gif" id="spinner" style="position: absolute;top: 50%;left:50%;transform: translate(-50%,-50%); z-index: 1">');
 	    }
 
             //shows concepts and summary
