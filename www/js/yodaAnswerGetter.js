@@ -271,7 +271,7 @@ function getQuestionJson() {
             //shows answers
             if (r.answers && gen_answers != r.gen_answers) {
                 var container = createList("#answers_area", "answers", null, false, true);
-                showResultAnswers(container, r.answers, r.snippets, r.sources);
+                showResultAnswers(container, r.answers, r.snippets, r.sources, r.finished);
                 gen_answers = r.gen_answers;
             }
 	    if (!$('#spinner').length) {
@@ -374,11 +374,11 @@ function createList(area, containerID, title, br, collapsibleSet) {
 }
 
 /* Create a table with answers. */
-function showResultAnswers(container, answers, snippets, sources) {
+function showResultAnswers(container, answers, snippets, sources, isFinished) {
     container.empty();
 
     //Special case, nothing has been founded
-    if (answers.length == 1 && answers[0].text == "") {
+    if (answers.length == 1 && answers[0].text == "" && isFinished) {
         showNoAnswer();
     }
     //normal case
