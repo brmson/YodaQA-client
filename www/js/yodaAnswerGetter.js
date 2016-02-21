@@ -274,6 +274,9 @@ function getQuestionJson() {
                 showResultAnswers(container, r.answers, r.snippets, r.sources);
                 gen_answers = r.gen_answers;
             }
+	    if (!$('#spinner').length) {
+		    $("#answers_area").append('<img src="img/ajax-loader.gif" id="spinner" style="position: absolute;top: 50%;left:50%;transform: translate(-50%,-50%);">');
+	    }
 
             //shows concepts and summary
             if (r.summary) {
@@ -403,10 +406,6 @@ function showAnswers(container, answers, snippets, sources){
     numberOfShowedAnswers = i;
     $("#moreAnswers").collapsibleset();
     $("#answers").collapsibleset();
-
-    if (!$('#spinner').length) {
-        $("#answers_area").append('<img src="img/ajax-loader.gif" id="spinner" style="position: absolute;top: 50%;left:50%;transform: translate(-50%,-50%);">');
-    }
 }
 
 /* Shows best answers directly */
