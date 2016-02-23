@@ -232,10 +232,21 @@ function clickActionCorrect(i, questionID) {
 
 // shows feedback buttons near answer
 function showAnswerFeedbackButton(numberOfAnswers, questionID) {
+    showCardFeedbackButton(questionID);
     feedbackButtons[questionID] = [];
     for (var i = 0; i < numberOfAnswers; i++) {
         createFeedbackButton(i, questionID);
     }
+}
+
+function showCardFeedbackButton(questionID){
+    var feedbackButtonIncorrect = '<button class="ui-btn ui-mini ui-corner-all ui-btn-inline" id="cardFeedbackButtonIncorrect'+questionID+'" style="width: 85px;text-align: center;">Incorrect</button>';
+    var feedbackButtonCorrect = '<button class="ui-btn ui-mini ui-corner-all ui-btn-inline" id="cardFeedbackButtonCorrect'+questionID+'" style="width: 85px;text-align: center;">Correct</button>';
+
+    $("#cardfeedbackButtonArea" + questionID).append(feedbackButtonIncorrect);
+    $("#cardfeedbackButtonArea" + questionID).append("<br>");
+    $("#cardfeedbackButtonArea" + questionID).append(feedbackButtonCorrect);
+    $("#cardfeedbackButtonArea" + questionID).parent().css("overflow", "visible");
 }
 
 //creates feedback buttons

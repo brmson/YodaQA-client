@@ -10,7 +10,8 @@ function addNewCard(questionId){
 }
 
 function createCard(questionId){
-    var card=$('<div data-role="collapsible" data-collapsed="true" id="'+questionId+'"><H2><div id="cardQuestion'+questionId+'"></div><br><i id="cardAnswer'+questionId+'">Thinking...</i></H2></div>');
+    var card=$('<div data-role="collapsible" data-collapsed="true" id="'+questionId+'">' +
+        '<H2><span id="cardfeedbackButtonArea'+questionId+'" class="cardFeedback"></span><div id="cardQuestion'+questionId+'"></div><br><i id="cardAnswer'+questionId+'">Thinking...</i></H2></div>');
     card.append('<div id="answers_area'+questionId+'" style="position: relative;"> </div>');
     card.append('<div id="feedback_area'+questionId+'"> </div>');
     card.append('<div id="concept_area'+questionId+'"></div>');

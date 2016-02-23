@@ -27,6 +27,7 @@ $(function () {
             $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
             //switchToSearchAfterAnswer();
             saveUserID(JSON.parse(response).userID);
+            putUserIDToForm();
             setTimeout(function () {
                 loadQuestion(JSON.parse(response).id, true)
             }, 500);
@@ -102,10 +103,7 @@ $(document).on('pageshow', '#mainPage', function (e, data) {
         $('#verticalCenter').css('opacity', 1.0);
     }
     $('input[name="text"]').val(questionText);
-    var uID=getUserID();
-    if (uID!="" && uID!="undefined"){
-        $("#userID").val(uID);
-    }
+    putUserIDToForm();
 });
 
 /* Centers search area on page resize */
@@ -233,4 +231,11 @@ function saveUserID(userID){
 
 function getUserID(){
     return getCookie("userID");
+}
+
+function putUserIDToForm(){
+    var uID=getUserID();
+    if (uID!="" && uID!="undefined"){
+        $("#userID").val(uID);
+    }
 }

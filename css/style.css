@@ -3,27 +3,27 @@
 .ui-li-static.ui-collapsible > .ui-collapsible-heading {
     margin: 0;
 }
+
 .ui-li-static.ui-collapsible {
     padding: 0;
 }
+
 .ui-li-static.ui-collapsible > .ui-collapsible-heading > .ui-btn {
     border-top-width: 0;
 }
+
 .ui-li-static.ui-collapsible > .ui-collapsible-heading.ui-collapsible-heading-collapsed > .ui-btn,
 .ui-li-static.ui-collapsible > .ui-collapsible-content {
     border-bottom-width: 0;
 }
 
-
-
 /* Shows sources in two columns. */
 @media ( min-width: 48em ) {
-
 
 }
 
 /* For big screens */
-@media only screen and (min-width: 1025px){
+@media only screen and (min-width: 1025px) {
     .ui-content {
         width: 960px !important;
         margin: 0 auto !important;
@@ -33,20 +33,21 @@
         margin-bottom: 55px !important;
     }
 
-    .extnav{
+    .extnav {
         position: absolute;
         right: 1em;
         top: 1ex;
         text-align: right;
         display: inline !important;
-	font-family: 'Roboto Slab';
-	z-index: 1;
+        font-family: 'Roboto Slab';
+        z-index: 1;
     }
 
     .responsive .ui-listview li {
         display: inline-block;
         width: 50%;
     }
+
     .responsive .ui-listview li > .ui-btn {
         -webkit-box-sizing: border-box; /* include padding and border in height so we can set it to 100% */
         -moz-box-sizing: border-box;
@@ -54,11 +55,13 @@
         box-sizing: border-box;
         height: 100%;
     }
+
     .responsive .ui-listview li.ui-li-has-thumb .ui-li-thumb {
         height: auto; /* To keep aspect ratio. */
         max-width: 100%;
         max-height: none;
     }
+
     /* Make all list items and anchors inherit the border-radius from the UL. */
     .responsive .ui-listview li,
     .responsive .ui-listview li .ui-btn,
@@ -68,7 +71,7 @@
     }
 
     /* Creates border */
-    .responsive .ui-listview>.ui-li-static, .responsive .ui-listview>.ui-li-divider, .responsive .ui-listview>li>a.ui-btn {
+    .responsive .ui-listview > .ui-li-static, .responsive .ui-listview > .ui-li-divider, .responsive .ui-listview > li > a.ui-btn {
         border-width: 1px;
         border-style: solid;
     }
@@ -77,40 +80,44 @@
     .ui-listview .ui-li-has-thumb h2,
     .ui-listview .ui-li-has-thumb p {
         background: #111;
-        background: rgba(0,0,0,.8);
+        background: rgba(0, 0, 0, .8);
     }
+
     .ui-listview .ui-li-has-thumb h2 {
         bottom: 35%;
     }
+
     .ui-listview .ui-li-has-thumb p {
         min-height: 35%;
     }
 }
 
 /* YodaQA Live */
-.mainHeader{
+.mainHeader {
     font-size: 350% !important;
     text-align: center;
     margin-bottom: 10px;
     margin-top: 10px;
 }
-.mainHeaderLone{
-	margin-bottom: 2ex;
+
+.mainHeaderLone {
+    margin-bottom: 2ex;
 }
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto Slab';
 }
 
 #blurb {
-	margin-top: 50pt;
+    margin-top: 50pt;
     text-align: center;
     font-family: 'Roboto Slab';
 }
 
 /* highlight of answer in snippet */
-.highlight{
+.highlight {
     background-color: lightgreen;
-    text-shadow:none !important;
+    text-shadow: none !important;
 }
 
 hr {
@@ -120,7 +127,7 @@ hr {
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-#verticalCenter{
+#verticalCenter {
     opacity: 0.0;
 }
 
@@ -137,78 +144,85 @@ hr {
 }
 
 .flipSwitchContainer .ui-slider-switch {
-    width: 9em }
-
-.ui-icon-myapp-checked{
-    background:url("../img/radiobutton-checked.png") 8% 50% no-repeat;
+    width: 9em
 }
 
-.ui-icon-myapp-unchecked{
-    background:url("../img/radiobutton-unchecked.png") 8% 50% no-repeat;
+.ui-icon-myapp-checked {
+    background: url("../img/radiobutton-checked.png") 8% 50% no-repeat;
 }
 
-.snippetButton{
+.ui-icon-myapp-unchecked {
+    background: url("../img/radiobutton-unchecked.png") 8% 50% no-repeat;
+}
+
+.snippetButton {
     max-width: 170px;
     white-space: normal;
 }
 
-.ui-icon-microphone:after { background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%20Tiny%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11-tiny.dtd%22%3E%3Csvg%20version%3D%221.1%22%20baseProfile%3D%22tiny%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%2216px%22%20height%3D%2216px%22%20viewBox%3D%220%200%20500%20500%22%20xml%3Aspace%3D%22preserve%22%3E%20%3Cpath%20d%3D%22M321.429%20196.429v35.714q0%2061.663-41.155%20107.282t-101.702%2052.316v36.831h71.429q7.254%200%2012.556%205.301t5.301%2012.556-5.301%2012.556-12.556%205.301h-178.571q-7.254%200-12.556-5.301t-5.301-12.556%205.301-12.556%2012.556-5.301h71.429v-36.831q-60.547-6.696-101.702-52.316t-41.155-107.282v-35.714q0-7.254%205.301-12.556t12.556-5.301%2012.556%205.301%205.301%2012.556v35.714q0%2051.618%2036.691%2088.309t88.309%2036.691%2088.309-36.691%2036.691-88.309v-35.714q0-7.254%205.301-12.556t12.556-5.301%2012.556%205.301%205.301%2012.556zM250%2089.286v142.857q0%2036.831-26.228%2063.058t-63.058%2026.228-63.058-26.228-26.228-63.058v-142.857q0-36.831%2026.228-63.058t63.058-26.228%2063.058%2026.228%2026.228%2063.058z%22%20fill%3D%22%23ffffff%22%20%2F%3E%3C%2Fsvg%3E');background-position-x:5px; }
-.ui-nosvg .ui-icon-microphone:after { background: url('../img/microphone.png');background-position-x:5px;}
-
-
-
-.backgroundRed {
-    background-color:crimson !important;
+.ui-icon-microphone:after {
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3C%3Fxml%20version%3D%221.0%22%20encoding%3D%22utf-8%22%3F%3E%3C!DOCTYPE%20svg%20PUBLIC%20%22-%2F%2FW3C%2F%2FDTD%20SVG%201.1%20Tiny%2F%2FEN%22%20%22http%3A%2F%2Fwww.w3.org%2FGraphics%2FSVG%2F1.1%2FDTD%2Fsvg11-tiny.dtd%22%3E%3Csvg%20version%3D%221.1%22%20baseProfile%3D%22tiny%22%20id%3D%22Layer_1%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20x%3D%220px%22%20y%3D%220px%22%20width%3D%2216px%22%20height%3D%2216px%22%20viewBox%3D%220%200%20500%20500%22%20xml%3Aspace%3D%22preserve%22%3E%20%3Cpath%20d%3D%22M321.429%20196.429v35.714q0%2061.663-41.155%20107.282t-101.702%2052.316v36.831h71.429q7.254%200%2012.556%205.301t5.301%2012.556-5.301%2012.556-12.556%205.301h-178.571q-7.254%200-12.556-5.301t-5.301-12.556%205.301-12.556%2012.556-5.301h71.429v-36.831q-60.547-6.696-101.702-52.316t-41.155-107.282v-35.714q0-7.254%205.301-12.556t12.556-5.301%2012.556%205.301%205.301%2012.556v35.714q0%2051.618%2036.691%2088.309t88.309%2036.691%2088.309-36.691%2036.691-88.309v-35.714q0-7.254%205.301-12.556t12.556-5.301%2012.556%205.301%205.301%2012.556zM250%2089.286v142.857q0%2036.831-26.228%2063.058t-63.058%2026.228-63.058-26.228-26.228-63.058v-142.857q0-36.831%2026.228-63.058t63.058-26.228%2063.058%2026.228%2026.228%2063.058z%22%20fill%3D%22%23ffffff%22%20%2F%3E%3C%2Fsvg%3E');
+    background-position-x: 5px;
 }
 
-.feedbackButton{
+.ui-nosvg .ui-icon-microphone:after {
+    background: url('../img/microphone.png');
+    background-position-x: 5px;
+}
+
+.backgroundRed {
+    background-color: crimson !important;
+}
+
+.feedbackButton {
     padding-right: 10px;
     position: absolute;
     left: -115px;
-    top:7px;
+    top: 7px;
 }
 
-#voice{
-    height: 15px; position: relative;
-    top:-4px;
+#voice {
+    height: 15px;
+    position: relative;
+    top: -4px;
     background-image: url("../img/microphone.png");
     background-size: 23px 31px;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-#noAnswersFound{
+#noAnswersFound {
     text-align: center;
     margin-top: 50px;
 }
 
-.mainHeaderLink{
+.mainHeaderLink {
     color: #333 !important;
     cursor: pointer;
 }
 
-.mainHeaderLink:hover{
+.mainHeaderLink:hover {
     color: #38c !important;
 }
 
-.searchButtons > .ui-btn{
+.searchButtons > .ui-btn {
     width: 100px !important;
 }
 
-.searchButtons{
+.searchButtons {
     margin-top: 12px;
 }
 
-#askBlock > .ui-btn{
+#askBlock > .ui-btn {
     padding-top: 11px;
     padding-bottom: 10px;
     width: 65px !important;
 }
 
-.extnav > a{
+.extnav > a {
     text-decoration: none;
-    color:#38c;
-    font-weight:700;
+    color: #38c;
+    font-weight: 700;
 }
 
 #answersent {
@@ -218,13 +232,22 @@ hr {
 }
 
 .conceptButtonArea {
-	float: right;
+    float: right;
 }
+
 .conceptButtonArea > .ui-btn {
-    position:absolute;
+    position: absolute;
     top: -2px;
     right: 50px;
 }
 
-.card{
-    box-shadow:0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important}
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important
+}
+
+.cardFeedback {
+    padding-right: 10px;
+    position: absolute;
+    left: -115px;
+    top: 7px;
+}
