@@ -247,6 +247,17 @@ function showCardFeedbackButton(questionID){
     $("#cardfeedbackButtonArea" + questionID).append("<br>");
     $("#cardfeedbackButtonArea" + questionID).append(feedbackButtonCorrect);
     $("#cardfeedbackButtonArea" + questionID).parent().css("overflow", "visible");
+
+    $('#cardFeedbackButtonCorrect'+questionID).on('click', function (e) {
+        clickActionCardCorrect();
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+    });
+}
+
+function clickActionCardCorrect(){
+    alert("Correct");
 }
 
 //creates feedback buttons
