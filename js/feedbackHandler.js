@@ -249,15 +249,18 @@ function showCardFeedbackButton(questionID){
     $("#cardfeedbackButtonArea" + questionID).parent().css("overflow", "visible");
 
     $('#cardFeedbackButtonCorrect'+questionID).on('click', function (e) {
-        clickActionCardCorrect();
+        clickActionCardCorrect(questionID);
         e.preventDefault();
         e.stopPropagation();
         e.stopImmediatePropagation();
     });
 }
 
-function clickActionCardCorrect(){
-    alert("Correct");
+function clickActionCardCorrect(questionID){
+    var email = $('#email' + questionID).val();
+    var question = $('#cardQuestion'+questionID).text();
+    var ea1=$('#answerText1_'+questionID).text();
+    sendFeedbackAndReload(email, question, ea1, "", "", "", "", "", "");
 }
 
 //creates feedback buttons
