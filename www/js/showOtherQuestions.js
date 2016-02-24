@@ -30,6 +30,14 @@ function getToAnswerJson() {
     }
 }
 
+function getDialogJson(){
+    if (CONNECTION_ADDRESS != null) {
+        $.get(CONNECTION_ADDRESS + "q/?dialogs", function (r) {
+            console.log(r);
+        });
+    }
+}
+
 /* Create a titled listing of questions. */
 function showQuestionList(area, listContainerID, title, list) {
     area.empty();

@@ -28,6 +28,7 @@ $(function () {
             //switchToSearchAfterAnswer();
             saveUserID(JSON.parse(response).userID);
             putUserIDToForm();
+            putDialogIDToForm(JSON.parse(response).dialogueID);
             setTimeout(function () {
                 loadQuestion(JSON.parse(response).id, true)
             }, 500);
@@ -42,6 +43,9 @@ $(function () {
 
     getAnsweredJson();
     setInterval(getAnsweredJson, 2900);
+
+    getDialogJson();
+    setInterval(getDialogJson, 2800);
 });
 
 /* Handles back navigation */
@@ -238,4 +242,8 @@ function putUserIDToForm(){
     if (uID!="" && uID!="undefined"){
         $("#userID").val(uID);
     }
+}
+
+function putDialogIDToForm(id){
+    $("#dialogueID").val(id);
 }
