@@ -181,11 +181,12 @@ function showFeedback(numberOfAnswers, questionID) {
 
 function hideFeedback(questionID){
     $('#feedback_area' + questionID).empty();
-    var thank=$('<H1 style="text-align: center;">Thank you!</H1>')
+    var thank=$('<H1 style="text-align: center;">Thank you for the feedback!</H1>')
     $('#feedback_area' + questionID).append(thank);
     for(var i=1;i<=feedbackButtons[questionID].length;i++){
         $('#feedbackButtonArea'+i+'_'+questionID).empty();
     }
+    $("#cardfeedbackButtonArea" + questionID).empty();
 }
 
 function createFeedbackForm(questionID) {
@@ -261,6 +262,7 @@ function clickActionCardCorrect(questionID){
     var question = $('#cardQuestion'+questionID).text();
     var ea1=$('#answerText1_'+questionID).text();
     sendFeedbackAndReload(email, question, ea1, "", "", "", "", "", "");
+    hideFeedback(questionID);
 }
 
 //creates feedback buttons
