@@ -10,7 +10,7 @@ var showFeedbackDefault = true;
 
 
 var qidQueue = []; // queue of posed questions
-var isShowingAnswer=false;
+var isShowingAnswer = false;
 var gen_sources, gen_answers;  // when this number changes, re-render
 var answers;
 var endpoint;
@@ -44,8 +44,8 @@ $(function () {
     getAnsweredJson();
     setInterval(getAnsweredJson, 2900);
 
-    getDialogJson();
-    setInterval(getDialogJson, 2800);
+    getDialogsJson();
+    setInterval(getDialogsJson, 2800);
 });
 
 /* Handles back navigation */
@@ -68,13 +68,14 @@ function hashchanged() {
         showFeedbackBool = showFeedback.toLowerCase() === 'true';
     else
         showFeedbackBool = showFeedbackDefault;
-    var qID = getParameterByName("qID", window.location.href);
+    var qID = getParameterByName("dID", window.location.href);
     // If qID is present and we are on main page, show answer
     var arr = window.location.href.split('#');
     if (qID != null && (arr[1] == "mainPage" || arr[1] == null)) {
-        loadQuestion(qID, true);
+        loadDialog(qID, true);
         $('#verticalCenter').css('margin-top', 0);
         switchToSearchAfterAnswer();
+        openQuestion(arr);
     }
     //if there is no qID clear show search area to center and clear results
     else {
@@ -82,19 +83,28 @@ function hashchanged() {
         if ($('[data-role=header]').height() != null) {
             $('#verticalCenter').css('opacity', 0.0);
             $('#verticalCenter').animate({opacity: '1.0'}, 100);
-            $('#verticalCenter').css('margin-top', ($(window).height()/2  - ($('#verticalCenter').outerHeight())/1.5));
+            $('#verticalCenter').css('margin-top', ($(window).height() / 2 - ($('#verticalCenter').outerHeight()) / 1.5));
         }
         clearResult();
-        qidQueue=[];
+        qidQueue = [];
     }
 }
 
-function switchToSearchAfterAnswer(){
+function openQuestion(arr) {
+    var qID = getParameterByName("qID", window.location.href);
+    if (qID != null && (arr[1] == "mainPage" || arr[1] == null)) {
+        setTimeout(function () {
+            $("#" + qID).collapsible("expand")
+        }, 500);
+    }
+}
+
+function switchToSearchAfterAnswer() {
     $('.searchButtons').empty();
-    $('#searchBlock').css("width","83%");
-    $('#askBlock').css("width","10%");
-    $('#askBlock').css("display","inline");
-    $('#blurb').css("display","none");
+    $('#searchBlock').css("width", "83%");
+    $('#askBlock').css("width", "10%");
+    $('#askBlock').css("display", "inline");
+    $('#blurb').css("display", "none");
     $('#mainPage .mainHeader').removeClass("mainHeaderLone");
 }
 
@@ -102,7 +112,7 @@ function switchToSearchAfterAnswer(){
 $(document).on('pageshow', '#mainPage', function (e, data) {
     if (!isShowingAnswer) {
         $('#verticalCenter').animate({opacity: '1.0'}, 100);
-        $('#verticalCenter').css('margin-top', ($(window).height()/2- ($('#verticalCenter').outerHeight())/1.5));
+        $('#verticalCenter').css('margin-top', ($(window).height() / 2 - ($('#verticalCenter').outerHeight()) / 1.5));
     } else {
         $('#verticalCenter').css('opacity', 1.0);
     }
@@ -113,11 +123,11 @@ $(document).on('pageshow', '#mainPage', function (e, data) {
 /* Centers search area on page resize */
 $(window).resize(function () {
     if (!isShowingAnswer) {
-        $('#verticalCenter').css('margin-top', ($(window).height()/2 - ($('#verticalCenter').outerHeight())/1.5) );
+        $('#verticalCenter').css('margin-top', ($(window).height() / 2 - ($('#verticalCenter').outerHeight()) / 1.5));
     }
 });
 
-function gotoMainPage(){
+function reloadMainPage() {
     location.reload();
 }
 
@@ -148,11 +158,11 @@ function changeEndpoint(endpoint) {
         if (endpoint == "http://qa.ailao.eu:4000/") {
             // XXX: ugly hardcoded
             $(".mainHeaderLink").html("YodaQA Movies");
-	    $("#blurb").html("Ask question about movies and TV series.<br>We don't have the storylines, but know the <strong>metadata</strong><br>(credits, dates, episodes, awards, ...).");
+            $("#blurb").html("Ask question about movies and TV series.<br>We don't have the storylines, but know the <strong>metadata</strong><br>(credits, dates, episodes, awards, ...).");
             setFeedbackEndpoint("movies");
         } else {
             $(".mainHeaderLink").html("YodaQA Custom");
-	    $("#blurb").html("This is an unofficial YodaQA version.");
+            $("#blurb").html("This is an unofficial YodaQA version.");
         }
         CONNECTION_ADDRESS = endpoint;
         $("#ask").attr("action", endpoint + "q");
@@ -166,21 +176,19 @@ function reloadAnswered() {
 }
 
 /* Gets question information and shows it
- *  Reload determines if (true) page will be reloaded or (false) only url will be changed without reload
  */
 function loadQuestion(q) {
-    isShowingAnswer=true;
-    qidQueue.push(q);
+    isShowingAnswer = true;
     gen_sources = 0;
     gen_answers = 0;
     addNewCard(q);
     addQuestion(q, $('input[name="text"]').val());
-    getQuestionJson();
+    getQuestionJson(q);
 }
 
 function toggleFeedback() {
     showFeedbackBool = !showFeedbackBool;
-    loadQuestion(getParameterByName("qID", window.location.href), true);
+    loadQuestion(getParameterByName("dID", window.location.href), true);
 }
 
 /* Creates URL with parameters */
@@ -188,7 +196,7 @@ function createURL(qid) {
     var appersand = false;
     var url = "?";
     if (qid != null) {
-        url += "qID=" + qid;
+        url += "dID=" + qid;
         appersand = true;
     }
     if (endpoint != null) {
@@ -209,14 +217,31 @@ function createURL(qid) {
 }
 
 /* Retrieve, process and display json question information. */
-function getQuestionJson() {
+function getQuestionJson(qid) {
     if (CONNECTION_ADDRESS != null) {
-        var parameters="q/" + qidQueue[0];
-        var uID=getUserID();
-        if (uID!="" && uID!="undefined"){
-            parameters+="/" + uID;
+        var parameters = "q/" + qid;
+        var uID = getUserID();
+        if (uID != "" && uID != "undefined") {
+            parameters += "/" + uID;
         }
-        $.get(CONNECTION_ADDRESS + parameters, function(r){ showAnswerToQuestion (r)});
+        $.get(CONNECTION_ADDRESS + parameters, function (r) {
+            showAnswerToQuestion(r)
+        });
+    }
+}
+
+function getDialogJson(id) {
+    if (CONNECTION_ADDRESS != null) {
+        var parameters = "q/" + id;
+        $.get(CONNECTION_ADDRESS + parameters, function (r) {
+            showDialog(r);
+        });
+    }
+}
+
+function showDialog(dialogJson) {
+    for (var i = 0; i < dialogJson.length; i++) {
+        loadQuestion(dialogJson[i], true);
     }
 }
 
@@ -226,24 +251,24 @@ String.prototype.capitalizeFirstLetter = function () {
 }
 
 
-function saveUserID(userID){
-    var cookieName="userID";
-    if (!cookieExists(cookieName)){
-        setCookie(cookieName,userID,365);
+function saveUserID(userID) {
+    var cookieName = "userID";
+    if (!cookieExists(cookieName)) {
+        setCookie(cookieName, userID, 365);
     }
 }
 
-function getUserID(){
+function getUserID() {
     return getCookie("userID");
 }
 
-function putUserIDToForm(){
-    var uID=getUserID();
-    if (uID!="" && uID!="undefined"){
+function putUserIDToForm() {
+    var uID = getUserID();
+    if (uID != "" && uID != "undefined") {
         $("#userID").val(uID);
     }
 }
 
-function putDialogIDToForm(id){
+function putDialogIDToForm(id) {
     $("#dialogueID").val(id);
 }

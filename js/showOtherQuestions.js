@@ -7,7 +7,7 @@
 function getAnsweredJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/?answered", function (r) {
-            showQuestionList($("#answered_area"), "answered", "Answered questions", r);
+            //showQuestionList($("#answered_area"), "answered", "Answered questions", r,false);
         });
     }
 }
@@ -16,7 +16,7 @@ function getAnsweredJson() {
 function getInProgressJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/?inProgress", function (r) {
-            showQuestionList($("#inProgress_area"), "inProgress", "In progress", r);
+            showQuestionList($("#inProgress_area"), "inProgress", "In progress", r, false);
         });
     }
 }
@@ -25,27 +25,32 @@ function getInProgressJson() {
 function getToAnswerJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/?toAnswer", function (r) {
-            showQuestionList($("#toAnswer_area"), "toAnswer", "Question queue", r);
+            showQuestionList($("#toAnswer_area"), "toAnswer", "Question queue", r, false);
         });
     }
 }
 
-function getDialogJson(){
+function getDialogsJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/?dialogs", function (r) {
-            console.log(r);
+            //console.log(r);
+            showQuestionList($("#answered_area"), "answered", "Answered questions", r, true);
         });
     }
 }
 
 /* Create a titled listing of questions. */
-function showQuestionList(area, listContainerID, title, list) {
+function showQuestionList(area, listContainerID, title, list, dialog) {
     area.empty();
     if (list.length != 0) {
         var listContainer = createList(area, listContainerID, title, false, false);
     }
     list.forEach(function (q) {
-        listContainer.append('<li><a href="javascript:showAnsweredQuestion(' + q.id + ')">' + q.text + '</a></li>');
+        if (!dialog) {
+            listContainer.append('<li><a href="javascript:showAnsweredQuestion(' + q.id + ')">' + q.text + '</a></li>');
+        } else {
+            listContainer.append('<li><a href="javascript:openDialog(\'d_' + q.id + '\')">' + q.text + '</a></li>');
+        }
     });
     $("#" + listContainerID).listview().listview("refresh");
 }
@@ -56,17 +61,24 @@ function showAnsweredQuestion(qId) {
     $('#verticalCenter').css('margin-top', 0);
 }
 
-function loadQuestionNoCard(q, reload){
+function loadQuestionNoCard(q, reload) {
     $("#answers_area").empty();
     $("#concept_area").empty();
     $("#sources_area").empty();
-    qid = q;
     gen_sources = 0;
     gen_answers = 0;
     if (reload) {
-        window.location.href = createURL(qid);
+        window.location.href = createURL(q);
     } else {
-        window.history.pushState("object or string", "Title", createURL(qid));
+        window.history.pushState("object or string", "Title", createURL(q));
     }
     getQuestionJson();
+}
+
+function loadDialog(q,reload){
+    getDialogJson(q);
+}
+
+function openDialog(dID){
+    window.location.href = createURL(dID);
 }
