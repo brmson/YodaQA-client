@@ -192,12 +192,18 @@ function toggleFeedback() {
 }
 
 /* Creates URL with parameters */
-function createURL(qid) {
+function createURL(dID,qID) {
     var appersand = false;
     var url = "?";
-    if (qid != null) {
-        url += "dID=" + qid;
+    if (dID != null) {
+        url += "dID=" + dID;
         appersand = true;
+    }
+    if (qID != null){
+        if (appersand) {
+            url += "&";
+        }
+        url += "qID=" + qID;
     }
     if (endpoint != null) {
         if (appersand) {
