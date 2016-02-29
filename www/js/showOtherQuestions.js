@@ -6,9 +6,9 @@
 /* Gets and shows answered questions in list */
 function getAnsweredJson() {
     if (CONNECTION_ADDRESS != null) {
-        $.get(CONNECTION_ADDRESS + "q/?answered", function (r) {
+        /*$.get(CONNECTION_ADDRESS + "q/?answered", function (r) {
             //showQuestionList($("#answered_area"), "answered", "Answered questions", r,false);
-        });
+        });*/
     }
 }
 
@@ -33,7 +33,6 @@ function getToAnswerJson() {
 function getDialogsJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/?dialogs", function (r) {
-            //console.log(r);
             showQuestionList($("#answered_area"), "answered", "Answered questions", r, true);
         });
     }
@@ -49,7 +48,11 @@ function showQuestionList(area, listContainerID, title, list, dialog) {
         if (!dialog) {
             listContainer.append('<li><a href="javascript:showAnsweredQuestion(' + q.id + ')">' + q.text + '</a></li>');
         } else {
-            listContainer.append('<li><a href="javascript:openDialog(\'d_' + q.id + '\')">' + q.text + '</a></li>');
+            var dialogText="";
+            for (var i=0;i< q.dialogQuestions.length;i++){
+                dialogText+= q.dialogQuestions[i].text;
+            }
+            listContainer.append('<li><a href="javascript:openDialog(\'d_' + q.id + '\')">' + dialogText + '</a></li>');
         }
     });
     $("#" + listContainerID).listview().listview("refresh");
