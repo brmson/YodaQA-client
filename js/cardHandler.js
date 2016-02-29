@@ -11,6 +11,10 @@ function addNewCard(questionId){
     $(".questionCard").find("a").click(function (e) {
         var collapsible=$(e.target).parent().parent();
         var id=collapsible.attr('id');
+        if (id==undefined){
+            collapsible=collapsible.parent();
+            id=collapsible.attr('id');
+        }
         var isVisible=collapsible.children(".ui-collapsible-content").attr("aria-hidden");
         if (isVisible=="true"){
             window.history.pushState("object or string", "Title", createURL(null,id));
