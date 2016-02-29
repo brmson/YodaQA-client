@@ -75,8 +75,9 @@ function loadQuestionNoCard(q, reload) {
     getQuestionJson();
 }
 
-function loadDialog(q,reload){
-    getDialogJson(q);
+function loadDialog(dID){
+    putDialogIDToForm(dID);
+    getDialogJson(dID);
 }
 
 function openDialog(dID){

@@ -17,9 +17,9 @@ function addNewCard(questionId){
         }
         var isVisible=collapsible.children(".ui-collapsible-content").attr("aria-hidden");
         if (isVisible=="true"){
-            window.history.pushState("object or string", "Title", createURL(null,id));
+            window.history.pushState("object or string", "Title", createURL(getParameterByName("dID", window.location.href),id));
         }else{
-            window.history.pushState("object or string", "Title", createURL(null,null));
+            window.history.pushState("object or string", "Title", createURL(getParameterByName("dID", window.location.href),null));
         }
     });
 }
