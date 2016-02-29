@@ -131,7 +131,7 @@ $(window).resize(function () {
 });
 
 function reloadMainPage() {
-    location.reload();
+    window.location.href=createURL(null,null);
 }
 
 /* Gets parameter by name */

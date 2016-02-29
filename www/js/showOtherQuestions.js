@@ -33,7 +33,7 @@ function getToAnswerJson() {
 function getDialogsJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/?dialogs", function (r) {
-            showQuestionList($("#answered_area"), "answered", "Answered questions", r, true);
+            showQuestionList($("#answered_area"), "answered", "Passed dialogs", r, true);
         });
     }
 }
@@ -50,7 +50,7 @@ function showQuestionList(area, listContainerID, title, list, dialog) {
         } else {
             var dialogText="";
             for (var i=0;i< q.dialogQuestions.length;i++){
-                dialogText+= q.dialogQuestions[i].text;
+                dialogText+= q.dialogQuestions[i].text+" ";
             }
             listContainer.append('<li><a href="javascript:openDialog(\'d_' + q.id + '\')">' + dialogText + '</a></li>');
         }
