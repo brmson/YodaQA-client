@@ -13,9 +13,9 @@ function addNewCard(questionId){
         var id=collapsible.attr('id');
         var isVisible=collapsible.children(".ui-collapsible-content").attr("aria-hidden");
         if (isVisible=="true"){
-            console.log("add ID");
+            window.history.pushState("object or string", "Title", createURL(null,id));
         }else{
-            console.log("hide ID");
+            window.history.pushState("object or string", "Title", createURL(null,null));
         }
     });
 }
