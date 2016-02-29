@@ -7,10 +7,21 @@ function addNewCard(questionId){
     var card=createCard(questionId);
     $("#cards").append(card);
     $("#cards").collapsibleset();
+
+    $(".questionCard").find("a").click(function (e) {
+        var collapsible=$(e.target).parent().parent();
+        var id=collapsible.attr('id');
+        var isVisible=collapsible.children(".ui-collapsible-content").attr("aria-hidden");
+        if (isVisible=="true"){
+            console.log("add ID");
+        }else{
+            console.log("hide ID");
+        }
+    });
 }
 
 function createCard(questionId){
-    var card=$('<div data-role="collapsible" data-collapsed="true" id="'+questionId+'">' +
+    var card=$('<div data-role="collapsible" data-collapsed="true" id="'+questionId+'" class="questionCard">' +
         '<H2><span id="cardfeedbackButtonArea'+questionId+'" class="cardFeedback"></span><div id="cardQuestion'+questionId+'"></div><br><i id="cardAnswer'+questionId+'">Thinking...</i></H2></div>');
     card.append('<div id="answers_area'+questionId+'" style="position: relative;"> </div>');
     card.append('<div id="feedback_area'+questionId+'"> </div>');
