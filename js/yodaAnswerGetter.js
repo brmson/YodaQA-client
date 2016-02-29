@@ -36,17 +36,19 @@ $(function () {
         }
     });
 
+
+
     getToAnswerJson();
     setInterval(getToAnswerJson, 3100);
 
     getInProgressJson();
     setInterval(getInProgressJson, 3000);
 
-    getAnsweredJson();
-    setInterval(getAnsweredJson, 2900);
+    /*getAnsweredJson();
+    setInterval(getAnsweredJson, 2900);*/
 
     getDialogsJson();
-    setInterval(getDialogsJson, 2800);
+    setInterval(getDialogsJson, 2900);
 });
 
 /* Handles back navigation */
