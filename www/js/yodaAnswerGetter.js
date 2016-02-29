@@ -29,6 +29,7 @@ $(function () {
             saveUserID(JSON.parse(response).userID);
             putUserIDToForm();
             putDialogIDToForm(JSON.parse(response).dialogueID);
+            window.location.href = createURL(JSON.parse(response).dialogueID,null);
             setTimeout(function () {
                 loadQuestion(JSON.parse(response).id, true)
             }, 500);
@@ -68,16 +69,16 @@ function hashchanged() {
         showFeedbackBool = showFeedback.toLowerCase() === 'true';
     else
         showFeedbackBool = showFeedbackDefault;
-    var qID = getParameterByName("dID", window.location.href);
-    // If qID is present and we are on main page, show answer
+    var dID = getParameterByName("dID", window.location.href);
+    // If dID is present and we are on main page, show answer
     var arr = window.location.href.split('#');
-    if (qID != null && (arr[1] == "mainPage" || arr[1] == null)) {
-        loadDialog(qID, true);
+    if (dID != null && (arr[1] == "mainPage" || arr[1] == null)) {
+        loadDialog(dID, true);
         $('#verticalCenter').css('margin-top', 0);
         switchToSearchAfterAnswer();
         openQuestion(arr);
     }
-    //if there is no qID clear show search area to center and clear results
+    //if there is no dID clear show search area to center and clear results
     else {
         //if page is not loaded, don't position anything (page is loaded only during back navigation)
         if ($('[data-role=header]').height() != null) {
