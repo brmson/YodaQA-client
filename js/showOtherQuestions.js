@@ -51,8 +51,7 @@ function showQuestionList(area, listContainerID, title, list, dialog) {
 
 /* Shows answers to selected questions and jumps to main page */
 function showAnsweredQuestion(qId) {
-    loadQuestionNoCard(qId, true);
-    $('#verticalCenter').css('margin-top', 0);
+    window.location.href = createURL(null,qId);
 }
 
 function loadQuestionNoCard(q, reload) {

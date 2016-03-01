@@ -25,7 +25,6 @@ $(function () {
     $("#ask").ajaxForm({
         success: function (response) {
             $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
-            //switchToSearchAfterAnswer();
             saveUserID(JSON.parse(response).userID);
             putUserIDToForm();
             putDialogIDToForm(JSON.parse(response).dialogueID);
@@ -35,8 +34,6 @@ $(function () {
             }, 500);
         }
     });
-
-
 
     getToAnswerJson();
     setInterval(getToAnswerJson, 3100);
@@ -69,6 +66,7 @@ function hashchanged() {
     else
         showFeedbackBool = showFeedbackDefault;
     var dID = getParameterByName("dID", window.location.href);
+    var qID = getParameterByName("qID", window.location.href);
     // If dID is present and we are on main page, show answer
     var arr = window.location.href.split('#');
     if (dID != null && (arr[1] == "mainPage" || arr[1] == null)) {
@@ -76,6 +74,8 @@ function hashchanged() {
         $('#verticalCenter').css('margin-top', 0);
         switchToSearchAfterAnswer();
         openQuestion(arr);
+    }else if(qID!=null && (arr[1]=="mainPage" || arr[1] == null)){
+        loadQuestion(qID);
     }
     //if there is no dID clear show search area to center and clear results
     else {
@@ -204,6 +204,7 @@ function createURL(dID,qID) {
             url += "&";
         }
         url += "qID=" + qID;
+        appersand = true;
     }
     if (endpoint != null) {
         if (appersand) {
@@ -229,8 +230,12 @@ function getQuestionJson(qid) {
         var uID = getUserID();
         if (uID != "" && uID != "undefined") {
             parameters += "/" + uID;
+        }else{
+            parameters += "/" + "-1";
         }
         $.get(CONNECTION_ADDRESS + parameters, function (r) {
+            saveUserID(r.userID);
+            putUserIDToForm();
             showAnswerToQuestion(r)
         });
     }
