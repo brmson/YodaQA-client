@@ -3,15 +3,6 @@
  * Handles showing of answered question, in progress questions and to answer questions in lists
  */
 
-/* Gets and shows answered questions in list */
-function getAnsweredJson() {
-    if (CONNECTION_ADDRESS != null) {
-        /*$.get(CONNECTION_ADDRESS + "q/?answered", function (r) {
-            //showQuestionList($("#answered_area"), "answered", "Answered questions", r,false);
-        });*/
-    }
-}
-
 /* Gets and shows answers in progress in list */
 function getInProgressJson() {
     if (CONNECTION_ADDRESS != null) {
@@ -33,7 +24,7 @@ function getToAnswerJson() {
 function getDialogsJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/?dialogs", function (r) {
-            showQuestionList($("#answered_area"), "answered", "Passed dialogs", r, true);
+            showQuestionList($("#dialogs_area"), "dialogs", "Passed dialogs", r, true);
         });
     }
 }

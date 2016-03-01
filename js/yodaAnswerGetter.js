@@ -44,9 +44,6 @@ $(function () {
     getInProgressJson();
     setInterval(getInProgressJson, 3000);
 
-    /*getAnsweredJson();
-    setInterval(getAnsweredJson, 2900);*/
-
     getDialogsJson();
     setInterval(getDialogsJson, 2900);
 });
@@ -175,7 +172,7 @@ function changeEndpoint(endpoint) {
 function reloadAnswered() {
     getToAnswerJson();
     getInProgressJson();
-    getAnsweredJson();
+    getDialogsJson();
 }
 
 /* Gets question information and shows it
