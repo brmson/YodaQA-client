@@ -73,7 +73,7 @@ function loadQuestionNoCard(q, reload) {
     if (reload) {
         window.location.href = createURL(q);
     } else {
-        window.history.pushState("object or string", "Title", createURL(q));
+        window.history.replaceState("object or string", "Title", createURL(q));
     }
     getQuestionJson();
 }
