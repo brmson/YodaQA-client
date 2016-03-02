@@ -3,7 +3,7 @@
  */
 
 
-var DEFAULT_ADDRESS = "http://qa.ailao.eu/"; //default address of endpoint
+var DEFAULT_ADDRESS = "http://qa.ailao.eu:4568/"; //default address of endpoint
 var CONNECTION_ADDRESS; //address of endpoint
 var DIRECTLY_SHOWED_QUESTIONS = 3; // Number of questions above drop down menu
 var showFeedbackDefault = true;
@@ -155,7 +155,7 @@ function changeEndpoint(endpoint) {
         $("#ask").attr("action", DEFAULT_ADDRESS + "q");
         setFeedbackEndpoint("live");
     } else {
-        if (endpoint == "http://qa.ailao.eu:4000/") {
+        if (endpoint == "http://qa.ailao.eu:4001/") {
             // XXX: ugly hardcoded
             $(".mainHeaderLink").html("YodaQA Movies");
             $("#blurb").html("Ask question about movies and TV series.<br>We don't have the storylines, but know the <strong>metadata</strong><br>(credits, dates, episodes, awards, ...).");
