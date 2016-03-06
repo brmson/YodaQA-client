@@ -54,7 +54,7 @@ $(document).on('click', '.form-submit', function () {
         localStorage.setItem("previousQuestion", previousQuestion);
         localStorage.setItem("previousQuestionActive", "true");
     }
-    sendAndReload(email,questionId);
+    send(email,questionId);
 });
 
 //click on more correct button
@@ -70,12 +70,12 @@ $(document).on('click', '.moreCorrectAnswers', function () {
 });
 
 //send if answer was correct
-function sendAndReload(email,questionID) {
+function send(email,questionID) {
     var question = $('#cardQuestion'+questionID).text();
     var ea = getCorrectAnswers(questionID);
     ea = addFeedbackFromInputFields(ea,questionID);
     if (ea[0] != "") {
-        sendFeedbackAndReload(email, question, ea[0], ea[1], ea[2], ea[3], ea[4], ea[5], ea[6]);
+        sendFeedback(email, question, ea[0], ea[1], ea[2], ea[3], ea[4], ea[5], ea[6]);
         hideFeedback(questionID);
     } else {
         alert("Mark correct answers please.")
@@ -127,7 +127,7 @@ function supports_html5_storage() {
 }
 
 //sends feedback to google form
-function sendFeedbackAndReload(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mca) {
+function sendFeedback(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mca) {
     var FIELDS_IDS = feedback_endpoint['FIELDS_IDS'];
     var LEmail = FIELDS_IDS[0];
     var LQuestion = FIELDS_IDS[1];
@@ -165,9 +165,7 @@ function sendFeedbackAndReload(email, question, ea1, ea2, ea3, ea4, ea5, ea6, mc
     LMca + "=" + Vmca +
     feedback_endpoint['SUBMIT_REF']);
 
-    $.post(submitURL).always(function () {
-     window.location.href = createURL(null);
-     });
+    $.post(submitURL);
 }
 
 //restores feedback to default state
@@ -261,7 +259,7 @@ function clickActionCardCorrect(questionID){
     var email = $('#email' + questionID).val();
     var question = $('#cardQuestion'+questionID).text();
     var ea1=$('#answerText1_'+questionID).text();
-    sendFeedbackAndReload(email, question, ea1, "", "", "", "", "", "");
+    sendFeedback(email, question, ea1, "", "", "", "", "", "");
     hideFeedback(questionID);
 }
 
