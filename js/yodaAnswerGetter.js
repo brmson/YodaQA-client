@@ -118,6 +118,13 @@ $(document).on('pageshow', '#mainPage', function (e, data) {
         $('#verticalCenter').css('opacity', 1.0);
     }
     putUserIDToForm();
+
+    $("#search").keypress(function(event) {
+        if (event.which == 13) {
+            event.preventDefault();
+            $("#ask").submit();
+        }
+    });
 });
 
 /* Centers search area on page resize */
