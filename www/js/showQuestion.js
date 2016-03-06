@@ -11,6 +11,13 @@ function showAnswerToQuestion(r) {
     if (r.answers && gen_answers != r.gen_answers) {
         var container = createList("#answers_area" + questionID, "answers" + questionID, null, false, true);
         showResultAnswers(container, r.answers, r.snippets, r.sources, r.finished, questionID);
+        if (r.gen_answers==0){
+            addAnswer(questionID,'<img src="img/ajax-loader.gif" width="12px" height="12px"> '+"Waiting in queue");
+        }
+        else if (r.qen_answers==1){
+            addAnswer(questionID,'<img src="img/ajax-loader.gif" width="12px" height="12px"> '+ r.gen_answers + " answer considered");
+        }else{
+        addAnswer(questionID,'<img src="img/ajax-loader.gif" width="12px" height="12px"> '+ r.gen_answers + " answers considered");}
         gen_answers = r.gen_answers;
     }
 
