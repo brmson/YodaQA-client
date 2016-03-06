@@ -27,8 +27,8 @@ $(function () {
             $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
             saveUserID(JSON.parse(response).userID);
             putUserIDToForm();
-            putDialogIDToForm(JSON.parse(response).dialogueID);
-            window.location.href = createURL(JSON.parse(response).dialogueID,null);
+            putDialogIDToForm(JSON.parse(response).dialogID);
+            window.location.href = createURL(JSON.parse(response).dialogID,null);
             setTimeout(function () {
                 loadQuestion(JSON.parse(response).id, true)
             }, 500);
@@ -281,5 +281,5 @@ function putUserIDToForm() {
 }
 
 function putDialogIDToForm(id) {
-    $("#dialogueID").val(id);
+    $("#dialogID").val(id);
 }
