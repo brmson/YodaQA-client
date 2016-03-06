@@ -24,6 +24,7 @@ var questionText;
 $(function () {
     $("#ask").ajaxForm({
         success: function (response) {
+            $('#search').val('');
             $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
             saveUserID(JSON.parse(response).userID);
             putUserIDToForm();
@@ -116,7 +117,6 @@ $(document).on('pageshow', '#mainPage', function (e, data) {
     } else {
         $('#verticalCenter').css('opacity', 1.0);
     }
-    $('input[name="text"]').val(questionText);
     putUserIDToForm();
 });
 
