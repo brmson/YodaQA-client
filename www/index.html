@@ -22,6 +22,10 @@
 		<script src="js/voiceInput.js"></script>
 		<script src="js/artificialConceptHandler.js"></script>
 		<script src="js/cookieHandler.js"></script>
+		<script src="js/cardHandler.js"></script>
+		<script src="js/showOtherQuestions.js"></script>
+		<script src="js/showQuestion.js"></script>
+		<script src="js/listCreator.js"></script>
 	</head>
 	<body>
 		<!-- Links to homepage and github -->
@@ -43,8 +47,9 @@
 				<form method="post" action="http://qa.ailao.eu/q" id="ask">
 
 				<div id="verticalCenter">
-					<H1 class="mainHeader mainHeaderLone"><a onclick="gotoMainPage();" class="mainHeaderLink">YodaQA Live</a></H1>
-						<div class="ui-grid-b" style="margin-bottom: -10px;">
+					<H1 class="mainHeader mainHeaderLone"><a onclick="reloadMainPage()" class="mainHeaderLink">YodaQA Live</a></H1>
+					<div data-role="collapsibleset" data-iconpos="right" data-inset="true" id="cards"></div>
+					<div class="ui-grid-b" style="margin-bottom: -10px;">
 							<div class="ui-block-a" style="width:93%" id="searchBlock">
 								<input type="search" name="text" id="search" placeholder="Who wrote Ender's Game?"
 								       required>
@@ -58,56 +63,14 @@
 						</div>
 						<div style="text-align: center" class="searchButtons">
 							<input type="submit" value="Ask me!" class="askMeButton" data-mini="true" data-inline="true">
-							<a href="#asked-questions" class="ui-btn ui-btn-inline ui-corner-all ui-mini ui-shadow">Past questions</a>
+							<a href="#asked-questions" class="ui-btn ui-btn-inline ui-corner-all ui-mini ui-shadow">Past dialogs</a>
 						</div>
 
 					<p id="blurb">We search <a href="http://en.wikipedia.org/">Wiki</a><a href="http://dbpedia.org/">pedia</a>, <a href="http://freebase.com/">Freebase</a> and <a href="http://bing.com/">the web</a> to give you the best answer.<br><em>Technology preview.</em></p>
 				</div>
 
-				<!--Area with answers-->
-
-				<div id="answers_area" style="position: relative;">
-				</div>
-
-				<div id="feedback_area" style="display: none;">
-					<div class="ui-grid-a" style="margin-bottom: -20px;">
-
-						<div class="ui-block-a" style="width:79%">
-							<div class="ui-field-contain" id="correctAnswersField">
-								<label for="ea1">Correct answer:</label>
-								<input id="ea1" placeholder="Correct answer" name="ea1">
-							</div>
-						</div>
-						<div class="ui-block-b" style="width:21%" id="moreCorrectAnswerContainer">
-							<input type="button" value="Add missing answer" name="moreCorrectAnswers"
-							       id="moreCorrectAnswers"
-							       data-inline="true">
-						</div>
-					</div>
-					<div class="ui-field-contain">
-
-						<label for="email" style="width:15.3%">Email (optional):</label>
-						<input id="email" placeholder="Email (optional)" name="email">
-					</div>
-					<div id="feedbackSubmit" style="margin-top: -3px;width: 99.3%;">
-						<button id="form-submit" type="submit" data-icon="check" data-theme="d">Next question
-						</button>
-					</div>
-
-				</div>
-
-
-				<!--Area with concepts-->
-				<div id="concept_area"></div>
-
-				<!--Area with answer type-->
-				<div id="answerType_area"></div>
-
-				<!--Area with sources-->
-				<div id="sources_area" class="responsive"></div>
-
 				<input type="hidden" name="numberOfConcepts" id="numberOfConcepts" value="0">
-				<input type="hidden" name="userID" id="userID" value="">
+                <input type="hidden" name="dialogID" value="" id="dialogID">
 				</form>
 			</div>
 		</div>
@@ -119,10 +82,10 @@
 			<!--Page's main content-->
 			<div data-role="main" class="ui-content">
 
-				<H1 class="mainHeader"><a onclick="gotoMainPage();" class="mainHeaderLink">YodaQA Live</a></H1>
+				<H1 class="mainHeader"><a href="#mainPage" class="mainHeaderLink" style="text-decoration: none">YodaQA Live</a></H1>
 
 				<!--Area for answered questions-->
-				<div id="answered_area"></div>
+				<div id="dialogs_area"></div>
 
 				<!--Area for questions in progress-->
 				<div id="inProgress_area"></div>
