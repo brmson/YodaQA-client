@@ -26,8 +26,6 @@ $(function () {
         success: function (response) {
             $('#search').val('');
             $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
-            saveUserID(JSON.parse(response).userID);
-            putUserIDToForm();
             putDialogIDToForm(JSON.parse(response).dialogID);
             window.location.href = createURL(JSON.parse(response).dialogID,null);
             setTimeout(function () {
@@ -117,7 +115,6 @@ $(document).on('pageshow', '#mainPage', function (e, data) {
     } else {
         $('#verticalCenter').css('opacity', 1.0);
     }
-    putUserIDToForm();
 
     $("#search").keypress(function(event) {
         if (event.which == 13) {
@@ -234,15 +231,13 @@ function createURL(dID,qID) {
 function getQuestionJson(qid) {
     if (CONNECTION_ADDRESS != null) {
         var parameters = "q/" + qid;
-        var uID = getUserID();
-        if (uID != "" && uID != "undefined") {
-            parameters += "/" + uID;
+        var dID = getDialogID();
+        if (dID != "" && dID != "undefined") {
+            parameters += "/" + dID;
         }else{
             parameters += "/" + "-1";
         }
         $.get(CONNECTION_ADDRESS + parameters, function (r) {
-            saveUserID(r.userID);
-            putUserIDToForm();
             showAnswerToQuestion(r)
         });
     }
@@ -268,25 +263,10 @@ String.prototype.capitalizeFirstLetter = function () {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
-
-function saveUserID(userID) {
-    var cookieName = "userID";
-    if (!cookieExists(cookieName)) {
-        setCookie(cookieName, userID, 365);
-    }
-}
-
-function getUserID() {
-    return getCookie("userID");
-}
-
-function putUserIDToForm() {
-    var uID = getUserID();
-    if (uID != "" && uID != "undefined") {
-        $("#userID").val(uID);
-    }
-}
-
 function putDialogIDToForm(id) {
     $("#dialogID").val(id);
+}
+
+function getDialogID(){
+    return $("#dialogID").val();
 }
