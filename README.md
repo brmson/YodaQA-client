@@ -8,8 +8,8 @@ That's the gh-pages branch; to push there, use:
 	git subtree push --prefix www origin gh-pages
 
 ## API
-
-  * ``?qID=N``: show question with id N
+Client works with Hub only. Get it from https://github.com/brmson/hub and use it as non-default REST API endpoint.
+  * ``?dID=N&qID=M``: show dialog with id N and opens question with id M
   * ``?e=http://qa.ailao.eu:4000/``: use a non-default REST API endpoint
   * ``?feedback=true``: show feedback form
 
