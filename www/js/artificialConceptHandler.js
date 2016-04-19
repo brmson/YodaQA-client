@@ -30,9 +30,7 @@ function showReAskSelectedButton(){
 function createChooseConceptButton(concept, i) {
     var conceptButton = '<button class="ui-btn ui-mini ui-corner-all ui-icon-myapp-unchecked ui-btn-icon-left ui-btn-inline ui-nodisc-icon" id="conceptButton' + i + '" type="button">Select</button>';
     $("#conceptButtonArea" + i).append(conceptButton);
-    console.log(i, concept);
     $('#conceptButtonArea' + i).on('click', function (e) {
-        console.log(i, concept);
         clickActionSelect(concept, i);
         e.preventDefault();
         e.stopPropagation();

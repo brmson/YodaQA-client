@@ -11,13 +11,14 @@ function showAnswerToQuestion(r) {
     if (r.answers && gen_answers != r.gen_answers) {
         var container = createList("#answers_area" + questionID, "answers" + questionID, null, false, true);
         showResultAnswers(container, r.answers, r.snippets, r.sources, r.finished, questionID);
-        if (r.gen_answers==0){
-            addAnswer(questionID,'<img src="img/ajax-loader.gif" width="12px" height="12px"> '+"Waiting in queue");
+        if (r.gen_answers == 0) {
+            addAnswer(questionID, '<img src="img/ajax-loader.gif" width="12px" height="12px"> ' + "Waiting in queue");
         }
-        else if (r.qen_answers==1){
-            addAnswer(questionID,'<img src="img/ajax-loader.gif" width="12px" height="12px"> '+ r.gen_answers + " answer considered");
-        }else{
-        addAnswer(questionID,'<img src="img/ajax-loader.gif" width="12px" height="12px"> '+ r.gen_answers + " answers considered");}
+        else if (r.qen_answers == 1) {
+            addAnswer(questionID, '<img src="img/ajax-loader.gif" width="12px" height="12px"> ' + r.gen_answers + " answer considered");
+        } else {
+            addAnswer(questionID, '<img src="img/ajax-loader.gif" width="12px" height="12px"> ' + r.gen_answers + " answers considered");
+        }
         gen_answers = r.gen_answers;
     }
 
@@ -25,17 +26,17 @@ function showAnswerToQuestion(r) {
     if (r.summary) {
         if (r.summary.concepts.length) {
             var container = createList("#concept_area" + questionID, "concepts" + questionID, "Concepts", true, false);
-            showConcept(container, r.summary.concepts,questionID);
+            showConcept(container, r.summary.concepts, questionID);
         } else {
             $("#concept_area" + questionID).empty();
         }
-        showAnswerType(r.summary,questionID);
+        showAnswerType(r.summary, questionID);
     }
 
     //shows sources
     if (!$.isEmptyObject(r.sources) && gen_sources != r.gen_sources) {
         var container = createList("#sources_area" + questionID, "questionSources" + questionID, "Answer sources", true, false);
-        showSources(container, r.sources,questionID);
+        showSources(container, r.sources, questionID);
         gen_sources = r.gen_sources;
     }
 
@@ -49,10 +50,12 @@ function showAnswerToQuestion(r) {
             $("#answers_area" + questionID).prepend('<div id="answersent">' + r.answerSentence + '</div>');
         }
         if (showFeedbackBool) {
-            showFeedback(numberOfShowedAnswers,questionID);
+            showFeedback(numberOfShowedAnswers, questionID);
         }
         $("#spinner" + questionID).hide();
-        showArtificialConcepts(r.summary.concepts);
+        if (r.hasOwnProperty("summary")) {
+            showArtificialConcepts(r.summary.concepts);
+        }
     } else {
         // keep watching
         setTimeout(getQuestionJson(r.id), 500);
@@ -62,10 +65,10 @@ function showAnswerToQuestion(r) {
 /* Create a table with answers. */
 function showResultAnswers(container, answers, snippets, sources, finished, questionID) {
     container.empty();
-    $("#noAnswersFound"+questionID).empty();
+    $("#noAnswersFound" + questionID).empty();
 
     //Special case, nothing has been founded
-    if (answers.length == 1 && answers[0].text == "" && finished==true) {
+    if (answers.length == 1 && answers[0].text == "" && finished == true) {
         showNoAnswer(questionID);
     }
     //normal case
@@ -75,7 +78,7 @@ function showResultAnswers(container, answers, snippets, sources, finished, ques
 }
 
 function showNoAnswer(questionID) {
-    $("#answers_area" + questionID).html("<H1 id='noAnswersFound"+questionID+"'>No answers found, we are sorry.</H1>");
+    $("#answers_area" + questionID).html("<H1 id='noAnswersFound" + questionID + "'>No answers found, we are sorry.</H1>");
 }
 
 function showAnswers(container, answers, snippets, sources, showMoreAnswers, questionID) {
@@ -84,10 +87,10 @@ function showAnswers(container, answers, snippets, sources, showMoreAnswers, que
         // FIXME: also deal with < > &
         //text = a.text.replace(/"/g, "&#34;");
         if (i <= DIRECTLY_SHOWED_QUESTIONS) {
-            showOneAnswer(a, i, container, snippets, sources,questionID);
+            showOneAnswer(a, i, container, snippets, sources, questionID);
         } else {
             if (showMoreAnswers) {
-                showAnswersInDropDown(a, i, container, snippets, sources,questionID);
+                showAnswersInDropDown(a, i, container, snippets, sources, questionID);
             }
         }
         i++;
@@ -104,15 +107,15 @@ function showAnswers(container, answers, snippets, sources, showMoreAnswers, que
 }
 
 /* Shows best answers directly */
-function showOneAnswer(a, i, container, snippets, sources,questionID) {
+function showOneAnswer(a, i, container, snippets, sources, questionID) {
     text = a.text.replace(/"/g, "&#34;");
     var toAppend = $('' +
         '<div data-role="collapsible" class="answer" data-iconpos="right" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" style="position:relative;">' +
         '<H2>' +
         '<span style="color: ' + score_color(a.confidence) + '; display: inline-block; width:3.5em;">' + (a.confidence * 100).toFixed(1) + '%' + '</span>' +
-        '<span style="" id="feedbackButtonArea' + i + '_'+questionID+'" class="feedbackButton">' +
+        '<span style="" id="feedbackButtonArea' + i + '_' + questionID + '" class="feedbackButton">' +
         '</span>' +
-        '<span id="answerText' + i + '_'+questionID+'" style="white-space: normal;">' +
+        '<span id="answerText' + i + '_' + questionID + '" style="white-space: normal;">' +
         text +
         '</span>' +
         score_bar(a.confidence) +
@@ -129,7 +132,7 @@ function showAnswersInDropDown(a, i, container, snippets, sources, questionID) {
         createDropDownList(container, "answersDropDownLI" + questionID, "More answers...", "moreAnswers" + questionID);
         dropDownList = $("#moreAnswers");
     }
-    showOneAnswer(a, i, dropDownList, snippets, sources,questionID);
+    showOneAnswer(a, i, dropDownList, snippets, sources, questionID);
 }
 
 /* Creates base for drop down menu */
@@ -259,7 +262,7 @@ function createButtonImage(source) {
 /* Shows concepts on main page */
 function showConcept(container, concepts, questionID) {
     container.empty();
-    var i = numberOfArtificialConcepts+1;
+    var i = numberOfArtificialConcepts + 1;
     concepts.forEach(function (a) {
         container.append('' +
             '<li>' +
@@ -267,7 +270,7 @@ function showConcept(container, concepts, questionID) {
             '       <img src="img/wikipedia-w-logo.png" alt="Wikipedia" class="ui-li-icon">'
             + a.title +
             '   </a>' +
-            '   <span style="" id="conceptButtonArea' + i+'" class="conceptButtonArea"></span>' +
+            '   <span style="" id="conceptButtonArea' + i + '" class="conceptButtonArea"></span>' +
             '</li>');
         i++;
     });
@@ -276,7 +279,7 @@ function showConcept(container, concepts, questionID) {
 
 /* Shows answer type */
 function showAnswerType(summary, questionID) {
-    var container = $("#answerType_area"+questionID);
+    var container = $("#answerType_area" + questionID);
     container.empty();
     if (summary.lats.length) {
         container.append('<br>');

@@ -28,6 +28,7 @@ $(function () {
             $('#verticalCenter').animate({marginTop: '0px'}, 'slow');
             putDialogIDToForm(JSON.parse(response).dialogID);
             window.location.href = createURL(JSON.parse(response).dialogID,null);
+            $(window).scrollTop($(document).height());
             setTimeout(function () {
                 loadQuestion(JSON.parse(response).id, true)
             }, 500);
