@@ -7,6 +7,7 @@
 function getInProgressJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/?inProgress", function (r) {
+            eraseHtmlTagsInObjectFields(r);
             showQuestionList($("#inProgress_area"), "inProgress", "In progress", r, false);
         });
     }
@@ -16,6 +17,7 @@ function getInProgressJson() {
 function getToAnswerJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/?toAnswer", function (r) {
+            eraseHtmlTagsInObjectFields(r);
             showQuestionList($("#toAnswer_area"), "toAnswer", "Question queue", r, false);
         });
     }
@@ -24,6 +26,7 @@ function getToAnswerJson() {
 function getDialogsJson() {
     if (CONNECTION_ADDRESS != null) {
         $.get(CONNECTION_ADDRESS + "q/?dialogs", function (r) {
+            eraseHtmlTagsInObjectFields(r);
             showQuestionList($("#dialogs_area"), "dialogs", "Passed dialogs", r, true);
         });
     }

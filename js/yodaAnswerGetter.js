@@ -239,7 +239,8 @@ function getQuestionJson(qid) {
             parameters += "/" + "-1";
         }
         $.get(CONNECTION_ADDRESS + parameters, function (r) {
-            showAnswerToQuestion(r)
+            eraseHtmlTagsInObjectFields(r);
+            showAnswerToQuestion(r);
         });
     }
 }
@@ -248,6 +249,7 @@ function getDialogJson(id) {
     if (CONNECTION_ADDRESS != null) {
         var parameters = "q/" + id;
         $.get(CONNECTION_ADDRESS + parameters, function (r) {
+            eraseHtmlTagsInObjectFields(r);
             showDialog(r);
         });
     }
@@ -270,4 +272,15 @@ function putDialogIDToForm(id) {
 
 function getDialogID(){
     return $("#dialogID").val();
+}
+
+function eraseHtmlTagsInObjectFields(object){
+    for(var key in object) {
+        if (typeof(object[key])==="string"){
+            object[key]=object[key].replace(/(<([^>]+)>)/ig,"");
+        }
+        if (typeof(object[key])==="object"){
+            eraseHtmlTagsInObjectFields(object[key]);
+        }
+    }
 }
