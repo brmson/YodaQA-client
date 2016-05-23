@@ -25,6 +25,7 @@ function addNewCard(questionId){
 }
 
 function createCard(questionId){
+    $('#'+questionId).remove();
     var card=$('<div data-role="collapsible" data-collapsed="true" id="'+questionId+'" class="questionCard">' +
         '<H2><span id="cardfeedbackButtonArea'+questionId+'" class="cardFeedback"></span><div id="cardQuestion'+questionId+'"></div><br><i id="cardAnswer'+questionId+'" style="white-space: normal;"><img src="img/ajax-loader.gif" width="12px" height="12px"> Thinking...</i></H2></div>');
     card.append('<div id="answers_area'+questionId+'" style="position: relative;"> </div>');
