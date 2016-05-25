@@ -3,12 +3,17 @@
  * Showing answer to question
  */
 
+/*Hashtables storing number of generated properties for question. Re-render GUI if changed. Keys are question's id.*/
+var gen_answers = {};
+var gen_sources = {};
+var gen_concepts = {};
+
 function showAnswerToQuestion(r) {
     questionText = r.text;
     var questionID = r.id;
     addQuestion(questionID, questionText);
     //shows answers
-    if (r.answers && gen_answers != r.gen_answers) {
+    if (r.answers && gen_answers[questionID] != r.gen_answers) {
         var container = createList("#answers_area" + questionID, "answers" + questionID, null, false, true);
         showResultAnswers(container, r.answers, r.snippets, r.sources, r.finished, questionID);
         if (r.gen_answers == 0) {
@@ -19,25 +24,24 @@ function showAnswerToQuestion(r) {
         } else {
             addAnswer(questionID, '<img src="img/ajax-loader.gif" width="12px" height="12px"> ' + r.gen_answers + " answers considered");
         }
-        gen_answers = r.gen_answers;
+        gen_answers[questionID] = r.gen_answers;
     }
 
     //shows concepts and summary
     if (r.summary) {
-        if (r.summary.concepts.length) {
+        if (r.summary.concepts.length && gen_concepts[questionID] != r.summary.concepts.length) {
             var container = createList("#concept_area" + questionID, "concepts" + questionID, "Concepts", true, false);
             showConcept(container, r.summary.concepts, questionID);
-        } else {
-            $("#concept_area" + questionID).empty();
         }
+        gen_concepts[questionID] = r.summary.concepts.length;
         showAnswerType(r.summary, questionID);
     }
 
     //shows sources
-    if (!$.isEmptyObject(r.sources) && gen_sources != r.gen_sources) {
+    if (!$.isEmptyObject(r.sources) && gen_sources[questionID] != r.gen_sources) {
         var container = createList("#sources_area" + questionID, "questionSources" + questionID, "Answer sources", true, false);
         showSources(container, r.sources, questionID);
-        gen_sources = r.gen_sources;
+        gen_sources[questionID] = r.gen_sources;
     }
 
     if (r.finished) {
@@ -56,6 +60,9 @@ function showAnswerToQuestion(r) {
         if (r.hasOwnProperty("summary")) {
             showArtificialConcepts(r.summary.concepts);
         }
+        delete gen_answers[questionID];
+        delete gen_sources[questionID];
+        delete gen_concepts[questionID];
     } else {
         // keep watching
         setTimeout(getQuestionJson(r.id), 500);
