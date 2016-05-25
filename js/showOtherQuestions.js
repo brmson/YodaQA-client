@@ -61,8 +61,6 @@ function loadQuestionNoCard(q, reload) {
     $("#answers_area").empty();
     $("#concept_area").empty();
     $("#sources_area").empty();
-    gen_sources = 0;
-    gen_answers = 0;
     if (reload) {
         window.location.href = createURL(q);
     } else {

@@ -11,7 +11,6 @@ var showFeedbackDefault = true;
 
 var qidQueue = []; // queue of posed questions
 var isShowingAnswer = false;
-var gen_sources, gen_answers;  // when this number changes, re-render
 var answers;
 var endpoint;
 var showFeedbackBool;
@@ -184,8 +183,6 @@ function reloadAnswered() {
  */
 function loadQuestion(q) {
     isShowingAnswer = true;
-    gen_sources = 0;
-    gen_answers = 0;
     addNewCard(q);
     addQuestion(q, $('input[name="text"]').val());
     getQuestionJson(q);
