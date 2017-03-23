@@ -3,7 +3,7 @@
  */
 
 
-var DEFAULT_ADDRESS = "http://qa.ailao.eu:4568/"; //default address of endpoint
+var DEFAULT_ADDRESS = "http://yodaqa.felk.cvut.cz:4568/"; //default address of endpoint
 var CONNECTION_ADDRESS; //address of endpoint
 var DIRECTLY_SHOWED_QUESTIONS = 3; // Number of questions above drop down menu
 var showFeedbackDefault = true;
